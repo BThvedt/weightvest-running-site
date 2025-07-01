@@ -1,48 +1,48 @@
 name: Deploy to Elastic Beanstalk
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.3"
-      - name: Install dependencies
-        run: composer install
-  
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - uses: actions/checkout@v3
-      - name: Get timestamp
-        run: echo "TIMESTAMP=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
-      - name: Create deployment package
-        run: |
-          zip -r deploy.zip . \
-            -x "*.git*" \
-            -x "node_modules/*" \
-            -x "tests/*" \
-            -x ".github/*" \
-            -x "*.md"
-          ls -la deploy.zip
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+      - name: Install dependencies
+        run: composer install
 
-      - name: Deploy to EB
-        uses: einaregilsson/beanstalk-deploy@v21
-        with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          application_name: "Weightvest Running"
-          environment_name: "WeightvestRunning-env"
-          version_label: ${{ env.TIMESTAMP }}-${{ github.sha }}
-          region: us-east-2
-          deployment_package: deploy.zip
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get timestamp
+        run: echo "TIMESTAMP=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
+      - name: Create deployment package
+        run: |
+          zip -r deploy.zip . \
+            -x "*.git*" \
+            -x "node_modules/*" \
+            -x "tests/*" \
+            -x ".github/*" \
+            -x "*.md"
+            ls -la deploy.zip
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          application_name: "Weightvest Running"
+          environment_name: "WeightvestRunning-env"
+          version_label: ${{ env.TIMESTAMP }}-${{ github.sha }}
+          region: us-east-2
+          deployment_package: deploy.zip
