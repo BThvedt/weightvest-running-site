@@ -227,21 +227,21 @@ $databases = [];
  * @endcode
  */
 
-if (!$is_local) {
-  $databases = [];
+// if (!$is_local) {
+//   $databases = [];
 
-  // Database configuration from environment variables
-  $databases['default']['default'] = [
-    'database' => $_ENV['DB_NAME'],
-    'username' => $_ENV['DB_USER'],
-    'password' => $_ENV['DB_PASS'],
-    'prefix' => '',
-    'host' => $_ENV['DB_HOST'],
-    'port' => '3306',
-    'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-    'driver' => 'mysql',
-  ];
-}
+//   // Database configuration from environment variables
+//   $databases['default']['default'] = [
+//     'database' => $_ENV['DB_NAME'],
+//     'username' => $_ENV['DB_USER'],
+//     'password' => $_ENV['DB_PASS'],
+//     'prefix' => '',
+//     'host' => $_ENV['DB_HOST'],
+//     'port' => '3306',
+//     'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+//     'driver' => 'mysql',
+//   ];
+// }
 
 
 /**
