@@ -253,17 +253,17 @@ $name = $_ENV['DB_NAME'] ?? getenv('DB_NAME') ?? $_SERVER['DB_NAME'] ?? null;
 $user = $_ENV['DB_USER'] ?? getenv('DB_USER') ?? $_SERVER['DB_USER'] ?? null;
 $pass = $_ENV['DB_PASS'] ?? getenv('DB_PASS') ?? $_SERVER['DB_PASS'] ?? null;
 
-if ($host && $name && $user && $pass) {
-    echo "<h3>Database Connection Test:</h3>";
-    try {
-        $pdo = new PDO("mysql:host=$host;dbname=$name", $user, $pass);
-        echo "<span style='color: green;'>✅ Connection successful!</span>";
-    } catch (PDOException $e) {
-        echo "<span style='color: red;'>❌ Connection failed: " . $e->getMessage() . "</span>";
-    }
-} else {
-    echo "<h3>❌ Cannot test database - missing environment variables</h3>";
-}
+// if ($host && $name && $user && $pass) {
+//     echo "<h3>Database Connection Test:</h3>";
+//     try {
+//         $pdo = new PDO("mysql:host=$host;dbname=$name", $user, $pass);
+//         echo "<span style='color: green;'>✅ Connection successful!</span>";
+//     } catch (PDOException $e) {
+//         echo "<span style='color: red;'>❌ Connection failed: " . $e->getMessage() . "</span>";
+//     }
+// } else {
+//     echo "<h3>❌ Cannot test database - missing environment variables</h3>";
+// }
 
 if (!$is_local) {
   $databases = [];
