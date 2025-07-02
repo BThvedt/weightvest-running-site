@@ -2,6 +2,9 @@
 
 // phpcs:ignoreFile
 
+// are we local or live? 
+$is_local = (isset($_ENV['DDEV_PROJECT']) || isset($_ENV['IS_DDEV_PROJECT']));
+
 /**
  * @file
  * Drupal site-specific configuration file.
@@ -223,6 +226,23 @@ $databases = [];
  *   ];
  * @endcode
  */
+
+if (!$is_local) {
+  $databases = [];
+
+  // Database configuration from environment variables
+  $databases['default']['default'] = [
+    'database' => $_ENV['DB_NAME'],
+    'username' => $_ENV['DB_USER'],
+    'password' => $_ENV['DB_PASS'],
+    'prefix' => '',
+    'host' => $_ENV['DB_HOST'],
+    'port' => '3306',
+    'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+    'driver' => 'mysql',
+  ];
+}
+
 
 /**
  * Location of the site configuration files.
