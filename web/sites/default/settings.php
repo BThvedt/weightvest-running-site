@@ -227,21 +227,59 @@ $databases = [];
  * @endcode
  */
 
-// if (!$is_local) {
-//   $databases = [];
+echo "<h2>Environment Variables Debug</h2>";
 
-//   // Database configuration from environment variables
-//   $databases['default']['default'] = [
-//     'database' => $_ENV['DB_NAME'],
-//     'username' => $_ENV['DB_USER'],
-//     'password' => $_ENV['DB_PASS'],
-//     'prefix' => '',
-//     'host' => $_ENV['DB_HOST'],
-//     'port' => '3306',
-//     'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-//     'driver' => 'mysql',
-//   ];
-// }
+echo "<h3>Using \$_ENV:</h3>";
+echo "DB_HOST: " . ($_ENV['DB_HOST'] ?? 'NOT SET') . "<br>";
+echo "DB_NAME: " . ($_ENV['DB_NAME'] ?? 'NOT SET') . "<br>";
+echo "DB_USER: " . ($_ENV['DB_USER'] ?? 'NOT SET') . "<br>";
+echo "DB_PASS: " . (isset($_ENV['DB_PASS']) ? '***SET***' : 'NOT SET') . "<br>";
+
+echo "<h3>Using getenv():</h3>";
+echo "DB_HOST: " . (getenv('DB_HOST') ?: 'NOT SET') . "<br>";
+echo "DB_NAME: " . (getenv('DB_NAME') ?: 'NOT SET') . "<br>";
+echo "DB_USER: " . (getenv('DB_USER') ?: 'NOT SET') . "<br>";
+echo "DB_PASS: " . (getenv('DB_PASS') ? '***SET***' : 'NOT SET') . "<br>";
+
+echo "<h3>Using \$_SERVER:</h3>";
+echo "DB_HOST: " . ($_SERVER['DB_HOST'] ?? 'NOT SET') . "<br>";
+echo "DB_NAME: " . ($_SERVER['DB_NAME'] ?? 'NOT SET') . "<br>";
+echo "DB_USER: " . ($_SERVER['DB_USER'] ?? 'NOT SET') . "<br>";
+echo "DB_PASS: " . (isset($_SERVER['DB_PASS']) ? '***SET***' : 'NOT SET') . "<br>";
+
+// Test database connection if variables are set
+$host = $_ENV['DB_HOST'] ?? getenv('DB_HOST') ?? $_SERVER['DB_HOST'] ?? null;
+$name = $_ENV['DB_NAME'] ?? getenv('DB_NAME') ?? $_SERVER['DB_NAME'] ?? null;
+$user = $_ENV['DB_USER'] ?? getenv('DB_USER') ?? $_SERVER['DB_USER'] ?? null;
+$pass = $_ENV['DB_PASS'] ?? getenv('DB_PASS') ?? $_SERVER['DB_PASS'] ?? null;
+
+if ($host && $name && $user && $pass) {
+    echo "<h3>Database Connection Test:</h3>";
+    try {
+        $pdo = new PDO("mysql:host=$host;dbname=$name", $user, $pass);
+        echo "<span style='color: green;'>✅ Connection successful!</span>";
+    } catch (PDOException $e) {
+        echo "<span style='color: red;'>❌ Connection failed: " . $e->getMessage() . "</span>";
+    }
+} else {
+    echo "<h3>❌ Cannot test database - missing environment variables</h3>";
+}
+
+if (!$is_local) {
+  $databases = [];
+
+  // Database configuration from environment variables
+  $databases['default']['default'] = [
+    'database' => $_ENV['DB_NAME'],
+    'username' => $_ENV['DB_USER'],
+    'password' => $_ENV['DB_PASS'],
+    'prefix' => '',
+    'host' => $_ENV['DB_HOST'],
+    'port' => '3306',
+    'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+    'driver' => 'mysql',
+  ];
+}
 
 
 /**
