@@ -285,7 +285,7 @@ $settings['config_sync_directory'] = '../config/sync';
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-if (!$is_local) { {
+if (!$is_local) { 
   $settings['hash_salt'] = getenv('DRUPAL_HASH_SALT');
 }
 
