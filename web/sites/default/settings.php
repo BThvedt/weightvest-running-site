@@ -233,7 +233,7 @@ echo "<h3>Using \$_ENV:</h3>";
 echo "DB_HOST: " . ($_ENV['DB_HOST'] ?? 'NOT SET') . "<br>";
 echo "DB_NAME: " . ($_ENV['DB_NAME'] ?? 'NOT SET') . "<br>";
 echo "DB_USER: " . ($_ENV['DB_USER'] ?? 'NOT SET') . "<br>";
-echo "DB_PASS: " . (isset($_ENV['DB_PASS']) ? '***SET***' : 'NOT SET') . "<br>";
+echo "DB_PASS: " . (isset($_ENV['DB_PASS']) ? $_ENV['DB_PASS'] : 'NOT SET') . "<br>";
 
 echo "<h3>Using getenv():</h3>";
 echo "DB_HOST: " . (getenv('DB_HOST') ?: 'NOT SET') . "<br>";
