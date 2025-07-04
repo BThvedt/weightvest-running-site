@@ -897,4 +897,8 @@ if (!$is_local) {
   $settings['s3fs.public_folder'] = 'public';
   $settings['s3fs.private_folder'] = 'private';
   $settings['s3fs.upload_as_private'] = FALSE;
+
+  $config['s3fs.settings']['region'] = 'us-east-2';
+  $config['s3fs.settings']['bucket'] = 'weightvest-running';
+
 }
