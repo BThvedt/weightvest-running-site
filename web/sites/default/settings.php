@@ -893,10 +893,13 @@ if (!$is_local) {
   $settings['s3fs.secret_key'] = ''; // Leave blank if using IAM Role
   $settings['s3fs.bucket'] = 'weightvest-running';
   $settings['s3fs.region'] = 'us-east-2'; // Or your region
-  $settings['s3fs.use_s3_for_public'] = TRUE;
+  $settings['use_s3_for_public'] = TRUE;
   $settings['s3fs.public_folder'] = 'public';
   $settings['s3fs.private_folder'] = 'private';
   $settings['s3fs.upload_as_private'] = FALSE;
+
+  $settings['s3fs.use_s3_for_public'] = TRUE;
+  $settings['s3fs.use_s3_for_private'] = TRUE;
 
   $config['s3fs.settings']['region'] = 'us-east-2';
   $config['s3fs.settings']['bucket'] = 'weightvest-running';
