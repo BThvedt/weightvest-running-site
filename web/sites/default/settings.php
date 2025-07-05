@@ -888,7 +888,7 @@ if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 
-// if (!$is_local) {
+if (!$is_local) {
   // $settings['s3fs.access_key'] = ''; // Leave blank if using IAM Role
   // $settings['s3fs.secret_key'] = ''; // Leave blank if using IAM Role
   // $settings['s3fs.bucket'] = 'weightvest-running';
@@ -908,4 +908,4 @@ if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev
 
   // $settings['file_public_path'] = 's3://public';
 
-//}
+}
