@@ -898,11 +898,11 @@ if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev
   // $settings['s3fs.private_folder'] = 'private';
   // $settings['s3fs.upload_as_private'] = FALSE;
 
-  // $settings['s3fs.use_s3_for_public'] = TRUE;
-  // $settings['s3fs.use_s3_for_private'] = TRUE;
+  $settings['s3fs.use_s3_for_public'] = TRUE;
+  $settings['s3fs.use_s3_for_private'] = TRUE;
 
-  // $config['s3fs.settings']['region'] = 'us-east-2';
-  // $config['s3fs.settings']['bucket'] = 'weightvest-running';
+  $config['s3fs.settings']['region'] = 'us-east-2';
+  $config['s3fs.settings']['bucket'] = 'weightvest-running';
   // $config['s3fs.settings']['cache_control_header'] = 'public, max-age=31536000';
   // $config['s3fs.settings']['root_folder'] = '';
 
