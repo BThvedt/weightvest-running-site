@@ -888,7 +888,7 @@ if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 
-if (!$is_local) {
+// if (!$is_local) {
   $settings['s3fs.access_key'] = ''; // Leave blank if using IAM Role
   $settings['s3fs.secret_key'] = ''; // Leave blank if using IAM Role
   $settings['s3fs.bucket'] = 'weightvest-running';
@@ -903,5 +903,7 @@ if (!$is_local) {
 
   $config['s3fs.settings']['region'] = 'us-east-2';
   $config['s3fs.settings']['bucket'] = 'weightvest-running';
+  $config['s3fs.settings']['cache_control_header'] = 'public, max-age=31536000';
+  $config['s3fs.settings']['root_folder'] = '';
 
-}
+//}
