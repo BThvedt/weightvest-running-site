@@ -906,4 +906,6 @@ if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev
   $config['s3fs.settings']['cache_control_header'] = 'public, max-age=31536000';
   $config['s3fs.settings']['root_folder'] = '';
 
+  $settings['file_public_path'] = 's3://public';
+
 //}
