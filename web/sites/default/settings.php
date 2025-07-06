@@ -4,6 +4,8 @@
 
 // are we local or live? 
 $is_local = (isset($_ENV['DDEV_PROJECT']) || isset($_ENV['IS_DDEV_PROJECT']));
+// this directory should be OUTSIDE of sites/default/files..
+$settings['php_storage']['twig']['directory'] = '../storage/php';
 
 /**
  * @file
@@ -889,23 +891,9 @@ if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev
 # }
 
 if (!$is_local) {
-  // $settings['s3fs.access_key'] = ''; // Leave blank if using IAM Role
-  // $settings['s3fs.secret_key'] = ''; // Leave blank if using IAM Role
-  // $settings['s3fs.bucket'] = 'weightvest-running';
-  // $settings['s3fs.region'] = 'us-east-2'; // Or your region
-  // $settings['use_s3_for_public'] = TRUE;
-  // $settings['s3fs.public_folder'] = 'public';
-  // $settings['s3fs.private_folder'] = 'private';
-  // $settings['s3fs.upload_as_private'] = FALSE;
-
   $settings['s3fs.use_s3_for_public'] = TRUE;
   $settings['s3fs.use_s3_for_private'] = TRUE;
 
   $config['s3fs.settings']['region'] = 'us-east-2';
   $config['s3fs.settings']['bucket'] = 'weightvest-running';
-  // $config['s3fs.settings']['cache_control_header'] = 'public, max-age=31536000';
-  // $config['s3fs.settings']['root_folder'] = '';
-
-  // $settings['file_public_path'] = 's3://public';
-
 }
