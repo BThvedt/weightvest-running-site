@@ -1,0 +1,12 @@
+<?php
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function react_components_page_attachments_alter(array &$attachments) {
+  // Debug what libraries are attached
+  if (isset($attachments['#attached']['library'])) {
+    \Drupal::logger('react_components')->notice('Libraries attached: @libs', [
+      '@libs' => implode(', ', $attachments['#attached']['library'])
+    ]);
+  }
+}
