@@ -891,9 +891,15 @@ if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev
 # }
 
 if (!$is_local) {
+  $config['config_split.config_split.dev']['status'] = FALSE;
+  $config['config_split.config_split.prod']['status'] = TRUE;
+
   $settings['s3fs.use_s3_for_public'] = TRUE;
   $settings['s3fs.use_s3_for_private'] = TRUE;
 
   $config['s3fs.settings']['region'] = 'us-east-2';
   $config['s3fs.settings']['bucket'] = 'weightvest-running';
+} else {
+  $config['config_split.config_split.dev']['status'] = TRUE;
+  $config['config_split.config_split.prod']['status'] = FALSE;
 }
