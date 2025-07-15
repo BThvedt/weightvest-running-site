@@ -10,7 +10,7 @@ export default {
   devtool: process.env.NODE_ENV === "production" ? false : "inline-source-map",
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "app_bundle"),
     filename: "app.bundle.js",
   },
   resolve: {
