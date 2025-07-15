@@ -1,0 +1,20 @@
+{
+  "name": "weightvest_running_theme",
+  "version": "1.0.0",
+  "description": "A theme for my drupal site",
+  "license": "ISC",
+  "author": "Me",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-cli": "^3.1.0",
+    "gulp-purgecss": "^7.0.2",
+    "gulp-sass": "^6.0.1",
+    "sass": "^1.89.2",
+    "sass-migrator": "^2.3.3"
+  }
+}

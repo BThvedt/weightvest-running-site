@@ -1,0 +1,23 @@
+uuid: cc6796a5-bafe-4127-a2ad-ad4c795484b7
+langcode: en
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - weightvest_running
+_core:
+  default_config_hash: imMyHD6LYci0gtXq56qr9ZKGHzbEG9uFydrN5EhKtSU
+id: weightvest_running_search_form_wide
+theme: weightvest_running
+region: header
+weight: -5
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (wide)'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }

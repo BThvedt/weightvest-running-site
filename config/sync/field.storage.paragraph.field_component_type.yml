@@ -1,0 +1,27 @@
+uuid: 69da1ee7-e263-4b47-90f5-a5afa5321940
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_component_type
+field_name: field_component_type
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: hello_world
+      label: 'Hello World'
+    -
+      value: sample_component
+      label: 'Sample Component'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

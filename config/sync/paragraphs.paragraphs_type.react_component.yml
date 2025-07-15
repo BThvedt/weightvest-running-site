@@ -1,0 +1,10 @@
+uuid: 4a6863f7-a08c-444b-85a7-e8466752c5f3
+langcode: en
+status: true
+dependencies: {  }
+id: react_component
+label: 'React Component'
+icon_uuid: null
+icon_default: null
+description: 'A paragraph type for a react component'
+behavior_plugins: {  }

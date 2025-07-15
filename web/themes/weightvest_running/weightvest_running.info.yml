@@ -1,0 +1,15 @@
+name: Weightvest Running
+type: theme
+description: "A custom theme for Drupal 10"
+core_version_requirement: ^10
+base theme: stark
+
+libraries:
+  - weightvest_running/global-styling
+
+regions:
+  header: Header
+  primary_menu: "Primary menu"
+  content: Content
+  sidebar: Sidebar
+  footer: Footer

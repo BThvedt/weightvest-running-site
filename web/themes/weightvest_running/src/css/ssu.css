@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Francois+One&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+/* 
+	font-family: 'Bebas Neue', sans-serif;
+	font-family: 'Francois One', sans-serif;
+	font-family: 'Lato', sans-serif;
+  testing build again!!!!
+*/
+* {
+  color: inherit;
+  margin: 0;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+*,
+::before,
+::after {
+  border-width: 0;
+  border-style: solid;
+}
+
+input {
+  outline: 0;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/*
+  Each utility in the utility map below has a prefix and a values map
+  the values maps look like this (with base-size = 0.125rem) 
+
+  (
+    "0": 0rem
+    "xxs": 0.125rem
+    "xs": 0.25rem
+    ... etc 
+  )
+
+  for all the values defined in the $spacing-vals map found in variables
+
+  Then from these, classes are generated with the prefix
+  so ultimately, for padding, for example, 
+  we'll end up with:
+
+  p-xs { 
+    padding: 0.25rem
+  }
+  .p-s {
+    padding: 0.5rem
+  }
+  ..etc
+
+  Also for note for responsiveness those classes are 
+  genereated too for the breakpoints like so:
+
+  sm:p-xs {
+    padding: 0.25rem
+  }
+
+  lg:p-s {
+    padding: 0.5rem
+  }
+  ..etc
+
+  Since the breakpoings are lower in ssu.css then the defaults, they will take 
+  precidence
+
+  As you can imagine, there's a lot of classes. Important
+  to make sure purging is set up!  See online docs
+*/
+
+.radius {
+  border-radius: 0.5rem;
+}
+
+.rtl {
+  border-top-left-radius: 0.5rem;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.h-1 {
+  height: 1rem;
+}
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.font {
+  font-family: "Lato", sans-serif;
+}
+
+/*
+  This is kinda tricky, first I want classes for theme colors.. that part's easy enough
+  text-color, bg-color, border color. Simple. Then I want day and dark modes, that's also 
+  not tough, just have colors that override that if their parent has a dark class.
+
+  Then I want classes for hover states. Ok this is starting to get complicated. But not really..
+  say your only theme color is red. And you have a different "red" for day or dark. And say the
+  only state is hover and the only class is for text and it just goes lighter or darker. 
+  The scss will look like this: 
+
+  .text-red {
+    color: ...;
+  }
+  .text-red-lighter {
+    color: .. (lighter)
+  }
+  .text-red-darker {
+    ...
+  }
+  .hover:text-red {
+  }
+  .hover:text-red-lighter {
+  }
+  .hover:text-red-darker {
+  }
+  .. 
+
+  .dark {
+    .text-red .. (different color) 
+    .text-red-lighter .. 
+    .hover:text-red-lighter ..  
+    etc .. 
+  }
+
+  since I have the element states in this file, it seems like a logical place to also 
+  handle elements states for font weight and text decoration too .. although these
+  things 
+*/
+
+/* 
+	font-family: 'Bebas Neue', sans-serif;
+	font-family: 'Francois One', sans-serif;
+	font-family: 'Lato', sans-serif;
+  testing build again!!!!
+*/

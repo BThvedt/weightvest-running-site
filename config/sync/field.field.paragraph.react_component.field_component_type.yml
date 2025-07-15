@@ -1,0 +1,23 @@
+uuid: af9e8b75-8a0c-4aeb-942a-297694a6589f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_component_type
+    - paragraphs.paragraphs_type.react_component
+  module:
+    - options
+id: paragraph.react_component.field_component_type
+field_name: field_component_type
+entity_type: paragraph
+bundle: react_component
+label: 'Component Type'
+description: 'Select the type of React component to render'
+required: true
+translatable: true
+default_value:
+  -
+    value: hello_world
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,4 +1,4 @@
-uuid: 68f15752-8cb5-4c76-a1e9-02c0f5e5b415
+uuid: a25f18e7-360c-4be0-bf0c-c20dfdc370bd
 langcode: en
 status: true
 dependencies:
@@ -17,4 +17,6 @@ settings:
   label: 'React block'
   label_display: visible
   provider: react_components
+  component_type: hello_world
+  component_title: asdf
 visibility: {  }

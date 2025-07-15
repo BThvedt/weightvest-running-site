@@ -1,0 +1,22 @@
+uuid: e3a0fe28-f48b-4355-9c65-9af462ba9209
+langcode: en
+status: true
+dependencies:
+  theme:
+    - weightvest_running
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: weightvest_running_primary_local_tasks
+theme: weightvest_running
+region: header
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

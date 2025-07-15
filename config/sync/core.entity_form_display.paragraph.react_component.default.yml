@@ -1,0 +1,30 @@
+uuid: 79e99523-cc74-473f-a17a-b83de4278970
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.react_component.field_component_title
+    - field.field.paragraph.react_component.field_component_type
+    - paragraphs.paragraphs_type.react_component
+id: paragraph.react_component.default
+targetEntityType: paragraph
+bundle: react_component
+mode: default
+content:
+  field_component_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: 'Enter component title...'
+    third_party_settings: {  }
+  field_component_type:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

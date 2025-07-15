@@ -1,0 +1,22 @@
+uuid: 4489e857-e663-4f51-b381-7ad7231f2ae8
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - weightvest_running
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: weightvest_running_content
+theme: weightvest_running
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: f200a44e-986a-4fe0-9c57-88fb40e53ba8
+langcode: en
+status: true
+dependencies:
+  module:
+    - react_components
+  theme:
+    - weightvest_running
+id: weightvest_running_reactblock
+theme: weightvest_running
+region: content
+weight: 0
+provider: null
+plugin: react_block
+settings:
+  id: react_block
+  label: 'React block'
+  label_display: visible
+  provider: react_components
+  component_type: hello_world
+  component_title: asdf
+visibility: {  }

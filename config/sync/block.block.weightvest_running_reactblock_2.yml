@@ -1,0 +1,22 @@
+uuid: 2a300c49-2a07-4608-bc3b-7060fb79109a
+langcode: en
+status: true
+dependencies:
+  module:
+    - react_components
+  theme:
+    - weightvest_running
+id: weightvest_running_reactblock_2
+theme: weightvest_running
+region: content
+weight: 0
+provider: null
+plugin: react_block
+settings:
+  id: react_block
+  label: 'React block'
+  label_display: visible
+  provider: react_components
+  component_type: sample_component
+  component_title: ''
+visibility: {  }

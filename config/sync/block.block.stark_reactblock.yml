@@ -1,0 +1,22 @@
+uuid: d65c840a-c930-4b09-b08a-8871f78c93b4
+langcode: en
+status: true
+dependencies:
+  module:
+    - react_components
+  theme:
+    - stark
+id: stark_reactblock
+theme: stark
+region: content
+weight: 0
+provider: null
+plugin: react_block
+settings:
+  id: react_block
+  label: 'React block'
+  label_display: visible
+  provider: react_components
+  component_type: hello_world
+  component_title: asdf
+visibility: {  }

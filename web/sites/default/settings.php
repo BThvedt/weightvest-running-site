@@ -902,4 +902,7 @@ if (!$is_local) {
 } else {
   $config['config_split.config_split.dev']['status'] = TRUE;
   $config['config_split.config_split.prod']['status'] = FALSE;
+
+  $config['system.performance']['css']['preprocess'] = FALSE;
+  $config['system.performance']['js']['preprocess'] = FALSE;
 }
