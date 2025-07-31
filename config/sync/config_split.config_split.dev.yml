@@ -12,6 +12,7 @@ storage: folder
 folder: ../config/dev
 module:
   devel: 0
+  devel_kint_extras: 0
 theme: {  }
 complete_list: {  }
 partial_list: {  }
