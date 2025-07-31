@@ -1,0 +1,10 @@
+uuid: 14e6ff0b-3351-46dd-9d12-c5bb45c65dc7
+langcode: en
+status: true
+dependencies: {  }
+id: banner_img_video
+label: 'Banner Img/Video'
+icon_uuid: null
+icon_default: null
+description: "Displays a banner image. If there's a video, plays the video. "
+behavior_plugins: {  }

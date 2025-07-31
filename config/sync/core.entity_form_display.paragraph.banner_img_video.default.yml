@@ -1,0 +1,32 @@
+uuid: 283331f8-aeec-4948-a309-75e7f65da761
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.banner_img_video.field_banner_image
+    - field.field.paragraph.banner_img_video.field_banner_video
+    - paragraphs.paragraphs_type.banner_img_video
+  module:
+    - media_library
+id: paragraph.banner_img_video.default
+targetEntityType: paragraph
+bundle: banner_img_video
+mode: default
+content:
+  field_banner_image:
+    type: media_library_widget
+    weight: 0
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_banner_video:
+    type: media_library_widget
+    weight: 1
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

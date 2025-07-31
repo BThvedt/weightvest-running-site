@@ -1,0 +1,32 @@
+uuid: 5397ff1b-7c94-44dc-bc5e-d55ae77255f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.banner_img_video.field_banner_image
+    - field.field.paragraph.banner_img_video.field_banner_video
+    - paragraphs.paragraphs_type.banner_img_video
+id: paragraph.banner_img_video.default
+targetEntityType: paragraph
+bundle: banner_img_video
+mode: default
+content:
+  field_banner_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_banner_video:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }
