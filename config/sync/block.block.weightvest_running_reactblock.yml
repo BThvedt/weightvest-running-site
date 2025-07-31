@@ -1,4 +1,4 @@
-uuid: f200a44e-986a-4fe0-9c57-88fb40e53ba8
+uuid: 8ccd1a2c-d29e-418c-ba96-074ddb281d33
 langcode: en
 status: true
 dependencies:
@@ -8,15 +8,15 @@ dependencies:
     - weightvest_running
 id: weightvest_running_reactblock
 theme: weightvest_running
-region: content
-weight: 0
+region: modals_region
+weight: -8
 provider: null
 plugin: react_block
 settings:
   id: react_block
-  label: 'React block'
-  label_display: visible
+  label: 'React block - Slideout Menu'
+  label_display: '0'
   provider: react_components
-  component_type: hello_world
-  component_title: asdf
+  component_type: slideout_menu
+  component_title: 'Slideout Menu'
 visibility: {  }

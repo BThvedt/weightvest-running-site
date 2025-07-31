@@ -1,6 +1,6 @@
 uuid: cd9d08ae-32c9-4459-9a6f-c1a9c678470a
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - help
@@ -11,7 +11,7 @@ _core:
 id: weightvest_running_help
 theme: weightvest_running
 region: header
-weight: 0
+weight: -7
 provider: null
 plugin: help_block
 settings:

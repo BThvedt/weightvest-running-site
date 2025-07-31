@@ -32,7 +32,7 @@ class ReactBlock extends BlockBase {
         'data-instance-id' => $uuid,
       ],
       '#attached' => [
-        'library' => 'react_components/react-components-lib'
+        'library' => ['react_components/react-components-lib']
       ]
     ];
 
@@ -75,7 +75,9 @@ class ReactBlock extends BlockBase {
       '#description' => $this->t('Select the type of React component to render.'),
       '#options' => [
         'hello_world' => $this->t('Hello World'),
-        'sample_component' => $this->t('Sample Component')
+        'sample_component' => $this->t('Sample Component'),
+        'slideout_menu' => $this->t('Slideout Menu'),
+        'slideout_menu_btn' => $this->t('Slideout Menu Btn')
       ],
       '#default_value' => $this->configuration['component_type'],
       '#required' => TRUE,
@@ -89,5 +91,17 @@ class ReactBlock extends BlockBase {
     
     $this->configuration['component_type'] = $form_state->getValue('component_type');
     $this->configuration['component_title'] = $form_state->getValue('component_title');
+  }
+
+  public function getCacheMaxAge() {
+    return 0; // Temporarily disable caching
+  }
+
+  public function getCacheContexts() {
+    return ['url.path']; // Add cache contexts as needed
+  }
+
+  public function getCacheTags() {
+    return ['your_module:debug']; // Add cache tags
   }
 }

@@ -1,0 +1,29 @@
+#rcb-slideout-menu {
+  position: inherit;
+
+  #close-mobile {
+    user-select: none;
+  }
+
+  #mobile-menu {
+    transform: translateX(100%); // ???
+
+    &.menu-visible {
+      transform: translateX(0);
+    }
+  }
+
+  #mobile-menu-bkgrnd {
+    background-color: rgba(177, 176, 174, 0);
+    backdrop-filter: blur(0px);
+
+    &.has-backdrop {
+      background-color: rgba(177, 176, 174, 0.3);
+      backdrop-filter: blur(2px);
+    }
+  }
+
+  #branding-html {
+    transform: scale(0.9);
+  }
+}

@@ -1,5 +1,5 @@
 <?php
-
+use Kint\Kint;
 // phpcs:ignoreFile
 
 // are we local or live? 
@@ -899,10 +899,20 @@ if (!$is_local) {
 
   $config['s3fs.settings']['region'] = 'us-east-2';
   $config['s3fs.settings']['bucket'] = 'weightvest-running';
+
+  // if (class_exists('Kint')) {
+  //   // Change the maximum depth to prevent out-of-memory errors.
+  //   \Kint::$max_depth = 1;
+  // }
+
 } else {
   $config['config_split.config_split.dev']['status'] = TRUE;
   $config['config_split.config_split.prod']['status'] = FALSE;
 
   $config['system.performance']['css']['preprocess'] = FALSE;
   $config['system.performance']['js']['preprocess'] = FALSE;
+
+  $settings['cache']['bins']['render'] = 'cache.backend.null';
+  $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
+  $settings['cache']['bins']['page'] = 'cache.backend.null';
 }

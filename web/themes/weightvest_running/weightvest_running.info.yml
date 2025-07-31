@@ -3,13 +3,18 @@ type: theme
 description: "A custom theme for Drupal 10"
 core_version_requirement: ^10
 base theme: stark
+logo: logo-new.png
 
 libraries:
   - weightvest_running/global-styling
 
 regions:
-  header: Header
+  modals_region: Modals
+  highlighted: Highlighted
   primary_menu: "Primary menu"
+  secondary_menu: "Secondary menu"
+  edit_links: "Edit Links"
+  header: Header
   content: Content
   sidebar: Sidebar
   footer: Footer

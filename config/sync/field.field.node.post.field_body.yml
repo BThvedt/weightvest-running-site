@@ -1,0 +1,29 @@
+uuid: d965282d-a2db-4703-bc78-0b6b4bc3723a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_body
+    - node.type.post
+  module:
+    - entity_reference_revisions
+id: node.post.field_body
+field_name: field_body
+entity_type: node
+bundle: post
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: null
+    negate: 0
+    target_bundles_drag_drop:
+      react_component:
+        weight: 2
+        enabled: false
+field_type: entity_reference_revisions

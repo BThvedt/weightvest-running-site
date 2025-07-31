@@ -1,0 +1,22 @@
+uuid: 09b01c13-8a4c-4b17-8cce-5354d44c06a4
+langcode: en
+status: true
+dependencies:
+  module:
+    - react_components
+  theme:
+    - weightvest_running
+id: weightvest_running_reactblock_3
+theme: weightvest_running
+region: secondary_menu
+weight: 0
+provider: null
+plugin: react_block
+settings:
+  id: react_block
+  label: 'React block - Menu Btn'
+  label_display: '0'
+  provider: react_components
+  component_type: slideout_menu_btn
+  component_title: 'Menu Btn'
+visibility: {  }

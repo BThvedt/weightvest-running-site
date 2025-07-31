@@ -1,0 +1,10 @@
+uuid: 0b1d1060-2a37-43d2-a394-182e81456a8e
+langcode: en
+status: true
+dependencies: {  }
+id: block
+label: Block
+icon_uuid: null
+icon_default: null
+description: 'A paragraph type that references a block'
+behavior_plugins: {  }

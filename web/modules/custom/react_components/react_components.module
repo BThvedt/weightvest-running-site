@@ -1,4 +1,9 @@
 <?php
+
+use Drupal\block\Entity\Block;
+use Drupal\Core\Block\BlockManagerInterface;
+use Drupal\Core\Render\RendererInterface;
+
 /**
  * Implements hook_page_attachments_alter().
  */
@@ -47,3 +52,111 @@ function react_components_preprocess_paragraph__react_component(array &$variable
 
   $variables['#attached']['library'][] = 'react_components/react-components-lib';
 }
+
+
+// let's give the block a custom id based on the title
+function react_components_preprocess_block(&$variables) {
+  $plugin_id = $variables['elements']['#plugin_id'];
+
+  if ($plugin_id == 'react_block') {
+
+    if (!empty($variables['configuration']['component_title'])) {
+      $title = $variables['configuration']['component_title'];
+      $id = strtolower($title);
+      $id = trim($id);
+      $id = preg_replace('/[^a-z0-9]+/', '-', $id);
+      $id = 'rcb-' . $id;
+      $variables['attributes']['id']  = $id;
+    }
+
+    // send the html of the menus as variables to this component
+    // first, use the simplest way of loading a generic menu correctlly, and load 'main'
+    if ($variables['configuration']['component_type'] == "slideout_menu") {
+      $menu_name = 'main';
+
+      $menu_tree = \Drupal::menuTree();
+
+      // $menu_storage = \Drupal::entityTypeManager()->getStorage('menu');
+      // $menu = $menu_storage->load($menu_name);
+
+      $parameters = $menu_tree->getCurrentRouteMenuTreeParameters($menu_name);
+      $tree = $menu_tree->load($menu_name, $parameters);
+
+      $manipulators = [
+        ['callable' => 'menu.default_tree_manipulators:checkAccess'],
+        ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+      ];
+
+      $tree = $menu_tree->transform($tree, $manipulators);
+
+      // Build render array
+      $menu_build = $menu_tree->build($tree);
+      $menu_build['#theme'] = 'menu__mobile_main_slideout';
+      
+      // Render to HTML
+      $renderer = \Drupal::service('renderer');
+      $menu_html = $renderer->render($menu_build);
+
+      // Ok, I aslo wanna send the system brandings block to the frontend
+      $site_branding_block = \Drupal::entityTypeManager()
+        ->getStorage('block')
+        ->load('weightvest_running_site_branding');
+      
+      $site_branding_block_content = \Drupal::entityTypeManager()
+        ->getViewBuilder('block')
+        ->view($site_branding_block);
+
+      $branding_html = $renderer->render($site_branding_block_content);
+
+      // the build() function gives blocks a uuid .. 
+      $uuid = $variables['elements']['content']['react_block']['#uuid'];
+      $settingsKey = 'rc-block-' . $uuid;
+
+      // ok menu html lookd good. Now to load it to settings.. 
+      $moreSettings = [
+        "blockType" => "slideout_menu",
+        "menuHtml" =>  $menu_html,
+        "brandingHtml" => $branding_html
+      ];
+
+      $finalSettings = array_merge($variables['content']['react_block']['#attached']['drupalSettings']['reactComponents'][$settingsKey], $moreSettings);
+
+      $variables['content']['react_block']['#attached']['drupalSettings']['reactComponents'][$settingsKey] = $finalSettings;
+
+      // alright the rest should be taken care of on the frontend
+    }
+  }
+}
+
+// function react_components_page_attachments_alter(array &$attachments) {
+//   // Force clear library cache
+//   \Drupal::service('library.discovery')->clearCachedDefinitions();
+
+//   $attachments['#attached']['drupalSettings']['thingAMahJig'] = [
+//     'test' => 'this should show up for everyone',
+//     'userId' => \Drupal::currentUser()->id(), // 0 for anonymous
+//     'timestamp' => time(),
+//   ];
+  
+//   $attachments['#attached']['library'][] = 'react_components/react-components-lib';
+  
+//   // Debug what's actually attached
+//   \Drupal::logger('react_components')->notice('<pre>@data</pre>', [
+//     '@data' => print_r($attachments['#attached'], true),
+//   ]);
+// }
+
+// function react_components_page_attachments(array &$attachments) {
+//   $module_path = \Drupal::service('extension.list.module')->getPath('react_components');
+  
+//   $attachments['#attached']['html_head'][] = [
+//     [
+//       '#tag' => 'script',
+//       '#attributes' => [
+//         'src' => '/' . $module_path . '/js/react-app/app.bundle.js',
+//         'type' => 'text/javascript',
+//       ],
+//     ],
+//     'react-components-script'
+//   ];
+// }

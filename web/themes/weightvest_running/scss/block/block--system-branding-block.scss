@@ -1,0 +1,19 @@
+#header-logo {
+  .logo-2nd-line {
+    font-size: 2.35rem; // comment
+  }
+}
+
+@media (max-width: 640px) {
+  #running-img {
+    width: 46px;
+    position: relative;
+    top: 4px;
+  }
+
+  #header-logo {
+    .logo-2nd-line {
+      font-size: 2rem; // comment
+    }
+  }
+}

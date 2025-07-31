@@ -1,0 +1,9 @@
+uuid: 80dafe0d-065a-4671-b2ae-b3d0720407a5
+langcode: en
+status: true
+dependencies: {  }
+name: Category
+vid: category
+description: 'Articles, Posts, and Reviews'
+weight: 0
+new_revision: false

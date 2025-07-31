@@ -1,0 +1,28 @@
+uuid: 55f31679-f301-482d-ad0a-048823b3a367
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_block
+    - paragraphs.paragraphs_type.block
+  module:
+    - block_field
+id: paragraph.block.field_block
+field_name: field_block
+entity_type: paragraph
+bundle: block
+label: Block
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  selection: blocks
+  selection_settings:
+    plugin_ids:
+      'views_block:posts-block_2': 'views_block:posts-block_2'
+      'views_block:posts-block_1': 'views_block:posts-block_1'
+      'views_block:posts-block_3': 'views_block:posts-block_3'
+      react_block: react_block
+field_type: block_field
