@@ -1,0 +1,210 @@
+@use "variables" as *;
+@use "colors_and_element_states" as *;
+@use "sass:map";
+@use "sass:list";
+
+// I decided to handle box shadow in it's own file
+// similar logic to the colors and element stes eldrich horror of nested loops
+// but since it's only one property, a bit simpler
+
+// Gotta deal with:
+// mode (day, dark)
+// get colors
+// get color variations
+// psudo class hover:, active: visited:, etc
+// then -shadow- haha ...
+// then size
+
+// then loop through $box-shadows ...
+
+// since there is only one class, this shoudl be simpler
+// we still have variables from _colors_and_element_states
+
+// @debug $color-map;
+// @debug $element-states;
+
+$class_names: (); // these go by mode too
+$class_data: ();
+
+@each $mode in $modes {
+  $mode-color-map: map.get($color-map, $mode);
+  $class_data_for_mode: ();
+
+  @if ($mode-color-map != null) {
+    @each $color-name, $colorVal in $mode-color-map {
+      $class-name: "";
+
+      @if ($color-name == "black") {
+        $class-name: "shadow";
+      } @else {
+        $class-name: "shadow-" + #{$color-name};
+      }
+
+      $some_class_data: (
+        "class-name": $class-name,
+        "pseudo-class": "none",
+        "color": $colorVal
+      );
+
+      // @debug $color-name;
+
+      $class_data_for_mode: list.append($class_data_for_mode, $some_class_data);
+
+      @each $pseudo-class in $pseudo-classes {
+        $more_class_data: (
+          "class-name": #{$pseudo-class} + "\\:"+ $class-name,
+          "pseudo-class": $pseudo-class,
+          "color": $colorVal
+        );
+
+        // @debug $more_class_data;
+
+        $class_data_for_mode: list.append(
+          $class_data_for_mode,
+          $more_class_data
+        );
+      }
+    }
+  }
+
+  // @debug $class_data_for_mode;
+
+  $class_data: map.merge(
+    $class_data,
+    (
+      $mode: $class_data_for_mode
+    )
+  );
+}
+
+@mixin make-box-shadow($params...) {
+  box-shadow: $params;
+}
+
+@mixin finallyGenerateBoxShadows($mode, $mode-class-data) {
+  @if ($mode-class-data != null) {
+    @each $datum in $mode-class-data {
+      // make a final class name wiht the size
+      // then make the box shadow - test individual first
+      @each $shadowKey, $shadowMap in $box-shadows {
+        @if ($shadowKey != "none") {
+          $size: $shadowKey;
+          $shadow-list: ();
+          $class-name: map.get($datum, "class-name");
+          $pseudo-class: map.get($datum, "pseudo-class");
+          $color: map.get($datum, "color");
+
+          @each $box-shadow-map in $shadowMap {
+            $shadowPixels: map.get($box-shadow-map, "shadow");
+            $shadowOpacity: map.get($box-shadow-map, "opacity");
+
+            $finalShadow: #{$shadowPixels} rgba($color, $shadowOpacity);
+
+            $shadow-list: list.append($shadow-list, $finalShadow, comma);
+          }
+
+          @if ($pseudo-class == "none") {
+            .#{$class-name}-#{$size} {
+              box-shadow: #{$shadow-list};
+            }
+
+            @if ($mode != "default") {
+              // also make a couple extra classes
+              .#{$mode}\\:#{$class-name}-#{$size} {
+                box-shadow: #{$shadow-list} !important;
+              }
+            }
+          } @else {
+            // class name is already inclusive of pseudo class
+            .#{$class-name}-#{$size} {
+              &:#{$pseudo-class} {
+                box-shadow: #{$shadow-list};
+              }
+            }
+
+            @if ($mode != "default") {
+              // also make a couple extra classes
+              .#{$mode}\\:#{$class-name}-#{$size} {
+                &:#{$pseudo-class} {
+                  box-shadow: #{$shadow-list} !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// ok continue from here..
+// test and then eventually add a dark-mode: class or something with !important
+@each $mode in $modes {
+  $mode-class-data: map.get($class_data, $mode);
+
+  // @if ($mode-class-data != null) {
+  //   @each $datum in $mode-class-data {
+  //     // make a final class name wiht the size
+  //     // then make the box shadow - test individual first
+  //     @each $shadowKey, $shadowMap in $box-shadows {
+  //       @if ($shadowKey != "none") {
+  //         $size: $shadowKey;
+  //         $shadow-list: ();
+  //         $class-name: map.get($datum, "class-name");
+  //         $pseudo-class: map.get($datum, "pseudo-class");
+  //         $color: map.get($datum, "color");
+
+  //         @each $box-shadow-map in $shadowMap {
+  //           $shadowPixels: map.get($box-shadow-map, "shadow");
+  //           $shadowOpacity: map.get($box-shadow-map, "opacity");
+
+  //           $finalShadow: #{$shadowPixels} rgba($color, $shadowOpacity);
+
+  //           $shadow-list: append($shadow-list, $finalShadow, comma);
+  //         }
+
+  //         @if ($pseudo-class == "none") {
+  //           .#{$class-name}-#{$size} {
+  //             box-shadow: #{$shadow-list};
+  //           }
+  //         } @else {
+  //           // class name is already inclusive of pseudo class
+  //           .#{$class-name}-#{$size} {
+  //             &:#{$pseudo-class} {
+  //               box-shadow: #{$shadow-list};
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+
+  @if ($mode == "default") {
+    @include finallyGenerateBoxShadows($mode, $mode-class-data);
+  } @else if ($mode, $jsForColorMode) {
+    .#{$mode} {
+      @include finallyGenerateBoxShadows($mode, $mode-class-data);
+    }
+  } @else {
+    @media (prefers-color-scheme: dark) {
+      @include finallyGenerateBoxShadows($mode, $mode-class-data);
+    }
+  }
+}
+
+.shadow-none {
+  box-shadow: none;
+}
+
+$pseudo-classes: "hover", "active", "focus"; // can be edited
+
+@each $pseudo-class in $pseudo-classes {
+  $final-class-string: #{$pseudo-class} + "\\:shadow-none";
+
+  .#{$final-class-string} {
+    &:#{$pseudo-class} {
+      box-shadow: none;
+    }
+  }
+}

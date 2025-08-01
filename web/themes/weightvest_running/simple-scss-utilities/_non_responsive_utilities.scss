@@ -1,0 +1,187 @@
+@use "variables" as *;
+@use "sass:map";
+
+@function z-index-map() {
+  $z-index-map: ();
+
+  $nums: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
+  $multiplers: 1, 10, 100, 1000;
+
+  @each $multiplier in $multiplers {
+    @each $num in $nums {
+      $z-index-map: map.merge(
+        $z-index-map,
+        (
+          $num: $num * $multiplier
+        )
+      );
+    }
+  }
+
+  @return map.merge(
+    $z-index-map,
+    (
+      "auto": auto
+    )
+  );
+}
+
+$non-responsive-utilities: (
+  "text-transform": (
+    "prefix": "transform",
+    "values": (
+      "uppercase": uppercase,
+      "lowercase": lowercase,
+      "capitalize": capitalize
+    )
+  ),
+  "text-align": (
+    "prefix": "align",
+    "values": (
+      "center": center,
+      "left": left,
+      "right": right,
+      "justify": justify
+    )
+  ),
+  "text-indent": (
+    "prefix": "indent",
+    "values": $border-and-outline-widths
+  ),
+  "text-wrap": (
+    "prefix": "wrap",
+    "values": (
+      "wrap": wrap,
+      "nowrap": nowrap,
+      "balance": balance,
+      "pretty": pretty,
+      "stable": stable
+    )
+  ),
+  "word-break": (
+    "prefix": "break",
+    "values": (
+      "normal": normal,
+      "all": break-all,
+      "keep": keep-all,
+      "word": break-word
+    )
+  ),
+  "font-family": (
+    "prefix": "font",
+    "values": $fonts
+  ),
+  "font-weight": (
+    "prefix": "font",
+    "values": $font-weights
+  ),
+  "font-style": (
+    "prefix": "font",
+    "values": (
+      "normal": normal,
+      "italic": italic,
+      "oblique": oblique
+    )
+  ),
+  "text-decoration": (
+    "prefix": "text",
+    "values": (
+      "none": none,
+      "underline": underline,
+      "overline": overline,
+      "underover": underline overline,
+      "line-through": line-through
+    )
+  ),
+  "text-decoration-style": (
+    "prefix": "decoration",
+    "values": (
+      "solid": solid,
+      "double": double,
+      "dotted": dotted,
+      "dashed": dashed,
+      "wavy": wavy
+    )
+  ),
+  "text-decoration-thickness": (
+    "prefix": "decoration",
+    "values": $border-and-outline-widths
+  ),
+  "outline-style": (
+    "prefix": "outline",
+    "values": (
+      "none": none,
+      "dotted": dotted,
+      "solid": solid,
+      "groove": groove,
+      "inset": inset
+    )
+  ),
+  "opacity": (
+    "prefix": "opacity",
+    "values": (
+      "0": 0,
+      "10": 0.1,
+      "20": 0.2,
+      "30": 0.3,
+      "40": 0.4,
+      "50": 0.5,
+      "60": 0.6,
+      "70": 0.7,
+      "80": 0.8,
+      "90": 0.9,
+      "100": 1
+    )
+  ),
+  "border-style": (
+    "prefix": "border",
+    "values": $border-styles
+  ),
+
+  "z-index": (
+    "prefix": "z",
+    "values": z-index-map()
+  ),
+  "visibility": (
+    "prefix": "visibility",
+    "values": (
+      "visible": visible,
+      "hidden": hidden,
+      "collapse": collapse
+    )
+  ),
+  "cursor": (
+    "prefix": "cursor",
+    "values": (
+      "auto": auto,
+      "pointer": pointer,
+      "progress": progress,
+      "wait": wait,
+      "move": move,
+      "not-allowed": not-allowed,
+      "grab": grab,
+      "grabbing": grabbing,
+      "zoom-in": zoom-in,
+      "zoom-out": zoom-out,
+      "all-scroll": all-scroll,
+      "text": text
+    )
+  )
+);
+
+@each $property, $map in $non-responsive-utilities {
+  $prefix: map.get($map, "prefix");
+  $values: map.get($map, "values");
+
+  @each $k, $v in $values {
+    @if ($k == "default") {
+      .#{$prefix} {
+        #{$property}: $v;
+      }
+    } @else {
+      .#{$prefix}-#{$k} {
+        #{$property}: $v;
+      }
+    }
+  }
+}

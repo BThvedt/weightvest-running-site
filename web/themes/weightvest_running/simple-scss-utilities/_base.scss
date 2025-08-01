@@ -1,0 +1,68 @@
+@use "variables" as *;
+@use "sass:map";
+/* 
+	font-family: 'Bebas Neue', sans-serif;
+	font-family: 'Francois One', sans-serif;
+	font-family: 'Lato', sans-serif;
+  testing build again!!!!
+*/
+
+// CSS reset, some rules copied from tailwind's prefilght philosophy
+// others, just how I like 'em
+* {
+  color: inherit;
+  margin: 0;
+}
+
+body {
+  font-family: map.get($fonts, "default");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+*,
+::before,
+::after {
+  border-width: 0;
+  border-style: solid;
+  // border-color: theme('borderColor.DEFAULT', currentColor); <- work on this once I have variables ..
+}
+
+input {
+  outline: 0;
+}

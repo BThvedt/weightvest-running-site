@@ -1,0 +1,644 @@
+@use "variables" as *;
+@use "breakpoints" as *;
+@use "sass:math";
+@use "sass:map";
+@use "sass:list";
+
+/*
+  Each utility in the utility map below has a prefix and a values map
+  the values maps look like this (with base-size = 0.125rem) 
+
+  (
+    "0": 0rem
+    "xxs": 0.125rem
+    "xs": 0.25rem
+    ... etc 
+  )
+
+  for all the values defined in the $spacing-vals map found in variables
+
+  Then from these, classes are generated with the prefix
+  so ultimately, for padding, for example, 
+  we'll end up with:
+
+  p-xs { 
+    padding: 0.25rem
+  }
+  .p-s {
+    padding: 0.5rem
+  }
+  ..etc
+
+  Also for note for responsiveness those classes are 
+  genereated too for the breakpoints like so:
+
+  sm:p-xs {
+    padding: 0.25rem
+  }
+
+  lg:p-s {
+    padding: 0.5rem
+  }
+  ..etc
+
+  Since the breakpoings are lower in ssu.css then the defaults, they will take 
+  precidence
+
+  As you can imagine, there's a lot of classes. Important
+  to make sure purging is set up!  See online docs
+*/
+
+// Let's get started
+// a helper function to fill out the spacings map found in variables file
+// just builds a new map with the vals actuall css vals in rem
+@function map-size-vals() {
+  $return-map: ();
+
+  @each $key, $val in $size-multipliers {
+    $return-map: map.merge(
+      $return-map,
+      (
+        $key: $base-size * $val
+      )
+    );
+  }
+
+  @return $return-map;
+}
+
+@function map-font-size-vals() {
+  $return-map: ();
+
+  @each $key, $val in $font-size-multipliers {
+    $return-map: map.merge(
+      $return-map,
+      (
+        $key: $base-size * $val
+      )
+    );
+  }
+
+  @return $return-map;
+}
+
+@function margin-and-padding-vals() {
+  $return-map: map.merge(map-size-vals(), $fraction-map);
+
+  $return-map: map.merge(
+    $return-map,
+    (
+      "auto": auto
+    )
+  );
+
+  @return $return-map;
+}
+
+@function height-and-width-vals($property) {
+  $return-map: map.merge(map-size-vals(), $fraction-map);
+  $return-map: map.merge($return-map, $rems-for-heights-and-widths);
+
+  $return-map: map.merge(
+    $return-map,
+    (
+      "container": $container-size
+    )
+  );
+
+  @if (
+    $property ==
+      "height" or
+      $property ==
+      "min-height" or
+      $property ==
+      "max-height"
+  ) {
+    $return-map: map.merge($return-map, $screen_heights);
+  } @else if
+    (
+      $property ==
+        "width" or
+        $property ==
+        "min-width" or
+        $property ==
+        "max-width"
+    )
+  {
+    $return-map: map.merge($return-map, $screen_widths);
+  }
+
+  @return $return-map;
+}
+
+@function position-vals($property) {
+  $return-map: ();
+
+  @if ($property == "height") {
+    $return-map: map.merge(
+      height-and-width-vals("height"),
+      $px-for-nudging-position
+    );
+  } @else if ($property == "width") {
+    $return-map: map.merge(
+      height-and-width-vals("width"),
+      $px-for-nudging-position
+    );
+  }
+
+  @return $return-map;
+}
+
+// A map of all the utility values I want
+// some of the arrays of values are mapped with the
+// previous function
+$utilities: (
+  "padding": (
+    "prefix": "p",
+    "values": margin-and-padding-vals()
+  ),
+  "px": (
+    "prefix": "",
+    "values": margin-and-padding-vals()
+  ),
+  "py": (
+    "prefix": "",
+    "values": margin-and-padding-vals()
+  ),
+  "padding-left": (
+    "prefix": "pl",
+    "values": margin-and-padding-vals()
+  ),
+  "padding-right": (
+    "prefix": "pr",
+    "values": margin-and-padding-vals()
+  ),
+  "padding-top": (
+    "prefix": "pt",
+    "values": margin-and-padding-vals()
+  ),
+  "padding-bottom": (
+    "prefix": "pb",
+    "values": margin-and-padding-vals()
+  ),
+
+  "margin": (
+    "prefix": "m",
+    "values": margin-and-padding-vals()
+  ),
+  "mx": (
+    "prefix": "",
+    "values": margin-and-padding-vals()
+  ),
+  "my": (
+    "prefix": "",
+    "values": margin-and-padding-vals()
+  ),
+  "margin-left": (
+    "prefix": "ml",
+    "values": margin-and-padding-vals()
+  ),
+  "margin-right": (
+    "prefix": "mr",
+    "values": margin-and-padding-vals()
+  ),
+  "margin-top": (
+    "prefix": "mt",
+    "values": margin-and-padding-vals()
+  ),
+  "margin-bottom": (
+    "prefix": "mb",
+    "values": margin-and-padding-vals()
+  ),
+  "border-radius": (
+    "prefix": "radius",
+    "values": $border-radiuses
+  ),
+  "border-top-left-radius": (
+    "prefix": "rtl",
+    "values": $border-radiuses
+  ),
+  "border-top-right-radius": (
+    "prefix": "rtr",
+    "values": $border-radiuses
+  ),
+  "border-bottom-left-radius": (
+    "prefix": "rbl",
+    "values": $border-radiuses
+  ),
+  "border-bottom-right-radius": (
+    "prefix": "rbr",
+    "values": $border-radiuses
+  ),
+
+  "border-width": (
+    "prefix": "border",
+    "values": $border-and-outline-widths
+  ),
+
+  "bx": (
+    "prefix": "",
+    "values": $border-and-outline-widths
+  ),
+  "by": (
+    "prefix": "",
+    "values": $border-and-outline-widths
+  ),
+
+  "border-top-width": (
+    "prefix": "bt",
+    "values": $border-and-outline-widths
+  ),
+  "border-left-width": (
+    "prefix": "bl",
+    "values": $border-and-outline-widths
+  ),
+  "border-right-width": (
+    "prefix": "br",
+    "values": $border-and-outline-widths
+  ),
+  "border-bottom-width": (
+    "prefix": "bb",
+    "values": $border-and-outline-widths
+  ),
+
+  "outline-width": (
+    "prefix": "outline",
+    "values": $border-and-outline-widths
+  ),
+  "outline-offset": (
+    "prefix": "outline-offset",
+    "values": $border-and-outline-widths
+  ),
+  "display": (
+    "prefix": "display",
+    "values": (
+      "none": none,
+      "block": block,
+      "flex": flex,
+      "grid": grid,
+      "inline": inline,
+      "inline-block": inline-block
+    )
+  ),
+  "float": (
+    "prefix": "float",
+    "values": (
+      "start": inline-start,
+      "end": inline-end,
+      "right": right,
+      "left": left,
+      "none": none
+    )
+  ),
+  "overflow": (
+    "prefix": "overflow",
+    "values": (
+      "auto": auto,
+      "hidden": hidden,
+      "clip": clip,
+      "visible": visible,
+      "scroll": scroll
+    )
+  ),
+  "overflow-x": (
+    "prefix": "overflow-x",
+    "values": (
+      "auto": auto,
+      "hidden": hidden,
+      "clip": clip,
+      "visible": visible,
+      "scroll": scroll
+    )
+  ),
+  "overflow-y": (
+    "prefix": "overflow-y",
+    "values": (
+      "auto": auto,
+      "hidden": hidden,
+      "clip": clip,
+      "visible": visible,
+      "scroll": scroll
+    )
+  ),
+  "flex-direction": (
+    "prefix": "flex",
+    "values": (
+      "row": row,
+      "row-reverse": row-reverse,
+      "col": column,
+      "col-reverse": column-reverse
+    )
+  ),
+  "flex-wrap": (
+    "prefix": "flex",
+    "values": (
+      "wrap": wrap,
+      "nowrap": nowrap,
+      "wrap-reverse": wrap-reverse
+    )
+  ),
+  "flex-shrink": (
+    "prefix": "shrink",
+    "values": (
+      "0": 0,
+      "1": 1
+    )
+  ),
+  "flex-grow": (
+    "prefix": "grow",
+    "values": (
+      "0": 0,
+      "1": 1
+    )
+  ),
+
+  "justify-content": (
+    "prefix": "justify",
+    "values": (
+      "initial": initial,
+      "inherit": inherit,
+      "start": flex-start,
+      "end": flex-end,
+      "center": center,
+      "around": space-around,
+      "between": space-between,
+      "evenly": space-evenly,
+      "stretch": stretch
+    )
+  ),
+  "align-items": (
+    "prefix": "items",
+    "values": (
+      "normal": normal,
+      "grid-start": start,
+      "grid-end": end,
+      "center": center,
+      "start": flex-start,
+      "end": flex-end,
+      "stretch": stretch,
+      "baseline": baseline,
+      "initial": initial,
+      "inherit": inherit
+    )
+  ),
+  "align-content": (
+    "prefix": "content",
+    "values": (
+      "initial": initial,
+      "inherit": inherit,
+      "start": flex-start,
+      "end": flex-end,
+      "center": center,
+      "around": space-around,
+      "between": space-between,
+      "evenly": space-evenly,
+      "stretch": stretch
+    )
+  ),
+  "align-self": (
+    "prefix": "align-self",
+    "values": (
+      "auto": auto,
+      "start": flex-start,
+      "end": flex-end,
+      "center": center,
+      "stretch": stretch,
+      "baseline": baseline
+    )
+  ),
+
+  // "filter": (
+  //   "prefix": "filter",
+  //   "values": $filter-vals
+  // ),
+  // "blur": (
+  // ),
+  "font-size":
+    (
+      "prefix": "text",
+      "values": map-font-size-vals()
+    ),
+  "line-height": (
+    "prefix": "line-height",
+    "values": $line-heights
+  ),
+  "letter-spacing": (
+    "prefix": "letter-spacing",
+    "values": $letter-spacing
+  ),
+  "box-sizing": (
+    "prefix": "sizing",
+    "values": (
+      "content": content-box,
+      "border": border-box,
+      "initial": initial,
+      "inherit": inherit
+    )
+  ),
+  "position": (
+    "prefix": "position",
+    "values": (
+      "relative": relative,
+      "absolute": absolute,
+      "fixed": fixed,
+      "static": static,
+      "sticky": sticky,
+      "inherit": inherit,
+      "initial": initial
+    )
+  ),
+  "left": (
+    "prefix": "left",
+    "values": position-vals("width")
+  ),
+  "top": (
+    "prefix": "top",
+    "values": position-vals("height")
+  ),
+  "right": (
+    "prefix": "right",
+    "values": position-vals("width")
+  ),
+  "bottom": (
+    "prefix": "bottom",
+    "values": position-vals("height")
+  ),
+  "width": (
+    "prefix": "w",
+    "values": height-and-width-vals("width")
+  ),
+  "height": (
+    "prefix": "h",
+    "values": height-and-width-vals("height")
+  ),
+  "min-width": (
+    "prefix": "min-w",
+    "values": height-and-width-vals("width")
+  ),
+  "max-width": (
+    "prefix": "max-w",
+    "values": height-and-width-vals("width")
+  ),
+  "min-height": (
+    "prefix": "min-h",
+    "values": height-and-width-vals("height")
+  ),
+  "max-height": (
+    "prefix": "max-h",
+    "values": height-and-width-vals("height")
+  ),
+  "list-style-type": (
+    "prefix": "list",
+    "values": (
+      "disc": disc,
+      "circle": circle,
+      "square": square,
+      "upper-alpha": upper-alpha,
+      "lower-alpha": lower-alpha,
+      "upper-roman": upper-roman,
+      "lower-roman": lower-roman
+    )
+  ),
+  "list-style-position": (
+    "prefix": "list-position",
+    "values": (
+      "outside": outside,
+      "inside": inside
+    )
+  ),
+  "object-fit": (
+    "prefix": "object",
+    "values": (
+      "contain": contain,
+      "cover": cover,
+      "fill": fill,
+      "none": none,
+      "scale-down": scale-down
+    )
+  ),
+
+  "aspect-ratio": (
+    "prefix": "ratio",
+    "values": $aspect-ratios
+  )
+);
+
+// Onto actually generating the utility classes..
+
+// a function for getting the final utility class string
+// looks like: p-4 or lg:ml-2 ., y'know, the utiltiy classes!
+// see associated docs for full list
+@function get-class-string($breakpointKey, $valueKey, $prefix) {
+  $class-string: "";
+
+  @if ($breakpointKey == "_") {
+    @if ($valueKey == "default") {
+      $class-string: #{$prefix};
+    } @else {
+      $class-string: #{$prefix} + "-" + #{$valueKey};
+    }
+  } @else {
+    @if ($valueKey == "default") {
+      $class-string: #{$breakpointKey} + "\\:"+ #{$prefix};
+    } @else {
+      $class-string: #{$breakpointKey} + "\\:"+ #{$prefix} + "-" + #{$valueKey};
+    }
+  }
+
+  @return $class-string;
+}
+
+// would be nice to have mx and my classes but gotta handle em differnety
+// this helps in the following function
+$x-and-y-list: ("mx", "my", "px", "py", "bx", "by");
+
+// a mixin that essentially generates a ton of classes
+@mixin generate-classes($breakpointKey, $breakpoint-prefix) {
+  @if ($breakpoint-prefix != "") {
+    $breakpointKey: $breakpoint-prefix + "-" + $breakpointKey;
+  }
+
+  @each $property, $map in $utilities {
+    $prefix: map.get($map, "prefix");
+    $values: map.get($map, "values");
+
+    @if list.index($x-and-y-list, $property) {
+      // in these special cases, the 'prefix' is margin or padding
+
+      @each $valueKey, $val in $values {
+        $class-string: get-class-string($breakpointKey, $valueKey, $property);
+        @if ($property == "mx") {
+          .#{$class-string} {
+            margin-left: $val;
+            margin-right: $val;
+          }
+        } @else if ($property == "my") {
+          .#{$class-string} {
+            margin-top: $val;
+            margin-bottom: $val;
+          }
+        } @else if ($property == "px") {
+          .#{$class-string} {
+            padding-left: $val;
+            padding-right: $val;
+          }
+        } @else if ($property == "py") {
+          .#{$class-string} {
+            padding-top: $val;
+            padding-bottom: $val;
+          }
+        } @else if ($property == "bx") {
+          .#{$class-string} {
+            border-left-width: $val;
+            border-right-width: $val;
+          }
+        } @else if ($property == "by") {
+          .#{$class-string} {
+            border-top-width: $val;
+            border-bottom-width: $val;
+          }
+        }
+      }
+    } @else {
+      // the general case. the Map key in utilities is the css propery,
+      // a class string for each break point and key in the values map is generated,
+      // and the values are the values in the value map
+      @each $valueKey, $val in $values {
+        $class-string: get-class-string($breakpointKey, $valueKey, $prefix);
+
+        .#{$class-string} {
+          #{$property}: $val;
+        }
+      }
+    }
+  }
+}
+
+// finally, the magic happens here!
+// warning: this is A LOT of css lol
+// since the non-breakpoint classes are generated first,
+// the breakpoint classes should overide when the breakpoitns are toggeled!
+$breakpointKeys: map.keys($breakpoints);
+$numOfBreakpoints: list.length($breakpointKeys);
+
+@each $breakpointKey, $breakpointVal in $breakpoints {
+  @if ($breakpointKey == "_") {
+    @include generate-classes($breakpointKey, "");
+  } @else {
+    @if ($breakpointVal != 0) {
+      @include mediaQuery($breakpointKey) {
+        @include generate-classes($breakpointKey, "");
+      }
+    }
+
+    $breakpointIndex: list.index($breakpointKeys, $breakpointKey);
+
+    @if ($breakpointIndex < $numOfBreakpoints) {
+      $nextKey: list.nth($breakpointKeys, $breakpointIndex + 1);
+
+      @include maxMediaQuery($nextKey) {
+        @include generate-classes($breakpointKey, "max");
+      }
+    }
+  }
+}

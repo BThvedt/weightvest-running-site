@@ -1,0 +1,610 @@
+@use "variables" as *;
+@use "utilities" as *;
+@use "sass:map";
+@use "sass:list";
+@use "sass:color";
+@use "sass:meta";
+
+/*
+  This is kinda tricky, first I want classes for theme colors.. that part's easy enough
+  text-color, bg-color, border color. Simple. Then I want day and dark modes, that's also 
+  not tough, just have colors that override that if their parent has a dark class.
+
+  Then I want classes for hover states. Ok this is starting to get complicated. But not really..
+  say your only theme color is red. And you have a different "red" for day or dark. And say the
+  only state is hover and the only class is for text and it just goes lighter or darker. 
+  The scss will look like this: 
+
+  .text-red {
+    color: ...;
+  }
+  .text-red-lighter {
+    color: .. (lighter)
+  }
+  .text-red-darker {
+    ...
+  }
+  .hover:text-red {
+  }
+  .hover:text-red-lighter {
+  }
+  .hover:text-red-darker {
+  }
+  .. 
+
+  .dark {
+    .text-red .. (different color) 
+    .text-red-lighter .. 
+    .hover:text-red-lighter ..  
+    etc .. 
+  }
+
+  since I have the element states in this file, it seems like a logical place to also 
+  handle elements states for font weight and text decoration too .. although these
+  things 
+*/
+
+// soooo... how to do this ..
+// start with colors for light and dark
+// these are some of the ugliest loops I've written
+// compounded by confusing variable names, along with scss's limited map functions..
+// I just wanna get it working and never see these again haha
+$color-map: ();
+$class-color-map: ();
+$final-map: ();
+$class-prefix-text: "text"; // for text color
+$class-prefix-background: "bg"; // background
+$class-prefix-border: "border"; // border color
+$class-prefix-outline: "outline"; // ..etc
+$class-prefix-text-decoration: "decoration";
+// these need to be handled different. Gotta have those text-selection classes though!
+$class-prefix-selection-color: "selection-color";
+$class-prefix-selection-background: "selection-bg";
+
+// ok... some helper arrays
+$class-prefixes: $class-prefix-text, $class-prefix-background,
+  $class-prefix-border, $class-prefix-outline, $class-prefix-text-decoration,
+  $class-prefix-selection-color, $class-prefix-selection-background;
+
+@each $mode in $modes {
+  $mode-color-map: map.get($colors, $mode);
+  $final-mode-color-map: ();
+
+  // first things first .. make sure each mode has all the colors in default if they
+  // haven't been overridden
+  // this is so that pseudo classes in other modes don't have their specifity overridden
+  // for example a green button with active:bg-red, the pseudo class in dark-mode will be
+  // overridden by .dark-mode .green for example, so we still need a .dark-mode active:bg-red
+  // even if it's not overridden
+
+  @if ($mode != "default") {
+    $default_colors: map.get($colors, "default");
+    @each $colorKey, $colorVal in $default_colors {
+      $aDefaultColor: map.get($mode-color-map, $colorKey);
+      @if ($aDefaultColor == null) {
+        // color does not exist, map merge the color into mode-color-mape
+        // @debug $colorKey;
+        $mode-color-map: map.merge(
+          $mode-color-map,
+          (
+            $colorKey: $colorVal
+          )
+        );
+      }
+    }
+  }
+
+  // first, let's attach the modifiers to each color
+  // these are some ugly loops.. lol
+  // I prefer mix with black or white vs lighten or darkent
+
+  @if ($mode-color-map != null) {
+    @each $color, $val in $mode-color-map {
+      // first merge the color into mode color map
+      $final-mode-color-map: map.merge(
+        $final-mode-color-map,
+        (
+          $color: $val
+        )
+      );
+
+      @if ($color != "white" and $color != "black") {
+        // then add the light, lighter, dark, darker values
+        @each $modifier-map-key, $modifier-map in $color-modifiers {
+          @if ($modifier-map-key == "light") {
+            @each $modifierKey, $modifierVal in $modifier-map {
+              $new-color-key: #{$color} + "-" + #{$modifierKey};
+              $new-color-val: color.mix(white, $val, $modifierVal);
+              $final-mode-color-map: map.merge(
+                $final-mode-color-map,
+                (
+                  $new-color-key: $new-color-val
+                )
+              );
+            }
+          } @else {
+            @each $modifierKey, $modifierVal in $modifier-map {
+              $new-color-key: #{$color} + "-" + #{$modifierKey};
+              $new-color-val: color.mix(black, $val, $modifierVal);
+              $final-mode-color-map: map.merge(
+                $final-mode-color-map,
+                (
+                  $new-color-key: $new-color-val
+                )
+              );
+            }
+          }
+        }
+      }
+    }
+
+    $color-map: map.merge(
+      $color-map,
+      (
+        $mode: $final-mode-color-map
+      )
+    );
+  }
+}
+
+// @debug $color-map;
+
+// now generate the text-{colorname}, bg-{colorname}, border-{colorname} classes
+// alsoe the selection-{colorname}, although that one looks a bit different
+@each $mode in $modes {
+  $mode-color-map: map.get($color-map, $mode);
+  $partial-class-color-map: ();
+
+  @if ($mode-color-map != null) {
+    @each $class-prefix in $class-prefixes {
+      $class-category-map: ();
+
+      @each $color, $val in $mode-color-map {
+        // @each $class-prefix in $class-prefixes {
+        $class-name: #{$class-prefix} + "-" + $color;
+
+        $class-category-map: map.merge(
+          $class-category-map,
+          (
+            $class-name: $val
+          )
+        );
+      }
+
+      $partial-class-color-map: map.merge(
+        $partial-class-color-map,
+        (
+          $class-prefix: $class-category-map
+        )
+      );
+    }
+
+    $class-color-map: map.merge(
+      $class-color-map,
+      (
+        $mode: $partial-class-color-map
+      )
+    );
+  }
+}
+
+// now finally, all the element states
+@each $mode in $modes {
+  $mode-map: map.get($class-color-map, $mode);
+
+  @if ($mode-map != null) {
+    // "dark mode"
+    $final-mode-map: ();
+    @each $class-prefix in $class-prefixes {
+      // "color mode - element map"
+      $element-map: map.get($mode-map, $class-prefix);
+      $final-element-map: ();
+
+      @each $class-name, $val in $element-map {
+        // looks like txt-info-lt: $f8abfe
+
+        // first put it into final element  map
+        $final-element-map: map.merge(
+          $final-element-map,
+          (
+            $class-name: $val
+          )
+        );
+
+        // then do it again for each element state
+        @each $pseudo-class in $pseudo-classes {
+          // wait.. I think I did this wrong lol
+          // I like the class name .. but .. the psudeo state I think is wrong
+          $state-class-name: (
+            "class-name": #{$pseudo-class} + "\\:"+ #{$class-name},
+            "pseudo-class": #{$pseudo-class}
+          );
+
+          $final-element-map: map.merge(
+            $final-element-map,
+            (
+              $state-class-name: $val
+            )
+          );
+        }
+      }
+
+      $final-mode-map: map.merge(
+        $final-mode-map,
+        (
+          $class-prefix: $final-element-map
+        )
+      );
+    }
+
+    $final-map: map.merge(
+      $final-map,
+      (
+        $mode: $final-mode-map
+      )
+    );
+  }
+}
+
+// @debug $final-map;
+// phew! NOW .. all we gotta do, is just make the classes..
+// I think it's working.. I hope to the lord it is ..
+// .. let's make the classes lol
+
+@mixin generate-final-rule($class-name, $property, $val) {
+  @if (meta.type-of($class-name) != "map") {
+    // @debug $class-name;
+    .#{$class-name} {
+      #{$property}: $val;
+    }
+  } @else {
+    // as a desperate hack I made $class-name into a map
+    $pseudo-class-name: map.get($class-name, "class-name");
+    $pseudo-class: map.get($class-name, "pseudo-class");
+
+    // @if ($property == background-color) {
+    //   @debug $pseudo-class-name;
+    // }
+
+    .#{$pseudo-class-name} {
+      &:#{$pseudo-class} {
+        #{$property}: $val;
+      }
+    }
+  }
+}
+
+// @debug $final-map;
+
+@mixin finallyMakeClasses($mode-map) {
+  @each $category, $category-map in $mode-map {
+    @each $class-name, $val in $category-map {
+      // there's a better way to have done this, but at this point
+      // I'm not gonna go back and write the above loops again
+
+      @if ($category == $class-prefix-text) {
+        @include generate-final-rule($class-name, color, $val);
+      }
+      @if ($category == $class-prefix-background) {
+        @include generate-final-rule($class-name, background-color, $val);
+      }
+      @if ($category == $class-prefix-border) {
+        @include generate-final-rule($class-name, border-color, $val);
+      }
+      @if ($category == $class-prefix-outline) {
+        @include generate-final-rule($class-name, outline-color, $val);
+      }
+      @if ($category == $class-prefix-text-decoration) {
+        @include generate-final-rule($class-name, text-decoration-color, $val);
+      }
+      @if ($category == $class-prefix-selection-color) {
+        @if (meta.type-of($class-name) != "map") {
+          .#{$class-name}::selection {
+            color: $val;
+          }
+        } @else {
+          $pseudo-class-name: map.get($class-name, "class-name");
+          $pseudo-class: map.get($class-name, "pseudo-class");
+          .#{$pseudo-class-name} {
+            &:#{$pseudo-class}::selection {
+              color: $val;
+            }
+          }
+        }
+      }
+      @if ($category == $class-prefix-selection-background) {
+        @if (meta.type-of($class-name) != "map") {
+          .#{$class-name}::selection {
+            background-color: $val;
+          }
+        } @else {
+          $pseudo-class-name: map.get($class-name, "class-name");
+          $pseudo-class: map.get($class-name, "pseudo-class");
+          .#{$pseudo-class-name} {
+            &:#{$pseudo-class}::selection {
+              background-color: $val;
+            }
+          }
+        }
+      }
+
+      // $class-prefix-text-decoration
+    }
+  }
+}
+
+@each $mode, $mode-map in $final-map {
+  @if ($mode== "default") {
+    // @each $category, $category-map in $mode-map {
+    //   @each $class-name, $val in $category-map {
+    //     // there's a better way to have done this, but at this point
+    //     // I'm not gonna go back and write the above loops again
+
+    //     @if ($category == $class-prefix-text) {
+    //       @include generate-final-rule($class-name, color, $val);
+    //     }
+    //     @if ($category == $class-prefix-background) {
+    //       @include generate-final-rule($class-name, background-color, $val);
+    //     }
+    //     @if ($category == $class-prefix-border) {
+    //       @include generate-final-rule($class-name, border-color, $val);
+    //     }
+    //     @if ($category == $class-prefix-outline) {
+    //       @include generate-final-rule($class-name, outline-color, $val);
+    //     }
+    //     @if ($category == $class-prefix-text-decoration) {
+    //       @include generate-final-rule(
+    //         $class-name,
+    //         text-decoration-color,
+    //         $val
+    //       );
+    //     }
+    //     @if ($category == $class-prefix-selection-color) {
+    //       @if (type-of($class-name) != "map") {
+    //         .#{$class-name}::selection {
+    //           color: $val;
+    //         }
+    //       } @else {
+    //         $pseudo-class-name: map.get($class-name, "class-name");
+    //         $pseudo-class: map.get($class-name, "pseudo-class");
+    //         .#{$pseudo-class-name} {
+    //           &:#{$pseudo-class}::selection {
+    //             color: $val;
+    //           }
+    //         }
+    //       }
+    //     }
+    //     @if ($category == $class-prefix-selection-background) {
+    //       @if (type-of($class-name) != "map") {
+    //         .#{$class-name}::selection {
+    //           background-color: $val;
+    //         }
+    //       } @else {
+    //         $pseudo-class-name: map.get($class-name, "class-name");
+    //         $pseudo-class: map.get($class-name, "pseudo-class");
+    //         .#{$pseudo-class-name} {
+    //           &:#{$pseudo-class}::selection {
+    //             background-color: $val;
+    //           }
+    //         }
+    //       }
+    //     }
+
+    //     // $class-prefix-text-decoration
+    //   }
+    // }
+    @include finallyMakeClasses($mode-map);
+  } @else if ($jsForColorMode) {
+    .#{$mode} {
+      @include finallyMakeClasses($mode-map)
+        // @each $category, $category-map in $mode-map {
+        //   @each $class-name, $val in $category-map {
+        //     @if ($category == $class-prefix-text) {
+        //       @include generate-final-rule($class-name, color, $val);
+        //     }
+        //     @if ($category == $class-prefix-background) {
+        //       @include generate-final-rule($class-name, background-color, $val);
+        //     }
+        //     @if ($category == $class-prefix-border) {
+        //       @include generate-final-rule($class-name, border-color, $val);
+        //     }
+        //     @if ($category == $class-prefix-outline) {
+        //       @include generate-final-rule($class-name, outline-color, $val);
+        //     }
+        //     @if ($category == $class-prefix-text-decoration) {
+        //       @include generate-final-rule(
+        //         $class-name,
+        //         text-decoration-color,
+        //         $val
+        //       );
+        //     }
+        //     @if ($category == $class-prefix-selection-color) {
+        //       @if (type-of($class-name) != "map") {
+        //         .#{$class-name}::selection {
+        //           color: $val;
+        //         }
+        //       } @else {
+        //         $pseudo-class-name: map.get($class-name, "class-name");
+        //         $pseudo-class: map.get($class-name, "pseudo-class");
+        //         .#{$pseudo-class-name} {
+        //           &:#{$pseudo-class}::selection {
+        //             color: $val;
+        //           }
+        //         }
+        //       }
+        //     }
+        //     @if ($category == $class-prefix-selection-background) {
+        //       @if (type-of($class-name) != "map") {
+        //         .#{$class-name}::selection {
+        //           background-color: $val;
+        //         }
+        //       } @else {
+        //         $pseudo-class-name: map.get($class-name, "class-name");
+        //         $pseudo-class: map.get($class-name, "pseudo-class");
+        //         .#{$pseudo-class-name} {
+        //           &:#{$pseudo-class}::selection {
+        //             background-color: $val;
+        //           }
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
+;
+    }
+  } @else {
+    @media (prefers-color-scheme: dark) {
+      @include finallyMakeClasses($mode-map);
+    }
+  }
+}
+
+// allllright! We have color classes! Now when it comes to element states
+// I just some classes for the font sizes, weight, and text-decorations
+// oh yeah and border and outline width
+// because who knows, someone might want to change those on element states too
+// this is much simpler without color haha
+$additional-element-states-map: (
+  "font-size": (
+    "prefix": "text",
+    "values": map-size-vals()
+  ),
+  "font-family": (
+    "prefix": "font",
+    "values": $fonts
+  ),
+  "font-weight": (
+    "prefix": "font",
+    "values": $font-weights
+  ),
+  "text-decoration": (
+    "prefix": "text",
+    "values": (
+      "none": none,
+      "underline": underline,
+      "overline": overline,
+      "underover": underline overline,
+      "line-through": line-through
+    )
+  ),
+  "text-decoration-style": (
+    "prefix": "decoration",
+    "values": (
+      "solid": solid,
+      "double": double,
+      "dotted": dotted,
+      "dashed": dashed,
+      "wavy": wavy
+    )
+  ),
+  "text-decoration-thickness": (
+    "prefix": "decoration",
+    "values": $border-and-outline-widths
+  ),
+  "border-width": (
+    "prefix": "border",
+    "values": $border-and-outline-widths
+  ),
+  "bx": (
+    "prefix": "",
+    "values": $border-and-outline-widths
+  ),
+  "by": (
+    "prefix": "",
+    "values": $border-and-outline-widths
+  ),
+  "border-top-width": (
+    "prefix": "bt",
+    "values": $border-and-outline-widths
+  ),
+  "border-left-width": (
+    "prefix": "bl",
+    "values": $border-and-outline-widths
+  ),
+  "border-right-width": (
+    "prefix": "br",
+    "values": $border-and-outline-widths
+  ),
+  "border-bottom-width": (
+    "prefix": "bb",
+    "values": $border-and-outline-widths
+  ),
+  "border-style": (
+    "prefix": "border",
+    "values": $border-styles
+  ),
+  "outline-width": (
+    "prefix": "outline",
+    "values": $border-and-outline-widths
+  ),
+  "outline-style": (
+    "prefix": "outline",
+    "values": (
+      "none": none,
+      "dotted": dotted,
+      "solid": solid,
+      "groove": groove,
+      "inset": inset
+    )
+  )
+);
+
+// add bx and by to these classes
+$x-and-y-list: ("mx", "my", "px", "py", "bx", "by");
+
+@each $property, $map in $additional-element-states-map {
+  $prefix: map.get($map, "prefix");
+  $values: map.get($map, "values");
+
+  @if list.index($x-and-y-list, $property) {
+    @each $pseudo-class in $pseudo-classes {
+      // make pseudo-class like hover:font-size-xl and focus:text-decoration-underline and stuff like that
+      @each $valueKey, $val in $values {
+        $class-string: #{$pseudo-class} +
+          "\\:"+
+          #{$property} +
+          "-" +
+          #{$valueKey};
+
+        @if ($property == "bx") {
+          .#{$class-string} {
+            &:#{$pseudo-class} {
+              border-left-width: $val;
+              border-right-width: $val;
+            }
+          }
+        } @else if ($property == "by") {
+          .#{$class-string} {
+            &:#{$pseudo-class} {
+              border-top-width: $val;
+              border-bottom-width: $val;
+            }
+          }
+        }
+
+        // .#{$class-string} {
+        //   &:#{$pseudo-class} {
+        //     #{$property}: $val;
+        //   }
+        // }
+      }
+    }
+  } @else {
+    @each $pseudo-class in $pseudo-classes {
+      // make pseudo-class like hover:font-size-xl and focus:text-decoration-underline and stuff like that
+      @each $valueKey, $val in $values {
+        $class-string: #{$pseudo-class} +
+          "\\:"+
+          #{$prefix} +
+          "-" +
+          #{$valueKey};
+
+        .#{$class-string} {
+          &:#{$pseudo-class} {
+            #{$property}: $val;
+          }
+        }
+      }
+    }
+  }
+}

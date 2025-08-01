@@ -1,0 +1,26 @@
+// base & layout?
+@use "variables";
+@use "base";
+@use "breakpoints";
+
+// utilities (margin, padding, opacity, etc)
+@use "_extra"; // generally less specific than utilites
+@use "utilities";
+@use "grid";
+@use "non_responsive_utilities";
+@use "_colors_and_element_states";
+@use "_box_shadow";
+@use "_filter";
+@use "_transitions";
+
+/* 
+	font-family: 'Bebas Neue', sans-serif;
+	font-family: 'Francois One', sans-serif;
+	font-family: 'Lato', sans-serif;
+  testing build again!!!!
+*/
+
+// CSS reset, some rules copied from tailwind's prefilght philosophy
+// others, just how I like 'em
+
+//https://stackoverflow.com/questions/65554596/purgecss-and-tailwind-css-how-to-preserve-responsive-classes-using-the-command

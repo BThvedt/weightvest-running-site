@@ -1,0 +1,56 @@
+@use "variables" as *;
+@use "utilities" as *;
+@use "breakpoints" as *;
+@use "sass:map";
+@use "sass:list";
+
+$filters: ();
+
+@each $filter, $map in $filter-maps {
+  @each $map-key, $map-val in $map {
+    $className: $filter + "-" + $map-key;
+
+    $filters: map.merge(
+      $filters,
+      (
+        $className: $map-val
+      )
+    );
+  }
+}
+
+// @debug $filters;
+
+@each $breakpointKey, $breakpointVal in $breakpoints {
+  @if ($breakpointKey == "_") {
+    @each $class, $cssVal in $filters {
+      .#{$class} {
+        filter: $cssVal;
+      }
+    }
+  } @else {
+    @if ($breakpointVal != 0) {
+      @include mediaQuery($breakpointKey) {
+        @each $class, $cssVal in $filters {
+          .#{$breakpointKey}\:#{$class} {
+            filter: $cssVal;
+          }
+        }
+      }
+    }
+
+    $breakpointIndex: list.index($breakpointKeys, $breakpointKey);
+
+    @if ($breakpointIndex < $numOfBreakpoints) {
+      $nextKey: list.nth($breakpointKeys, $breakpointIndex + 1);
+
+      @include maxMediaQuery($nextKey) {
+        @each $class, $cssVal in $filters {
+          .max-#{$breakpointKey}\:#{$class} {
+            filter: $cssVal;
+          }
+        }
+      }
+    }
+  }
+}

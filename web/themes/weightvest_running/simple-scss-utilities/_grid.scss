@@ -1,0 +1,126 @@
+@use "variables" as *;
+@use "breakpoints" as *;
+@use "utilities" as *;
+@use "sass:math";
+@use "sass:list";
+
+// $layout-values: flex-start, flex-end, center, space-between, space-around;
+
+// base layout classes
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+.row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+// grid gaps
+@each $key, $val in $grid-gaps {
+  .gap-#{$key} > * {
+    padding: $val;
+  }
+  .gap-#{$key} {
+    margin-left: -$val;
+    margin-right: -$val;
+  }
+}
+
+// alright let's generate col classes
+@each $breakpointKey, $breakpointVal in $breakpoints {
+  @if ($breakpointKey == "_") {
+    @for $i from 1 through $grid-columns {
+      .col-#{$i} {
+        box-sizing: border-box;
+        flex-grow: 0;
+        width: math.div($i * 100%, $grid-columns);
+      }
+    }
+  } @else {
+    @if ($breakpointVal != 0) {
+      @include mediaQuery($breakpointKey) {
+        @for $i from 1 through $grid-columns {
+          .#{$breakpointKey}\:col-#{$i} {
+            box-sizing: border-box;
+            flex-grow: 0;
+            width: math.div($i * 100%, $grid-columns);
+          }
+        }
+      }
+    }
+
+    $breakpointIndex: list.index($breakpointKeys, $breakpointKey);
+
+    @if ($breakpointIndex < $numOfBreakpoints) {
+      $nextKey: list.nth($breakpointKeys, $breakpointIndex + 1);
+
+      @include maxMediaQuery($nextKey) {
+        @for $i from 1 through $grid-columns {
+          .max-#{$breakpointKey}\:col-#{$i} {
+            box-sizing: border-box;
+            flex-grow: 0;
+            width: math.div($i * 100%, $grid-columns);
+          }
+        }
+      }
+    }
+  }
+}
+
+// col classes
+// so the sizes are a mixin (see breakpoints) but instead of includign them in a selector
+// we're just including them and the selectors inside will become the content of the selector
+// see lesson 15 to remind how these types of breakpoints work
+// @include xs {
+//   @for $i from 1 through $grid-columns {
+//     .col-#{$i}-xs {
+//       box-sizing: border-box;
+//       flex-grow: 0;
+//       width: math.div($i * 100%, $grid-columns);
+//     }
+//   }
+// }
+
+// @include sm {
+//   @for $i from 1 through $grid-columns {
+//     .col-#{$i}-sm {
+//       box-sizing: border-box;
+//       flex-grow: 0;
+//       width: math.div($i * 100%, $grid-columns);
+//     }
+//   }
+// }
+
+// @include md {
+//   @for $i from 1 through $grid-columns {
+//     .col-#{$i}-md {
+//       box-sizing: border-box;
+//       flex-grow: 0;
+//       width: math.div($i * 100%, $grid-columns);
+//     }
+//   }
+// }
+
+// @include lg {
+//   @for $i from 1 through $grid-columns {
+//     .col-#{$i}-lg {
+//       box-sizing: border-box;
+//       flex-grow: 0;
+//       width: math.div($i * 100%, $grid-columns);
+//     }
+//   }
+// }
+
+// @include xl {
+//   @for $i from 1 through $grid-columns {
+//     .col-#{$i}-xl {
+//       box-sizing: border-box;
+//       flex-grow: 0;
+//       width: math.div($i * 100%, $grid-columns);
+//     }
+//   }
+// }

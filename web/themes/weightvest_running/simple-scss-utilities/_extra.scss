@@ -1,0 +1,84 @@
+@use "variables" as *;
+@use "breakpoints" as *;
+@use "sass:list";
+@use "sass:map";
+
+// some extra classes I thought would be useful
+
+$extra: (
+  "center": (
+    "display": flex,
+    "align-items": center,
+    "justify-content": center
+  ),
+  "center-start": (
+    "display": flex,
+    "align-items": center,
+    "justify-content": flex-start
+  ),
+  "center-end": (
+    "display": flex,
+    "align-items": center,
+    "justify-content": flex-end
+  ),
+  "center-top": (
+    "display": flex,
+    "align-items": flex-start,
+    "justify-content": center
+  ),
+  "center-bottom": (
+    "display": flex,
+    "align-items": flex-end,
+    "justify-content": center
+  )
+);
+
+// I'm just gonna be lazy and not try to do everything elegantly
+// in utilities I built it up piece by piece..
+// now I'm just gonna make regular classes and then all the reqponsive ones haha
+@each $className, $valueSet in $extra {
+  .#{$className} {
+    @each $prop, $val in $valueSet {
+      #{$prop}: $val;
+    }
+  }
+}
+
+@mixin make-responsive-extra-classes($breakpointKey, $breakpoint-prefix) {
+  @if ($breakpoint-prefix != "") {
+    $breakpointKey: $breakpoint-prefix + "-" + $breakpointKey;
+  }
+
+  @each $className, $valueSet in $extra {
+    $class-string: #{$breakpointKey} + "\\:"+ #{$className};
+
+    .#{$class-string} {
+      @each $prop, $val in $valueSet {
+        #{$prop}: $val;
+      }
+    }
+  }
+}
+
+$breakpointKeys: map.keys($breakpoints);
+$numOfBreakpoints: list.length($breakpointKeys);
+
+@each $breakpointKey, $breakpointVal in $breakpoints {
+  @if ($breakpointKey != "_") {
+    @if ($breakpointVal != 0) {
+      @include mediaQuery($breakpointKey) {
+        @include make-responsive-extra-classes($breakpointKey, "");
+      }
+    }
+
+    $breakpointIndex: list.index($breakpointKeys, $breakpointKey);
+
+    @if ($breakpointIndex < $numOfBreakpoints) {
+      $nextKey: list.nth($breakpointKeys, $breakpointIndex + 1);
+
+      @include maxMediaQuery($nextKey) {
+        @include make-responsive-extra-classes($breakpointKey, "max");
+      }
+    }
+  }
+}
