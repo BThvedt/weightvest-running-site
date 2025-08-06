@@ -1,13 +1,13 @@
-uuid: 6fa5af3c-b99a-41eb-b5f7-4d9e2d445494
+uuid: 4128517e-9063-4f96-a173-f67d1b6b0bc9
 langcode: en
 status: true
 dependencies:
   module:
     - media
-    - paragraphs
-id: paragraph.field_banner_video
-field_name: field_banner_video
-entity_type: paragraph
+    - node
+id: node.field_featured_video
+field_name: field_featured_video
+entity_type: node
 type: entity_reference
 settings:
   target_type: media

@@ -3,3 +3,12 @@ global-styling:
     theme:
       css/style.css: {}
       css/ssu.css: {}
+
+banner-video:
+  version: 1.x
+  js:
+    js/banner-video.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once

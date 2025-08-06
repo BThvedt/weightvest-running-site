@@ -1,0 +1,115 @@
+#block-weightvest-running-banner {
+  #banner-inner {
+    // loaded class seems to fade in the video better than the built in
+    // opacity-0 and opacity-100
+    #banner-video {
+      opacity: 0;
+      z-index: 100;
+
+      &.loaded {
+        opacity: 1;
+
+        &.hide-me {
+          opacity: 0;
+        }
+      }
+    }
+
+    #banner-title-and-overlay {
+      opacity: 0;
+      animation: fadeIn 2s ease-in forwards;
+      background-color: rgba(0, 0, 0, 0.1);
+      z-index: 500;
+
+      h1 {
+        opacity: 0;
+        animation: blurIn 1.5s ease-out forwards;
+        animation-delay: 0.5s;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.35);
+      }
+    }
+  }
+
+  #bnr-volume-and-play-btn {
+    z-index: 500;
+
+    #bnr-play-pause-button {
+      svg {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.35);
+      }
+
+      &:hover {
+        opacity: 1; // guess I forgot this one in ssu
+      }
+    }
+
+    #bnr-sound-icon {
+      svg {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.35);
+      }
+
+      &:hover {
+        opacity: 1; // guess I forgot this one in ssu
+      }
+    }
+
+    #bnr-volume-container {
+      &:hover {
+        opacity: 1; // guess I forgot this one in ssu
+      }
+      #bnr-volume-outer {
+        clip-path: polygon(100% 0, 100% 100%, 0 100%);
+        height: 29px;
+        width: 47px;
+        mask: url(#volume-mask);
+        -webkit-mask: url(#volume-mask);
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.35);
+      }
+
+      #bnr-volume-inner {
+        clip-path: polygon(100% 0, 100% 100%, 0 100%);
+        height: 25px;
+        width: 41px;
+        position: absolute;
+        top: 3px;
+        left: 4px;
+
+        &:before {
+          height: inherit;
+          background-color: #fdfcf9; // couldn't do this via class
+          content: "";
+          display: block;
+          width: var(--vol-width, 40%); // set on jQuery
+        }
+      }
+
+      #bnr-sound-icon {
+        .vol-icon {
+          width: 35px;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes blurIn {
+  0% {
+    filter: blur(15px);
+    opacity: 0;
+    transform: translateY(0);
+  }
+  100% {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+}

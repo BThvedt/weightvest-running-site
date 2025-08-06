@@ -3,6 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.page.field_featured_image
+    - field.field.node.page.field_featured_video
     - field.field.node.page.field_page_body
     - node.type.page
   module:
@@ -17,14 +19,18 @@ mode: default
 content:
   field_page_body:
     type: entity_reference_revisions_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 102
+    weight: 1
     region: content
   links:
-    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
     region: content
-hidden: {  }
+hidden:
+  field_featured_image: true
+  field_featured_video: true

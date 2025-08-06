@@ -1,0 +1,12 @@
+uuid: b7ef058f-0eeb-4e55-a153-5d4f919a8a00
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.banner
+id: block_content.banner.default
+targetEntityType: block_content
+bundle: banner
+mode: default
+content: {  }
+hidden: {  }

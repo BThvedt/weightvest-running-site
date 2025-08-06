@@ -900,12 +900,18 @@ if (!$is_local) {
   $config['s3fs.settings']['region'] = 'us-east-2';
   $config['s3fs.settings']['bucket'] = 'weightvest-running';
 
-  // if (class_exists('Kint')) {
+  // if (class_exists('\Kint\Kint')) {
   //   // Change the maximum depth to prevent out-of-memory errors.
-  //   \Kint::$max_depth = 1;
+  //   \Kint\Kint::$max_depth = 1;
   // }
 
 } else {
+  if (class_exists('Kint')) {
+    // Change the maximum depth to prevent out-of-memory errors.
+    \Kint\Kint::$depth_limit= 4;
+  }
+
+
   $config['config_split.config_split.dev']['status'] = TRUE;
   $config['config_split.config_split.prod']['status'] = FALSE;
 

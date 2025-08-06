@@ -1,0 +1,34 @@
+uuid: 38b4b3da-33fb-444c-a700-8d3b0dedc0f5
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:banner:63465bb9-2cbd-4863-9698-230d0bee0f40'
+  module:
+    - block_content
+    - node
+  theme:
+    - weightvest_running
+id: weightvest_running_banner
+theme: weightvest_running
+region: header
+weight: 0
+provider: null
+plugin: 'block_content:63465bb9-2cbd-4863-9698-230d0bee0f40'
+settings:
+  id: 'block_content:63465bb9-2cbd-4863-9698-230d0bee0f40'
+  label: Banner
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      page: page
+      post: post

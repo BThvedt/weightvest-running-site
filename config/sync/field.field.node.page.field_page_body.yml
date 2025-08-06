@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_page_body
     - node.type.page
-    - paragraphs.paragraphs_type.banner_img_video
     - paragraphs.paragraphs_type.block
     - paragraphs.paragraphs_type.react_component
     - paragraphs.paragraphs_type.text
@@ -28,7 +27,6 @@ settings:
       react_component: react_component
       block: block
       text: text
-      banner_img_video: banner_img_video
     negate: 0
     target_bundles_drag_drop:
       banner_img_video:

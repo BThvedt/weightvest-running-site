@@ -1,16 +1,16 @@
-uuid: d6733d01-04a7-45d6-b9ca-c5817a9b8378
+uuid: f49d900b-edfa-4819-bc0e-b5647d4ddaae
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_banner_image
+    - field.storage.node.field_featured_image
     - media.type.image
-    - paragraphs.paragraphs_type.banner_img_video
-id: paragraph.banner_img_video.field_banner_image
-field_name: field_banner_image
-entity_type: paragraph
-bundle: banner_img_video
-label: 'Banner Image'
+    - node.type.page
+id: node.page.field_featured_image
+field_name: field_featured_image
+entity_type: node
+bundle: page
+label: 'Featured Image'
 description: ''
 required: false
 translatable: false

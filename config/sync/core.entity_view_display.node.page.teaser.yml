@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.page.field_featured_image
+    - field.field.node.page.field_featured_video
     - field.field.node.page.field_page_body
     - node.type.page
   module:
@@ -19,4 +21,6 @@ content:
     weight: 101
     region: content
 hidden:
+  field_featured_image: true
+  field_featured_video: true
   field_page_body: true

@@ -1,14 +1,51 @@
 <?php
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\media\Entity\Media;
+use Drupal\file\Entity\File;
+use \Drupal\node\NodeInterface;
 
+/**
+ * Implements hook_preprocess_block().
+ * 
+ */
+function weightvest_running_preprocess_block(&$variables) {
+  $block_id = $variables['elements']['#id'] ?? '';
+  
+  // For the banner for pages and articles
+  if ($block_id === 'weightvest_running_banner') {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if ($node instanceof NodeInterface) {
+      // Get the title
+      $variables['node_title'] = $node->label();
 
-function weightvest_running_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-	// d($form_id);
-  // if ($form_id === 'search_block_form') {
-  //   // Add a theme suggestion.
-  //   $form['#theme'] = ['node_article_form__custom'];
-  // }
-	// $form['#theme'] = ['node_article_form__custom'];
+      // Get media image URL
+      if ($node->hasField('field_featured_image') && !$node->get('field_featured_image')->isEmpty()) {
+        $media = $node->get('field_featured_image')->entity;
+        if ($media && $media->hasField('field_media_image')) {
+          $image_field_item = $media->get('field_media_image')->first(); 
+          $file = $image_field_item->entity;
+          if ($file) {
+            $uri = $file->getFileUri();
+            $variables['node_image_url'] = \Drupal::service('file_url_generator')->generateString($uri);
+            $variables['node_image_alt'] = $image_field_item->alt; // This works
+          }
+        }
+      }
 
+      // Get media video embed (assuming embed field)
+      if ($node->hasField('field_featured_video') && !$node->get('field_featured_video')->isEmpty()) {
+        $media = $node->get('field_featured_video')->entity;
+        if ($media && $media->hasField('field_media_video_file')) {
+          $file = $media->get('field_media_video_file')->entity;
+          if ($file) {
+            $uri = $file->getFileUri();
+            $variables['node_video_url'] = \Drupal::service('file_url_generator')->generateString($uri);
+          }
+        }
+      }
+    }
+
+    $variables['#attached']['library'][] = 'weightvest_running/banner-video';
+  }
 }

@@ -1,16 +1,16 @@
-uuid: a33348a5-4f89-4168-bc15-2f09df25c78c
+uuid: b1eb034c-bf6b-4a41-a1ff-ccc3eb91669e
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_banner_video
+    - field.storage.node.field_featured_video
     - media.type.video
-    - paragraphs.paragraphs_type.banner_img_video
-id: paragraph.banner_img_video.field_banner_video
-field_name: field_banner_video
-entity_type: paragraph
-bundle: banner_img_video
-label: 'Banner Video'
+    - node.type.page
+id: node.page.field_featured_video
+field_name: field_featured_video
+entity_type: node
+bundle: page
+label: 'Featured Video'
 description: ''
 required: false
 translatable: false

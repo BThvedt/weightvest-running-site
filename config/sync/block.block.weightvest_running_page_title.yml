@@ -1,6 +1,6 @@
 uuid: 69716b88-327e-4a7c-9e70-6605bbe50f0e
 langcode: en
-status: true
+status: false
 dependencies:
   theme:
     - weightvest_running

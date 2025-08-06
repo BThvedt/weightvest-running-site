@@ -1,0 +1,122 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - provider: The module or other provider that provided this block plugin.
+ *   - Block plugin specific settings will also be stored here.
+ * - in_preview: Whether the plugin is being rendered in preview mode.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    <div 
+      id="banner-inner"
+      class="scr:ratio-21/9 med:ratio-16/9 max-tab:ratio-4/3 center overflow-hidden position-relative"
+    >
+      <!-- this is the svg cutout for the volume -->
+      <!-- it can go anywhere on the page I suppose -->
+      <!-- I just put it here, kinda out of the way of the other stuff --> 
+      
+      <svg width="0" height="0" style="position: absolute;">
+        <defs>
+          <mask id="volume-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="50" height="33">
+            <rect width="49" height="32" fill="white" />
+            <polygon points="45,4 45,27 6,27" fill="black" />
+          </mask>
+        </defs>
+      </svg>
+
+      <img class="position-absolute object-fill min-h-full" src="{{node_image_url}}" alt="{{node_image_alt}}" />
+      <video
+        id="banner-video"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+        loop
+        class="position-absolute object-fill min-h-full min-w-full transition-1s"
+      >
+        <source src="{{node_video_url}}" type="video/mp4" />
+      </video>
+      <div id="banner-title-and-overlay" class="position-absolute h-full w-full top-0 left-0 center">
+        <h1 class="text-4xl position-relative text-background bottom-3xl">{{ node_title }}</h1>
+      </div>
+  
+      <div id="bnr-volume-and-play-btn" class="position-absolute bottom-1 right-2 display-flex flex-row items-center opacity-0 transition-slow">
+
+        <div id="bnr-play-pause-button" class="text-background text-2xl left-1 py-sm px-lg mr-xs opacity-50 transition-fast center">
+          <!-- for some reason this is buggy unless the icons are wrapepd in divs -->
+          <div class="play-btn-wrapper cursor-pointer display-none">
+            <i class="fas fa-play"></i>
+          </div>
+          <div class="pause-btn-wrapper cursor-pointer">
+            <i class="fas fa-pause"></i>
+          </div>
+        </div>
+
+        <div id="bnr-volume-container" class="display-flex flex-row position-relative">
+
+          <div id="bnr-sound-icon" class="text-background text-2xl mr-sm cursor-pointer opacity-50 transition-fast">
+            <!-- for some reason this is buggy unless the icons are wrapepd in divs -->
+            <div class="vol-icon vol-x-icon ">
+              <i class="fas fa-volume-xmark"></i>
+            </div>
+            <div class="vol-icon vol-low-icon display-none">
+              <i class="fas fa-volume-low"></i>
+            </div>
+            <div class="vol-icon vol-high-icon display-none">
+              <i class="fas fa-volume-high"></i>
+            </div>
+          </div>
+
+          <div 
+            id="bnr-volume-container"
+            class="position-relative top-4px right-3px opacity-50 transition-fast"
+          >
+          
+            <div 
+              id="bnr-volume-outer"
+              class="display-flex items-center justify-center bg-background position-relative"
+            ></div>
+
+            <div 
+              id="bnr-volume-inner" 
+              class="position-absolute top-3px cursor-pointer" 
+            ></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+    {{ content }}
+  {% endblock %}
+</div>
