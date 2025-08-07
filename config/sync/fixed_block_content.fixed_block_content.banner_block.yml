@@ -1,0 +1,12 @@
+uuid: 98183af9-b189-4ecc-bd70-acd0ec518689
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.banner
+id: banner_block
+title: 'Banner Block '
+block_content_bundle: banner
+default_content: null
+auto_export: 1
+protected: false

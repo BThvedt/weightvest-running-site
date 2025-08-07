@@ -1,0 +1,12 @@
+entity.fixed_block_content.collection:
+  title: 'Fixed blocks'
+  deriver: 'Drupal\fixed_block_content\Plugin\Derivative\CompatibilityCollectionTask'
+  route_name: entity.fixed_block_content.collection
+  base_route: entity.block_content_type.collection
+
+fixed_block_content.list_tab:
+  title: 'List'
+  deriver: 'Drupal\fixed_block_content\Plugin\Derivative\CompatibilityListTask'
+  route_name: entity.block_content_type.collection
+  base_route: entity.block_content_type.collection
+

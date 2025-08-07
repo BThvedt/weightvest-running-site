@@ -1,0 +1,14 @@
+type: module
+core: 8.x
+core_version_requirement: ^8 || ^9
+name: Fixed block content test
+description: 'Provides fixed placements for custom blocks.'
+package: Testing
+# project: 'fixed_block_content_test'
+dependencies:
+  - drupal:block_content
+
+# Information added by Drupal.org packaging script on 2025-04-02
+version: '8.x-1.4'
+project: 'fixed_block_content'
+datestamp: 1743628827

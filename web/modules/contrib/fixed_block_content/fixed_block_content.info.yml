@@ -1,0 +1,14 @@
+type: module
+core_version_requirement: ^9 || ^10 || ^11
+name: Fixed Block Content
+description: Provides fixed placements for custom blocks.
+package: Other
+configure: entity.fixed_block_content.collection
+dependencies:
+  - drupal:block_content
+  - hal:hal
+
+# Information added by Drupal.org packaging script on 2025-04-02
+version: '8.x-1.4'
+project: 'fixed_block_content'
+datestamp: 1743628827

@@ -1,0 +1,79 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: c4ee5f59-59f7-4acb-b435-29982df6ee49
+  bundle: page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: Articles
+  created:
+    -
+      value: 1752624827
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  path:
+    -
+      alias: /articles
+      langcode: en
+  field_page_body:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: ad62c47a-5281-42e8-9e5e-9c7c3ed096c4
+          bundle: text
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752624835
+          behavior_settings:
+            -
+              value: {  }
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 41ea4a0b-66f4-45b9-acf8-62b8713a7a77
+          bundle: block
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752627529
+          behavior_settings:
+            -
+              value: {  }
+          field_block:
+            -
+              plugin_id: 'views_block:posts-block_2'
+              settings:
+                id: 'views_block:posts-block_2'
+                label: ''
+                label_display: visible
+                provider: views
+                views_label: ''
+                items_per_page: none
