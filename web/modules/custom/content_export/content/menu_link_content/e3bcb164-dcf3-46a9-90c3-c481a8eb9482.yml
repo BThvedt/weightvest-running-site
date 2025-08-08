@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: e3bcb164-dcf3-46a9-90c3-c481a8eb9482
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    f44f8cb9-92ae-456a-bf5e-5771a14d0458: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Reviews
+  menu_name:
+    -
+      value: main
+  link:
+    -
+      target_uuid: f44f8cb9-92ae-456a-bf5e-5771a14d0458
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -46
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
