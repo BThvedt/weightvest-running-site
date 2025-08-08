@@ -1,0 +1,12 @@
+uuid: 8d6c82f1-b84e-4556-bafd-763164c1a5d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.banner
+id: banner_fixed_block
+title: 'Banner fixed block'
+block_content_bundle: banner
+default_content: null
+auto_export: 1
+protected: false
