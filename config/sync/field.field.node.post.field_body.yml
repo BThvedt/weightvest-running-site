@@ -1,10 +1,13 @@
-uuid: d965282d-a2db-4703-bc78-0b6b4bc3723a
+uuid: 5ee3dcd2-547b-47ab-80a7-1d6be8f5f0b3
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_body
     - node.type.post
+    - paragraphs.paragraphs_type.block
+    - paragraphs.paragraphs_type.react_component
+    - paragraphs.paragraphs_type.text
   module:
     - entity_reference_revisions
 id: node.post.field_body
@@ -20,10 +23,19 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    target_bundles: null
+    target_bundles:
+      block: block
+      react_component: react_component
+      text: text
     negate: 0
     target_bundles_drag_drop:
+      block:
+        weight: 4
+        enabled: true
       react_component:
-        weight: 2
-        enabled: false
+        weight: 5
+        enabled: true
+      text:
+        weight: 6
+        enabled: true
 field_type: entity_reference_revisions

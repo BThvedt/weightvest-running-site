@@ -21,7 +21,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 103
+    weight: 105
     region: content
   field_category:
     type: entity_reference_label

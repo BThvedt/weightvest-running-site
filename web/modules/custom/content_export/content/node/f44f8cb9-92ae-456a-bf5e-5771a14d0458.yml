@@ -35,51 +35,8 @@ default:
       langcode: en
   field_page_body:
     -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
-          uuid: 7533fbaf-f2f6-4532-8a33-9ba6cade07c6
-          bundle: text
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1752625138
-          behavior_settings:
-            -
-              value: {  }
+      target_id: 9
+      target_revision_id: 14
     -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
-          uuid: 37f3ecdc-0e4b-4652-8715-20d6ead3e92a
-          bundle: block
-          default_langcode: en
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1752626078
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_block:
-            -
-              plugin_id: 'views_block:posts-block_3'
-              settings:
-                id: 'views_block:posts-block_3'
-                label: ''
-                label_display: visible
-                provider: views
-                views_label: ''
-                items_per_page: none
+      target_id: 10
+      target_revision_id: 15
