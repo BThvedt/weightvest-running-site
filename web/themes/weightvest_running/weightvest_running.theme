@@ -13,6 +13,7 @@ function weightvest_running_preprocess_block(&$variables) {
   $block_id = $variables['elements']['#id'] ?? '';
 
   dpm("WTF");
+  dpm($block_id);
   
   // For the banner for pages and articles
   if ($block_id === 'weightvest_running_banner') {
