@@ -22,10 +22,14 @@ function weightvest_running_preprocess_block(&$variables) {
       // Get media image URL
       if ($node->hasField('field_featured_image') && !$node->get('field_featured_image')->isEmpty()) {
         $media = $node->get('field_featured_image')->entity;
+        dpm("lael is");
+        dpm($node->label());
         if ($media && $media->hasField('field_media_image')) {
           $image_field_item = $media->get('field_media_image')->first(); 
           $file = $image_field_item->entity;
           if ($file) {
+            dpm("file is");
+            dpm($file);
             $uri = $file->getFileUri();
             $variables['node_image_url'] = \Drupal::service('file_url_generator')->generateString($uri);
             $variables['node_image_alt'] = $image_field_item->alt; // This works
@@ -47,5 +51,10 @@ function weightvest_running_preprocess_block(&$variables) {
     }
 
     $variables['#attached']['library'][] = 'weightvest_running/banner-video';
+
+    dpm("variables are");
+    dpm($variables['node_title']);
+    dpm($variables['node_image_url']);
+    dpm($variables['node_video_url']);
   }
 }
