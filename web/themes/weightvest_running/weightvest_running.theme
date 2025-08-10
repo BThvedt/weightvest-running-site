@@ -11,6 +11,8 @@ use \Drupal\node\NodeInterface;
  */
 function weightvest_running_preprocess_block(&$variables) {
   $block_id = $variables['elements']['#id'] ?? '';
+
+  dpm("WTF");
   
   // For the banner for pages and articles
   if ($block_id === 'weightvest_running_banner') {
