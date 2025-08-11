@@ -5,6 +5,7 @@
     #banner-video {
       opacity: 0;
       z-index: 100;
+      transition-delay: 250ms;
 
       &.loaded {
         opacity: 1;
@@ -18,14 +19,27 @@
     #banner-title-and-overlay {
       opacity: 0;
       animation: fadeIn 2s ease-in forwards;
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: rgba(0, 0, 0, 0.15);
       z-index: 500;
 
-      h1 {
+      .node-title {
         opacity: 0;
         animation: blurIn 1.5s ease-out forwards;
         animation-delay: 0.5s;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.35);
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.45);
+        color: #fdfcf9;
+        position: relative;
+        bottom: 2.5rem;
+        text-align: center;
+
+        h1 {
+          font-size: 4.5rem;
+          line-height: 5rem;
+
+          .running {
+            font-size: 6.2rem;
+          }
+        }
       }
     }
   }

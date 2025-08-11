@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.page.field_banner_text
     - field.field.node.page.field_featured_image
     - field.field.node.page.field_featured_video
     - field.field.node.page.field_page_body
@@ -11,6 +12,7 @@ dependencies:
     - media_library
     - paragraphs
     - path
+    - text
 _core:
   default_config_hash: SfpLhPExzvR0MgFp0Wp7CrmgEnhcqQ-fXIWFhbf4ue0
 id: node.page.default
@@ -24,23 +26,31 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_featured_image:
-    type: media_library_widget
+  field_banner_text:
+    type: text_textfield
     weight: 7
     region: content
     settings:
-      media_types: {  }
+      size: 255
+      placeholder: 'Banner Text Here'
     third_party_settings: {  }
-  field_featured_video:
+  field_featured_image:
     type: media_library_widget
     weight: 8
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
+  field_featured_video:
+    type: media_library_widget
+    weight: 9
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
   field_page_body:
     type: paragraphs
-    weight: 9
+    weight: 10
     region: content
     settings:
       title: Paragraph

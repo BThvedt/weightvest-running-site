@@ -12,6 +12,9 @@
 
         // there's only one element
         const elm = elements[0];
+        let interval = null; // a failsafe for the rare glitch wher the vid doesn't play
+        let hasInitiallyStartedPlaying = false;
+        let intervalCleared = false;
 
         if (elm) {
           const $videos = $(elm).find("video");
@@ -20,6 +23,23 @@
           function initializeVid() {
             if (!$video.hasClass("loaded")) {
               $video.addClass("loaded");
+
+              // sometimes the video doesn't start playing (rare but happens)
+              // if it takes longer than a quarter second from here, something's probably wrong
+              // so I do a check here to run an interval after about a queartr second
+              // I mean it should be autoplay
+              setTimeout(() => {
+                if (!isVideoPlaying()) {
+                  interval = setInterval(() => {
+                    console.log("trying to play video..'");
+                    $video.get(0).play();
+                  }, 100);
+
+                  $video
+                    .get(0)
+                    .addEventListener("play", () => clearInterval(interval));
+                }
+              }, 250);
 
               const $controlsContainer = $(elm).find(
                 "#bnr-volume-and-play-btn"
@@ -88,8 +108,6 @@
 
                 const fraction = e.offsetX / soundDialElm.clientWidth;
                 const roundedFraction = fraction.toFixed(2); // returns a string
-
-                console.log(roundedFraction);
 
                 if ($video.get(0).muted) {
                   unMuteVol(roundedFraction);
@@ -179,6 +197,17 @@
                   $volDial.css("--vol-width", "0%");
                   vid.volume = 0;
                 }
+              }
+
+              function isVideoPlaying() {
+                const theVid = $video.get(0);
+                return (
+                  theVid &&
+                  theVid.currentTime > 0 && // Has started playing
+                  !theVid.paused && // Is not paused
+                  !theVid.ended && // Hasn't finished
+                  theVid.readyState > 2 // Has enough data to keep playing
+                );
               }
             }
           }

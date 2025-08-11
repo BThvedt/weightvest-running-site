@@ -3,12 +3,17 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.post.field_banner_text
     - field.field.node.post.field_body
     - field.field.node.post.field_category
+    - field.field.node.post.field_featured_image
+    - field.field.node.post.field_featured_video
     - node.type.post
   module:
+    - media_library
     - paragraphs
     - path
+    - text
 id: node.post.default
 targetEntityType: node
 bundle: post
@@ -20,9 +25,17 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_banner_text:
+    type: text_textfield
+    weight: 6
+    region: content
+    settings:
+      size: 255
+      placeholder: 'Banner Text Here'
+    third_party_settings: {  }
   field_body:
     type: paragraphs
-    weight: 26
+    weight: 10
     region: content
     settings:
       title: Paragraph
@@ -40,9 +53,23 @@ content:
     third_party_settings: {  }
   field_category:
     type: options_select
-    weight: 8
+    weight: 9
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_featured_image:
+    type: media_library_widget
+    weight: 7
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_featured_video:
+    type: media_library_widget
+    weight: 8
+    region: content
+    settings:
+      media_types: {  }
     third_party_settings: {  }
   path:
     type: path

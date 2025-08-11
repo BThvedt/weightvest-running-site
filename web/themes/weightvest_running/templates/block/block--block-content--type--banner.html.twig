@@ -65,7 +65,16 @@
         <source src="{{node_video_url}}" type="video/mp4" />
       </video>
       <div id="banner-title-and-overlay" class="position-absolute h-full w-full top-0 left-0 center">
-        <h1 class="text-4xl position-relative text-background bottom-3xl">{{ node_title }}</h1>
+        {# styles for this are in block--content-type--banner.scss #}
+        {% if title_is_html %}
+          <div class="node-title">
+            <h1>{{ node_title }}</h1>
+          </div>
+        {% else %}
+          <div class="node-title">
+            {{ node_title.processed  }}
+          </div>
+        {% endif %}
       </div>
   
       <div id="bnr-volume-and-play-btn" class="position-absolute bottom-1 right-2 display-flex flex-row items-center opacity-0 transition-slow">

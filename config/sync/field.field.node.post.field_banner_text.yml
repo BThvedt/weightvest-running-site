@@ -1,0 +1,24 @@
+uuid: a07a3ae1-d876-4baf-91f0-f982df73ea10
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_banner_text
+    - filter.format.basic_html
+    - node.type.post
+  module:
+    - text
+id: node.post.field_banner_text
+field_name: field_banner_text
+entity_type: node
+bundle: post
+label: 'Banner Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text
