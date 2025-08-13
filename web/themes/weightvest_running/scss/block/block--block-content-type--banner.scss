@@ -29,7 +29,7 @@
         text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.45);
         color: #fdfcf9;
         position: relative;
-        bottom: 2.5rem;
+        bottom: 1.5rem;
         text-align: center;
 
         h1 {
@@ -37,7 +37,18 @@
           line-height: 5rem;
 
           .running {
-            font-size: 6.2rem;
+            font-size: 6.5rem;
+
+            &:after {
+              content: "";
+              height: 4px;
+              width: 99%;
+              background-color: #85e892;
+              display: block;
+              box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.45);
+              position: relative;
+              bottom: 5px;
+            }
           }
         }
       }
@@ -100,6 +111,24 @@
       #bnr-sound-icon {
         .vol-icon {
           width: 35px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 640px) {
+  #block-weightvest-running-banner {
+    #banner-inner {
+      #banner-title-and-overlay {
+        .node-title {
+          h1 {
+            font-size: 6.5rem;
+            line-height: 7rem;
+            .running {
+              font-size: 9.4rem;
+            }
+          }
         }
       }
     }

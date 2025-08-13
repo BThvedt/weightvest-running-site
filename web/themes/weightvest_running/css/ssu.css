@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&display=swap&family=Francois+One&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Francois+One&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
 /* 
 	font-family: 'Bebas Neue', sans-serif;
 	font-family: 'Francois One', sans-serif;
@@ -3158,7 +3158,7 @@ input {
 }
 
 .letter-spacing-3xl {
-  letter-spacing: 0.125em;
+  letter-spacing: 0.11em;
 }
 
 .sizing-content {
@@ -7970,7 +7970,7 @@ input {
     letter-spacing: 0.063em;
   }
   .max-mob\:letter-spacing-3xl {
-    letter-spacing: 0.125em;
+    letter-spacing: 0.11em;
   }
   .max-mob\:sizing-content {
     box-sizing: content-box;
@@ -12126,7 +12126,7 @@ input {
     letter-spacing: 0.063em;
   }
   .tab\:letter-spacing-3xl {
-    letter-spacing: 0.125em;
+    letter-spacing: 0.11em;
   }
   .tab\:sizing-content {
     box-sizing: content-box;
@@ -16282,7 +16282,7 @@ input {
     letter-spacing: 0.063em;
   }
   .max-tab\:letter-spacing-3xl {
-    letter-spacing: 0.125em;
+    letter-spacing: 0.11em;
   }
   .max-tab\:sizing-content {
     box-sizing: content-box;
@@ -20438,7 +20438,7 @@ input {
     letter-spacing: 0.063em;
   }
   .med\:letter-spacing-3xl {
-    letter-spacing: 0.125em;
+    letter-spacing: 0.11em;
   }
   .med\:sizing-content {
     box-sizing: content-box;
@@ -24594,7 +24594,7 @@ input {
     letter-spacing: 0.063em;
   }
   .max-med\:letter-spacing-3xl {
-    letter-spacing: 0.125em;
+    letter-spacing: 0.11em;
   }
   .max-med\:sizing-content {
     box-sizing: content-box;
@@ -28750,7 +28750,7 @@ input {
     letter-spacing: 0.063em;
   }
   .scr\:letter-spacing-3xl {
-    letter-spacing: 0.125em;
+    letter-spacing: 0.11em;
   }
   .scr\:sizing-content {
     box-sizing: content-box;

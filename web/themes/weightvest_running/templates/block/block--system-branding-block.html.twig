@@ -17,15 +17,15 @@
 #}
 {% set parts = site_name|split(' ') %}
 {% block content %}
-  <div class="display-flex w-16 max-tab:w-12">
+  <div class="display-flex w-15 max-tab:w-12 position-relative right-2px mr-lg">
     {% if site_logo %}
       <a href="{{ path('<front>') }}" rel="home">
         <img id="running-img" class="max-tab:position-relative max-tab:top-3px" src="{{ site_logo }}" alt="{{ 'Home'|t }}" fetchpriority="high" />
       </a>
     {% endif %}
     {% if site_name %}
-      <a href="{{ path('<front>') }}" rel="home" class="max-tab:position-relative max-tab:right-3px">
-        <h1 id="header-logo" class="ml-md font-header font-bold display-flex flex-col line-height-2xl max-tab:ml-sm">
+      <a href="{{ path('<front>') }}" rel="home" class="position-relative max-tab:right-3px bottom-1px">
+        <h1 id="header-logo" class="ml-md font-header font-bold display-flex flex-col line-height-2xl max-tab:ml-sm letter-spacing-3xl">
           <span class="text-orange text-2xl max-tab:text-xl">{{ parts[0] }}</span> 
           <span class="text-default logo-2nd-line bb-md border-green max-tab:position-relative max-tab:bottom-2px">{{ parts[1] }}</span>
         </h1>

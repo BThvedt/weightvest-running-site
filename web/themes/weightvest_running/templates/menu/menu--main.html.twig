@@ -32,12 +32,12 @@
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul id="weightvest-running-main-menu" class="space-around grow-1 text-xl items-center ml-sm scr:display-flex display-none position-relative bottom-2px">
+      <ul id="weightvest-running-main-menu" class="space-around grow-1 text-xl items-center ml-md scr:display-flex display-none position-relative bottom-2px left-3px">
     {% else %}
       <ul>
     {% endif %}
     {% for item in items %}
-      <li{{ item.attributes.addClass('text-xl p-md hover:text-orange slide-out-underline') }}>
+      <li{{ item.attributes.addClass('text-xl font-large p-md pr-sm hover:text-orange slide-out-underline') }}>
         {{ link(item.title, item.url) }}
         {% if item.below %}
           {{ menus.menu_links(item.below, attributes, menu_level + 1) }}

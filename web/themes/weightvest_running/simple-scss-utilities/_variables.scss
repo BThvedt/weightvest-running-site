@@ -1,7 +1,7 @@
 @use "sass:math";
 
 // Primary Font: Lato (light normal bold and italic in all weights). Secondary-font: Francois One  Big Font: Title Font: Bebas Nueue
-@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&display=swap&family=Francois+One&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Francois+One&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
 
 // a variable for the max comtainer size
 // max-width gets this max-width-container
@@ -178,7 +178,7 @@ $letter-spacing: (
   "lg": 0.025em,
   "xl": 0.044em,
   "2xl": 0.063em,
-  "3xl": 0.125em,
+  "3xl": 0.11em,
 );
 
 // just helper map specifically for border styles
