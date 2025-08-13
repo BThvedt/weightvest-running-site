@@ -1,0 +1,8 @@
+uuid: b6f49742-3454-4a31-987e-575bd1b3938d
+langcode: en
+status: true
+dependencies: {  }
+id: subheader_for_pages
+label: 'Subheader for pages'
+revision: false
+description: 'A block to display the subheader for pages, like the subheader paragraph type for posts. Pulls data from a field on the page content type. '

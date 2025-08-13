@@ -1,0 +1,20 @@
+uuid: ac52cde2-3788-4691-8c03-9311b249fd2d
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.subheader_for_pages
+id: block_content.subheader_for_pages.default
+targetEntityType: block_content
+bundle: subheader_for_pages
+mode: default
+content:
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

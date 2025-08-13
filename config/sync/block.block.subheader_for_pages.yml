@@ -1,0 +1,38 @@
+uuid: 600ff3d7-68ec-4f83-9ec7-82246f183337
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:subheader_for_pages:d0aa01bb-d085-451f-8cc7-dd78ee10def1'
+  module:
+    - block_content
+    - node
+    - system
+  theme:
+    - weightvest_running
+id: subheader_for_pages
+theme: weightvest_running
+region: header
+weight: 0
+provider: null
+plugin: 'block_content:d0aa01bb-d085-451f-8cc7-dd78ee10def1'
+settings:
+  id: 'block_content:d0aa01bb-d085-451f-8cc7-dd78ee10def1'
+  label: 'Subheader for Pages'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "<front>\r\n/about\r\n/articles\r\n/posts\r\n/reviews"
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      page: page

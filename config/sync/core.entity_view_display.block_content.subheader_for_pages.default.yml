@@ -1,0 +1,12 @@
+uuid: c279f8e7-002a-49d6-ad78-16827405ce41
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.subheader_for_pages
+id: block_content.subheader_for_pages.default
+targetEntityType: block_content
+bundle: subheader_for_pages
+mode: default
+content: {  }
+hidden: {  }

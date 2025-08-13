@@ -1,0 +1,24 @@
+uuid: cf3acaf0-49e8-496b-964a-241845483e56
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_subheader_text
+    - filter.format.full_html
+    - node.type.page
+  module:
+    - text
+id: node.page.field_subheader_text
+field_name: field_subheader_text
+entity_type: node
+bundle: page
+label: 'Subheader Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long

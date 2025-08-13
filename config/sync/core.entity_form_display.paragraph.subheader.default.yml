@@ -1,0 +1,25 @@
+uuid: fbb38977-ad84-463a-8c58-47c1281641ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.subheader.field_subheader
+    - paragraphs.paragraphs_type.subheader
+  module:
+    - text
+id: paragraph.subheader.default
+targetEntityType: paragraph
+bundle: subheader
+mode: default
+content:
+  field_subheader:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

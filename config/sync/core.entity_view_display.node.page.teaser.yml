@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.page.field_featured_image
     - field.field.node.page.field_featured_video
     - field.field.node.page.field_page_body
+    - field.field.node.page.field_subheader_text
     - node.type.page
   module:
     - user
@@ -26,3 +27,4 @@ hidden:
   field_featured_image: true
   field_featured_video: true
   field_page_body: true
+  field_subheader_text: true

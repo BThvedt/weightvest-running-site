@@ -15,7 +15,7 @@ settings:
     items:
       - bold
       - italic
-      - strikethrough
+      - underline
       - superscript
       - subscript
       - removeFormat

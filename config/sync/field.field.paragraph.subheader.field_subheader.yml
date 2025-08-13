@@ -1,0 +1,24 @@
+uuid: ab3e83f9-2eac-486b-85e9-f4c85d0f8d0f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_subheader
+    - filter.format.full_html
+    - paragraphs.paragraphs_type.subheader
+  module:
+    - text
+id: paragraph.subheader.field_subheader
+field_name: field_subheader
+entity_type: paragraph
+bundle: subheader
+label: Subheader
+description: 'A paragraph for subheaders. Features a larger font and full html. '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long

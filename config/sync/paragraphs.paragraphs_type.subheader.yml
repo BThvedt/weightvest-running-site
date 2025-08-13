@@ -1,0 +1,10 @@
+uuid: 8055bb22-6fbd-420b-8c80-ac355ce3c01a
+langcode: en
+status: true
+dependencies: {  }
+id: subheader
+label: Subheader
+icon_uuid: null
+icon_default: null
+description: 'A paragraph for subheader type content'
+behavior_plugins: {  }

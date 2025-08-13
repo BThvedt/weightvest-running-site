@@ -1,0 +1,22 @@
+uuid: 44ea06a8-0fd1-477a-b4e9-5c7d6b8e5176
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.subheader.field_subheader
+    - paragraphs.paragraphs_type.subheader
+  module:
+    - text
+id: paragraph.subheader.default
+targetEntityType: paragraph
+bundle: subheader
+mode: default
+content:
+  field_subheader:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }
