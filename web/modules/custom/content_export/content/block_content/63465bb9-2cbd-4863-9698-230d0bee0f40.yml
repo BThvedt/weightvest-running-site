@@ -1,0 +1,19 @@
+_meta:
+  version: '1.0'
+  entity_type: block_content
+  uuid: 63465bb9-2cbd-4863-9698-230d0bee0f40
+  bundle: banner
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  info:
+    -
+      value: 'Banner Image/Video/Title for nodes'
+  reusable:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true

@@ -31,12 +31,5 @@ default:
       value: true
   path:
     -
-      alias: ''
+      alias: /reviews
       langcode: en
-  field_page_body:
-    -
-      target_id: 9
-      target_revision_id: 14
-    -
-      target_id: 10
-      target_revision_id: 15

@@ -36,9 +36,17 @@ default:
     -
       alias: /home
       langcode: en
+  field_banner_text:
+    -
+      value: '<h1><span class="text-orange">Weightvest</span><br/><span class="running">Running</span></h1>'
+      format: basic_html
   field_featured_image:
     -
       entity: 04107574-273b-45e1-a1f5-05d090ea3389
   field_featured_video:
     -
       entity: 480e205b-839c-43e9-b32f-8a9421ce9ca2
+  field_subheader_text:
+    -
+      value: '<p>This is a personal blog of a fitness experiment. The <strong>numbers </strong>are real, but <em>everything else is <u>opinion</u></em>! Check with doctors, be careful with injury, and for more ranting see the <a href="/about">About</a> page! Or check out the <a href="/posts">Posts</a>, <a href="/articles">Articles</a>, <a href="/results">Results</a> or <a href="/reviews">Reviews</a>. What a deal!</p>'
+      format: full_html
