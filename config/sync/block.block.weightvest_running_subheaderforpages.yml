@@ -1,0 +1,28 @@
+uuid: 9b460bfd-c462-4c95-8c82-209b7e05a67c
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.subheader_for_pages
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - weightvest_running
+id: weightvest_running_subheaderforpages
+theme: weightvest_running
+region: header
+weight: 0
+provider: null
+plugin: 'fixed_block_content:subheader_for_pages'
+settings:
+  id: 'fixed_block_content:subheader_for_pages'
+  label: 'Subheader for Pages'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "<front>\r\n/about\r\n/articles\r\n/posts\r\n/reviews"

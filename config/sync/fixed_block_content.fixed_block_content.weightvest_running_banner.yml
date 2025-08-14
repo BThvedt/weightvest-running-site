@@ -1,0 +1,12 @@
+uuid: 21159e13-54d1-4ca9-ba12-d8ef43e58c83
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.banner
+id: weightvest_running_banner
+title: Banner
+block_content_bundle: banner
+default_content: null
+auto_export: 1
+protected: false

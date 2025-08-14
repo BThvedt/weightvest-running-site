@@ -1,0 +1,12 @@
+uuid: 180be69e-4c25-4783-ad0f-7f27d994aeec
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.subheader_for_pages
+id: subheader_for_pages
+title: 'Subheader for Pages'
+block_content_bundle: subheader_for_pages
+default_content: null
+auto_export: 1
+protected: false

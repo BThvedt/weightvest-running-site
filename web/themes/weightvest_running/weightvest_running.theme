@@ -62,7 +62,7 @@ function weightvest_running_preprocess_block(&$variables) {
 
     // Or cache by URL path only
     $variables['#cache']['contexts'][] = 'url.path';
-  } else if ($block_id == "subheader_for_pages") {
+  } else if ($block_id == "weightvest_running_subheaderforpages") {
     $node = \Drupal::routeMatch()->getParameter('node');
     if ($node instanceof NodeInterface) {
       // field_banner_text
