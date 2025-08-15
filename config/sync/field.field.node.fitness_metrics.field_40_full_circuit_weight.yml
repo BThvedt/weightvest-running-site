@@ -1,0 +1,23 @@
+uuid: 19f9b7df-4fb3-469e-8a7f-8d81c1cda5d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_40_full_circuit_weight
+    - node.type.fitness_metrics
+id: node.fitness_metrics.field_40_full_circuit_weight
+field_name: field_40_full_circuit_weight
+entity_type: node
+bundle: fitness_metrics
+label: '40 full circuit weight'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0.0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

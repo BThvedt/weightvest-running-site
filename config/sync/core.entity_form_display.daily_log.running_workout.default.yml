@@ -1,0 +1,76 @@
+uuid: 55fcc056-1e6f-40dc-bd50-623f00574d85
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.running_workout
+    - field.field.daily_log.running_workout.field_distance
+    - field.field.daily_log.running_workout.field_heart_rate
+    - field.field.daily_log.running_workout.field_run_time
+    - field.field.daily_log.running_workout.field_stride_length
+    - field.field.daily_log.running_workout.field_strides_per_minute
+    - field.field.daily_log.running_workout.field_weight_added
+id: daily_log.running_workout.default
+targetEntityType: daily_log
+bundle: running_workout
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_distance:
+    type: number
+    weight: 12
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_heart_rate:
+    type: number
+    weight: 14
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_run_time:
+    type: number
+    weight: 11
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_stride_length:
+    type: number
+    weight: 16
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_strides_per_minute:
+    type: number
+    weight: 15
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_weight_added:
+    type: number
+    weight: 13
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

@@ -1,0 +1,23 @@
+uuid: 98a8ac18-ca06-4ed4-98a8-2a79b543a05a
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.running_workout
+    - field.storage.daily_log.field_strides_per_minute
+id: daily_log.running_workout.field_strides_per_minute
+field_name: field_strides_per_minute
+entity_type: daily_log
+bundle: running_workout
+label: 'Strides per Minute'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: spm
+field_type: integer

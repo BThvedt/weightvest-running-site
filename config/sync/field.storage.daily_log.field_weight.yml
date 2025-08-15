@@ -1,0 +1,20 @@
+uuid: 23a4a386-59d1-401e-9ed9-9d7071a02abe
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+id: daily_log.field_weight
+field_name: field_weight
+entity_type: daily_log
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

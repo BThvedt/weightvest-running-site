@@ -1,0 +1,6 @@
+health_metrics.admin:
+  title: "Health Metrics"
+  description: "Configure how health metrics are displayed"
+  route_name: health_metrics.admin
+  parent: system.admin_config_content
+  weight: 10

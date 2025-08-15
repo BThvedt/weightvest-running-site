@@ -5,5 +5,5 @@ dependencies: {  }
 name: Category
 vid: category
 description: 'Articles, Posts, and Reviews'
-weight: 0
+weight: -10
 new_revision: false

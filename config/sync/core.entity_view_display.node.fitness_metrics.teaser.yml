@@ -1,0 +1,40 @@
+uuid: 4298d633-d641-4c27-86dc-175e63860201
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.fitness_metrics.body
+    - field.field.node.fitness_metrics.field_40_full_circuit_weight
+    - field.field.node.fitness_metrics.field_40_goblet_squat_weight
+    - field.field.node.fitness_metrics.field_40_lunge_weight
+    - field.field.node.fitness_metrics.field_40_pushup_weight
+    - field.field.node.fitness_metrics.field_number_of_pullups
+    - node.type.fitness_metrics
+  module:
+    - text
+    - user
+id: node.fitness_metrics.teaser
+targetEntityType: node
+bundle: fitness_metrics
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_40_full_circuit_weight: true
+  field_40_goblet_squat_weight: true
+  field_40_lunge_weight: true
+  field_40_pushup_weight: true
+  field_number_of_pullups: true

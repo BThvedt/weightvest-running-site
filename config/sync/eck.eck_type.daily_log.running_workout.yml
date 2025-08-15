@@ -1,0 +1,9 @@
+uuid: 5e1fa28f-efd7-4dcd-9598-e468596c2e64
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.daily_log
+name: 'Running Workout'
+type: running_workout
+description: ''

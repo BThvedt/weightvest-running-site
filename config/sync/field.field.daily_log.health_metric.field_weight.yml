@@ -1,0 +1,23 @@
+uuid: dd80e898-5d39-491a-bc06-fec25a2688d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.health_metric
+    - field.storage.daily_log.field_weight
+id: daily_log.health_metric.field_weight
+field_name: field_weight
+entity_type: daily_log
+bundle: health_metric
+label: Weight
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0.0
+  max: null
+  prefix: ''
+  suffix: lbs
+field_type: decimal

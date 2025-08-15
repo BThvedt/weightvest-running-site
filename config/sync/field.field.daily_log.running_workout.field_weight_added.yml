@@ -1,0 +1,23 @@
+uuid: 727de78d-edc1-4134-bc62-8894fc817130
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.running_workout
+    - field.storage.daily_log.field_weight_added
+id: daily_log.running_workout.field_weight_added
+field_name: field_weight_added
+entity_type: daily_log
+bundle: running_workout
+label: 'Weight Added'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: lbs
+field_type: decimal

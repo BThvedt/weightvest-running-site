@@ -1,0 +1,9 @@
+uuid: 012a7b4a-52f8-4c88-9e44-3811fd7481df
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.daily_log
+name: 'Diet Entry'
+type: diet_entry
+description: ''

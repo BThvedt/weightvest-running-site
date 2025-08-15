@@ -69,5 +69,5 @@ function weightvest_running_preprocess_block(&$variables) {
       $variables['page_subheader'] = $node->get('field_subheader_text')?->first()?->processed;
     }
   }
-
 }
+ 

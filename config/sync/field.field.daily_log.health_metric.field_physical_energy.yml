@@ -1,0 +1,23 @@
+uuid: e9d58e4a-409b-4e49-b315-e164fc9713e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.health_metric
+    - field.storage.daily_log.field_physical_energy
+id: daily_log.health_metric.field_physical_energy
+field_name: field_physical_energy
+entity_type: daily_log
+bundle: health_metric
+label: 'Physical Energy'
+description: "A completely arbitrary physical energy metric that I've made up, with the average when i start being around 4. 0 is too sick to leave bead, 7 is excellent, 10 is crazy. "
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0.0
+  max: 10.0
+  prefix: ''
+  suffix: ''
+field_type: decimal

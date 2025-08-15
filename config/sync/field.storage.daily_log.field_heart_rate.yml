@@ -1,0 +1,20 @@
+uuid: fdb733d1-6892-4bcd-9269-1aa520081f36
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+id: daily_log.field_heart_rate
+field_name: field_heart_rate
+entity_type: daily_log
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,23 @@
+uuid: 3237d52c-e70b-4723-90c0-164dd393bdd1
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.running_workout
+    - field.storage.daily_log.field_distance
+id: daily_log.running_workout.field_distance
+field_name: field_distance
+entity_type: daily_log
+bundle: running_workout
+label: Distance
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0.0
+  max: null
+  prefix: ''
+  suffix: mi
+field_type: decimal

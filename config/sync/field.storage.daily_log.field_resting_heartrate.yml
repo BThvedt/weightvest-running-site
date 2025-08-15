@@ -1,0 +1,20 @@
+uuid: b58b328a-ff97-4939-803d-d9e49a8c518c
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+id: daily_log.field_resting_heartrate
+field_name: field_resting_heartrate
+entity_type: daily_log
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

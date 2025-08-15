@@ -1,0 +1,18 @@
+uuid: 7e55f10c-db41-4fde-a8ff-60ac186a1344
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Fitness Metrics'
+type: fitness_metrics
+description: "A non-running metric of various exercises. I read somewhere that 40 is the point of diminishing returns for pushups, so I'm just gonna assume it's true for everything else too. Very scientific. Once I hit 40 in an exercise, I'll add weight. Probably gonna be a while before I hit 40 pullups. "
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

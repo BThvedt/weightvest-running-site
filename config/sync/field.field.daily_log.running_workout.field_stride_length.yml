@@ -1,0 +1,23 @@
+uuid: c43111fd-5877-437f-a62f-953911468a2c
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.running_workout
+    - field.storage.daily_log.field_stride_length
+id: daily_log.running_workout.field_stride_length
+field_name: field_stride_length
+entity_type: daily_log
+bundle: running_workout
+label: 'Stride Length'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0.0
+  max: null
+  prefix: ''
+  suffix: m
+field_type: decimal

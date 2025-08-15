@@ -1,0 +1,20 @@
+uuid: 69276962-cced-4384-996c-36eb25b59ea7
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+id: daily_log.field_run_time
+field_name: field_run_time
+entity_type: daily_log
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

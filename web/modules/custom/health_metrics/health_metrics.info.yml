@@ -1,0 +1,4 @@
+name: Health Metrics
+description: "Custom health metrics configuration"
+type: module
+core_version_requirement: ^10

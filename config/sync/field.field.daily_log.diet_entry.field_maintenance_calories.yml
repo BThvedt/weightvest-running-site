@@ -1,0 +1,23 @@
+uuid: 576321ea-d3f6-4bd4-942e-591d6b32aa7a
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.diet_entry
+    - field.storage.daily_log.field_maintenance_calories
+id: daily_log.diet_entry.field_maintenance_calories
+field_name: field_maintenance_calories
+entity_type: daily_log
+bundle: diet_entry
+label: 'Maintenance Calories'
+description: 'The calories that I need to maintain my weight'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0.0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

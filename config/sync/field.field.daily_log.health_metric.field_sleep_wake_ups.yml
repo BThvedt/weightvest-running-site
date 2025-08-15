@@ -1,0 +1,23 @@
+uuid: 721ae36b-917a-43f2-96df-3d9831aa0793
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.health_metric
+    - field.storage.daily_log.field_sleep_wake_ups
+id: daily_log.health_metric.field_sleep_wake_ups
+field_name: field_sleep_wake_ups
+entity_type: daily_log
+bundle: health_metric
+label: 'Sleep Wake Ups'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

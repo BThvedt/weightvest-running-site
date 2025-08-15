@@ -1,0 +1,44 @@
+uuid: 032a749c-c442-4847-a03f-a50455fe13e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.diet_entry
+    - field.field.daily_log.diet_entry.field_calories
+    - field.field.daily_log.diet_entry.field_maintenance_calories
+id: daily_log.diet_entry.default
+targetEntityType: daily_log
+bundle: diet_entry
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_calories:
+    type: number
+    weight: 11
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_maintenance_calories:
+    type: number
+    weight: 12
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

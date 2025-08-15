@@ -1,0 +1,7 @@
+health_metrics.admin:
+  path: "/admin/config/content/health-metrics"
+  defaults:
+    _form: '\Drupal\health_metrics\Form\HealthMetricsAdminForm'
+    _title: "Health Metrics Settings"
+  requirements:
+    _permission: "administer health metrics"

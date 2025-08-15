@@ -1,0 +1,24 @@
+uuid: e3665c04-22c0-4804-bf6d-13b0c3341613
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.fitness_metrics
+  module:
+    - text
+id: node.fitness_metrics.body
+field_name: body
+entity_type: node
+bundle: fitness_metrics
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

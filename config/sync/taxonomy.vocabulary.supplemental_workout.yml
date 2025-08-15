@@ -1,0 +1,9 @@
+uuid: bcff4467-2707-46e2-a0d0-f1f0a41cb35a
+langcode: en
+status: true
+dependencies: {  }
+name: 'Supplemental Workout'
+vid: supplemental_workout
+description: null
+weight: -8
+new_revision: false

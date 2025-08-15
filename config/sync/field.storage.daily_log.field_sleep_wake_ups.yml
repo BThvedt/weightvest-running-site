@@ -1,0 +1,20 @@
+uuid: 4652334d-cc8c-4f93-8536-b75cd64a00f5
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+id: daily_log.field_sleep_wake_ups
+field_name: field_sleep_wake_ups
+entity_type: daily_log
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

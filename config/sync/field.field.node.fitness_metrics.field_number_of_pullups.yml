@@ -1,0 +1,23 @@
+uuid: 15b1f7f5-6c01-4745-8d04-4fcf0533732e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_number_of_pullups
+    - node.type.fitness_metrics
+id: node.fitness_metrics.field_number_of_pullups
+field_name: field_number_of_pullups
+entity_type: node
+bundle: fitness_metrics
+label: 'number of pullups'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

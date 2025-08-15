@@ -1,0 +1,23 @@
+uuid: 8c4e0f7c-95c4-4837-8456-ce39a9a178bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.health_metric
+    - field.storage.daily_log.field_resting_heartrate
+id: daily_log.health_metric.field_resting_heartrate
+field_name: field_resting_heartrate
+entity_type: daily_log
+bundle: health_metric
+label: 'Resting Heartrate'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0.0
+  max: null
+  prefix: ''
+  suffix: bpm
+field_type: decimal

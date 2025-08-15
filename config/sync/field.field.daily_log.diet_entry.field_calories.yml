@@ -1,0 +1,23 @@
+uuid: f9458288-056f-43bd-9596-dec06db5c225
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.diet_entry
+    - field.storage.daily_log.field_calories
+id: daily_log.diet_entry.field_calories
+field_name: field_calories
+entity_type: daily_log
+bundle: diet_entry
+label: Calories
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

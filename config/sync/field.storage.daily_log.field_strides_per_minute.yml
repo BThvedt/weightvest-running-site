@@ -1,0 +1,20 @@
+uuid: dbf6ea1c-28fd-4776-96d4-766d35ba0d25
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+id: daily_log.field_strides_per_minute
+field_name: field_strides_per_minute
+entity_type: daily_log
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

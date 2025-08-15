@@ -1,0 +1,86 @@
+uuid: 4bcaa53c-ed76-4559-b83f-7ff9ce57b5e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.fitness_metrics.body
+    - field.field.node.fitness_metrics.field_40_full_circuit_weight
+    - field.field.node.fitness_metrics.field_40_goblet_squat_weight
+    - field.field.node.fitness_metrics.field_40_lunge_weight
+    - field.field.node.fitness_metrics.field_40_pushup_weight
+    - field.field.node.fitness_metrics.field_number_of_pullups
+    - node.type.fitness_metrics
+  module:
+    - text
+    - user
+id: node.fitness_metrics.default
+targetEntityType: node
+bundle: fitness_metrics
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_40_full_circuit_weight:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_40_goblet_squat_weight:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_40_lunge_weight:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_40_pushup_weight:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_number_of_pullups:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

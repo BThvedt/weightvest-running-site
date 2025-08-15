@@ -1,0 +1,23 @@
+uuid: db93b94c-762d-4d74-b36c-4284b106361b
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.health_metric
+    - field.storage.daily_log.field_body_fat
+id: daily_log.health_metric.field_body_fat
+field_name: field_body_fat
+entity_type: daily_log
+bundle: health_metric
+label: 'Body Fat'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0.0
+  max: 100.0
+  prefix: ''
+  suffix: '%'
+field_type: decimal

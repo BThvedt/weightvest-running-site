@@ -1,0 +1,9 @@
+uuid: 3c14d859-95de-4aed-aa95-8e954ecb22b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.daily_log
+name: 'Health Metric'
+type: health_metric
+description: ''

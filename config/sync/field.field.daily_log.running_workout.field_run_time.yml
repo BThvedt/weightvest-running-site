@@ -1,0 +1,23 @@
+uuid: aff3b606-5834-4305-9d49-de13ad1957a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.running_workout
+    - field.storage.daily_log.field_run_time
+id: daily_log.running_workout.field_run_time
+field_name: field_run_time
+entity_type: daily_log
+bundle: running_workout
+label: 'Run Time'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0.0
+  max: null
+  prefix: ''
+  suffix: m
+field_type: decimal

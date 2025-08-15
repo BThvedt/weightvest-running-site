@@ -1,0 +1,23 @@
+uuid: aa8c89f3-3265-459f-a4c3-ae97f0c8433a
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.health_metric
+    - field.storage.daily_log.field_sleep_time
+id: daily_log.health_metric.field_sleep_time
+field_name: field_sleep_time
+entity_type: daily_log
+bundle: health_metric
+label: 'Sleep Time'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: '(hours in bed)'
+field_type: decimal

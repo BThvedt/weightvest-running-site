@@ -1,0 +1,23 @@
+uuid: 856effd7-2073-490e-97e2-df44a831da3a
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.running_workout
+    - field.storage.daily_log.field_heart_rate
+id: daily_log.running_workout.field_heart_rate
+field_name: field_heart_rate
+entity_type: daily_log
+bundle: running_workout
+label: 'Heart Rate'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: bpm
+field_type: integer

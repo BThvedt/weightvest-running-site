@@ -1,0 +1,20 @@
+uuid: 601a146d-0699-4032-88da-540d401d94d2
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_40_full_circuit_weight
+field_name: field_40_full_circuit_weight
+entity_type: node
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
