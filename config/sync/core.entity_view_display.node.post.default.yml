@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.post.field_category
     - field.field.node.post.field_featured_image
     - field.field.node.post.field_featured_video
+    - field.field.node.post.field_tags
     - node.type.post
   module:
     - entity_reference_revisions
@@ -33,6 +34,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
     region: content
   links:
     settings: {  }

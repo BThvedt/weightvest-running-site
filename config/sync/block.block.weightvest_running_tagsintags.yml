@@ -1,0 +1,25 @@
+uuid: d9f2e9cc-922f-414f-ba2d-3eb57940f738
+langcode: en
+status: true
+dependencies:
+  module:
+    - tagclouds
+  theme:
+    - weightvest_running
+id: weightvest_running_tagsintags
+theme: weightvest_running
+region: sidebar
+weight: -9
+provider: null
+plugin: 'tagclouds_block:tags'
+settings:
+  id: 'tagclouds_block:tags'
+  label: 'Tags in Tags'
+  label_display: visible
+  provider: tagclouds
+  cache:
+    max_age: 0
+    contexts: {  }
+  tags: '0'
+  vocabulary: tags
+visibility: {  }

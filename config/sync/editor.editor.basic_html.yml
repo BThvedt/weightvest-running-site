@@ -31,6 +31,7 @@ settings:
   plugins:
     ckeditor5_heading:
       enabled_headings:
+        - heading1
         - heading2
         - heading3
         - heading4
@@ -53,7 +54,7 @@ settings:
         - '<blockquote cite>'
         - '<ul type>'
         - '<ol type>'
-        - '<h1>'
+        - '<h1 class>'
         - '<h2 id>'
         - '<h3 id>'
         - '<h4 id>'
