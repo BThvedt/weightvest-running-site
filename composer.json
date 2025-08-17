@@ -32,6 +32,7 @@
         "drupal/fontawesome": "^3.0",
         "drupal/paragraphs": "^1.19",
         "drupal/s3fs": "^3.8",
+        "drupal/tagclouds": "^2.0",
         "drush/drush": "^12.5"
     },
     "conflict": {
