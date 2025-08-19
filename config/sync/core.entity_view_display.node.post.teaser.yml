@@ -24,33 +24,33 @@ mode: teaser
 content:
   field_banner_text:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 1
     region: content
   field_body:
     type: paragraph_summary
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
   field_featured_image:
     type: media_thumbnail
-    label: above
+    label: hidden
     settings:
       image_link: ''
       image_style: large
       image_loading:
         attribute: lazy
     third_party_settings: {  }
-    weight: 2
+    weight: 0
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 0
+    weight: 3
     region: content
 hidden:
   field_category: true

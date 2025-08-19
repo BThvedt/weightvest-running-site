@@ -20,7 +20,7 @@ mode: default
 content:
   field_body:
     type: entity_reference_revisions_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: ''
@@ -29,19 +29,11 @@ content:
     region: content
   field_category:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
     weight: 1
-    region: content
-  field_tags:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 3
     region: content
   links:
     settings: {  }
@@ -52,3 +44,4 @@ hidden:
   field_banner_text: true
   field_featured_image: true
   field_featured_video: true
+  field_tags: true

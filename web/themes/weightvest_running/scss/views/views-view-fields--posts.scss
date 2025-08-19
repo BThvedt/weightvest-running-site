@@ -1,0 +1,24 @@
+.posts-views-row {
+  a & {
+    cursor: pointer;
+
+    .img-container {
+      img {
+        transition: 150ms all;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &:hover {
+      h1 {
+        color: #ff6b00;
+        transition: 150ms all;
+      }
+
+      img {
+        transform: scale(1.1);
+      }
+    }
+  }
+}

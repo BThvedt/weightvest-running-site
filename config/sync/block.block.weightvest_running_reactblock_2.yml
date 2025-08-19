@@ -14,7 +14,7 @@ provider: null
 plugin: react_block
 settings:
   id: react_block
-  label: 'React block'
+  label: 'The Results ..'
   label_display: visible
   provider: react_components
   component_type: hello_world

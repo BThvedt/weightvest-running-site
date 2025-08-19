@@ -3102,7 +3102,7 @@ input {
 }
 
 .text-3xl {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 .text-4xl {
@@ -7928,7 +7928,7 @@ input {
     font-size: 1.75rem;
   }
   .max-mob\:text-3xl {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .max-mob\:text-4xl {
     font-size: 4rem;
@@ -12084,7 +12084,7 @@ input {
     font-size: 1.75rem;
   }
   .tab\:text-3xl {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .tab\:text-4xl {
     font-size: 4rem;
@@ -16240,7 +16240,7 @@ input {
     font-size: 1.75rem;
   }
   .max-tab\:text-3xl {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .max-tab\:text-4xl {
     font-size: 4rem;
@@ -20396,7 +20396,7 @@ input {
     font-size: 1.75rem;
   }
   .med\:text-3xl {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .med\:text-4xl {
     font-size: 4rem;
@@ -24552,7 +24552,7 @@ input {
     font-size: 1.75rem;
   }
   .max-med\:text-3xl {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .max-med\:text-4xl {
     font-size: 4rem;
@@ -28708,7 +28708,7 @@ input {
     font-size: 1.75rem;
   }
   .scr\:text-3xl {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .scr\:text-4xl {
     font-size: 4rem;

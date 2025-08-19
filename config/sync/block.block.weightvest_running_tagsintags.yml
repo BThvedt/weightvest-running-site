@@ -14,7 +14,7 @@ provider: null
 plugin: 'tagclouds_block:tags'
 settings:
   id: 'tagclouds_block:tags'
-  label: 'Tags in Tags'
+  label: Tagcloud
   label_display: visible
   provider: tagclouds
   cache:
