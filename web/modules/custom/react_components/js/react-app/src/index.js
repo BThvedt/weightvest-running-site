@@ -6,12 +6,14 @@ import HelloWorld from "./components/HelloWorld.js";
 import SampleComponent from "./components/SampleComponent.js";
 import SlideoutMenu from "./components/SlideoutMenu.js";
 import SlideoutMenuBtn from "./components/SlideoutMenuBtn.js";
+import FitnessMetricsPageBlock from "./components/FitnessMetricsPageBlock.js";
 
 const ComponentArr = {
   hello_world: HelloWorld,
   sample_component: SampleComponent,
   slideout_menu: SlideoutMenu,
   slideout_menu_btn: SlideoutMenuBtn,
+  fitness_metrics_page_block: FitnessMetricsPageBlock,
 };
 
 // the app component, renders multiple components with a "portal" pattern
@@ -84,6 +86,15 @@ const App = ({ elmDataArr }) => {
               const menuHtml = settingsVars["menuHtml"];
               const brandingHtml = settingsVars["brandingHtml"];
               otherData = { componentType, title, menuHtml, brandingHtml };
+            } else if (
+              settingsVars["blockType"] == "fitness_metrics_page_block"
+            ) {
+              let { blockType, ...nodeFields } = settingsVars;
+              otherData = { componentType, title, ...nodeFields };
+              console.log("otherDataIs");
+              console.log(otherData);
+              console.log(settings.reactComponents);
+              console.log(key);
             } else {
               otherData = { componentType, title }; // add more variables besides 'title' here
             }

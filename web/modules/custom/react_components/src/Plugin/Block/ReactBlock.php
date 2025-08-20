@@ -77,7 +77,8 @@ class ReactBlock extends BlockBase {
         'hello_world' => $this->t('Hello World'),
         'sample_component' => $this->t('Sample Component'),
         'slideout_menu' => $this->t('Slideout Menu'),
-        'slideout_menu_btn' => $this->t('Slideout Menu Btn')
+        'slideout_menu_btn' => $this->t('Slideout Menu Btn'),
+        'fitness_metrics_page_block' => $this->t('Fitness Metrics Page Block')
       ],
       '#default_value' => $this->configuration['component_type'],
       '#required' => TRUE,

@@ -108,6 +108,63 @@ function react_components_preprocess_block(&$variables) {
       $variables['content']['react_block']['#attached']['drupalSettings']['reactComponents'][$settingsKey] = $finalSettings;
 
       // alright the rest should be taken care of on the frontend
+    } else if ($variables['configuration']['component_type'] == "fitness_metrics_page_block") {
+      // get the fields from the node
+
+      /**
+       * field_40_full_circuit_weight Number (decimal)
+       * field_40_goblet_squat_weight Number (decimal)
+       * field_40_lunge_weight Number (decimal)
+       * field_40_pushup_weight Number (decimal)
+       * field_number_of_pullups Number (integer)
+       */
+      $node = \Drupal::routeMatch()->getParameter('node');
+
+      if ($node && $node->getType() == 'fitness_metrics') {
+
+        $moreSettings = [];
+
+        $field_mappings = [
+          'field_40_full_circuit_weight' => 'full_circuit_weight',
+          'field_40_goblet_squat_weight' => 'goblet_squat_weight', 
+          'field_40_lunge_weight' => 'lunge_weight',
+          'field_40_pushup_weight' => 'pushup_weight',
+          'field_number_of_pullups' => 'number_of_pullups'
+        ];
+
+        $decimal_fields = [
+          'field_40_full_circuit_weight',
+          'field_40_goblet_squat_weight',
+          'field_40_lunge_weight', 
+          'field_40_pushup_weight'
+        ];
+
+        foreach ($field_mappings as $field_name => $variable_name) {
+          if ($node->hasField($field_name) && !$node->get($field_name)->isEmpty()) {
+            $value = $node->get($field_name)->value;
+
+            // Round decimal fields to 2 places
+            if (in_array($field_name, $decimal_fields)) {
+              $value = round($value, 2);
+            }
+
+            $moreSettings[$variable_name] = $value;
+          } else {
+            $moreSettings[$variable_name] = null;
+          }
+        }
+
+        $moreSettings["blockType"] = "fitness_metrics_page_block";
+
+        $uuid = $variables['elements']['content']['react_block']['#uuid'];
+        $settingsKey = 'rc-block-' . $uuid;
+
+        // ugh this is ugly can't remember how this was set up if it can be made cleaner haha
+        $finalSettings = array_merge($variables['content']['react_block']['#attached']['drupalSettings']['reactComponents'][$settingsKey], $moreSettings);
+
+        $variables['content']['react_block']['#attached']['drupalSettings']['reactComponents'][$settingsKey] = $finalSettings;
+
+      }
     }
   }
 }

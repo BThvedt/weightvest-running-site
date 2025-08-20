@@ -51,7 +51,7 @@
 </div>
 
 
-<div class="layout-container max-w-container mx-auto shadow-default-xl min-h-screen bg-background">
+<div class="layout-container max-w-container mx-auto shadow-default-xl min-h-screen bg-background display-flex flex-col">
 
 	<div id="top-menus" class="display-flex flex-row pt-md pb-sm px-lg border-border bb-sm max-tab:px-sm">
 		<div id="top-menu-left" class="display-flex flex-row grow-0 scr:grow-1 position-relative bottom-1px">
@@ -76,7 +76,7 @@
 
   {{ page.breadcrumb }}
 
-  <main id="main" role="main">
+  <main id="main" class="grow-1" role="main">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
     <div id="main-content-container" class="display-flex flex-row">

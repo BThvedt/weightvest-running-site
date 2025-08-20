@@ -1,0 +1,30 @@
+uuid: 96b6b1d6-14d6-4b09-8998-4f8c20d21272
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - react_components
+  theme:
+    - weightvest_running
+id: fitness_metrics_page_block
+theme: weightvest_running
+region: content
+weight: -9
+provider: null
+plugin: react_block
+settings:
+  id: react_block
+  label: 'Fitness Metrics Page Block'
+  label_display: visible
+  provider: react_components
+  component_type: fitness_metrics_page_block
+  component_title: ''
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      fitness_metrics: fitness_metrics
