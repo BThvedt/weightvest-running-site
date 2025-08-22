@@ -16,7 +16,7 @@ plugin: react_block
 settings:
   id: react_block
   label: 'Fitness Metrics Page Block'
-  label_display: visible
+  label_display: '0'
   provider: react_components
   component_type: fitness_metrics_page_block
   component_title: ''

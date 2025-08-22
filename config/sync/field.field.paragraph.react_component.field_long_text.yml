@@ -1,0 +1,24 @@
+uuid: 9e5bff8a-82f1-42b9-b079-b010c6cbcdc6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_long_text
+    - filter.format.full_html
+    - paragraphs.paragraphs_type.react_component
+  module:
+    - text
+id: paragraph.react_component.field_long_text
+field_name: field_long_text
+entity_type: paragraph
+bundle: react_component
+label: 'Long Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long

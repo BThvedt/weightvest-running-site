@@ -7,6 +7,7 @@ import SampleComponent from "./components/SampleComponent.js";
 import SlideoutMenu from "./components/SlideoutMenu.js";
 import SlideoutMenuBtn from "./components/SlideoutMenuBtn.js";
 import FitnessMetricsPageBlock from "./components/FitnessMetricsPageBlock.js";
+import ImageAndText from "./components/ImageAndText.js";
 
 const ComponentArr = {
   hello_world: HelloWorld,
@@ -14,6 +15,7 @@ const ComponentArr = {
   slideout_menu: SlideoutMenu,
   slideout_menu_btn: SlideoutMenuBtn,
   fitness_metrics_page_block: FitnessMetricsPageBlock,
+  image_and_text: ImageAndText,
 };
 
 // the app component, renders multiple components with a "portal" pattern
@@ -69,10 +71,40 @@ const App = ({ elmDataArr }) => {
           // component types in the future but right now they do the same thing
           // I use a data-uuid for the selector because uuids aren't formatted right for an "id" attribute
           if (key.startsWith("rc-paragraph")) {
+            const settingsVars = settings.reactComponents[key];
             elm = document.querySelector(
               `.react-components-paragraph[data-uuid="${data.paragraph_uuid}"]:not(.processed)`
             );
-            otherData = { componentType, title }; // add more variables besides 'title' here
+
+            // console.log("paragraph_type");
+            // console.log(settingsVars);
+            console.log(componentType);
+
+            if (componentType === "image_and_text") {
+              let {
+                alignment,
+                title,
+                image_title,
+                image_url,
+                long_text,
+                image_alt,
+                paragraph_uuid,
+              } = settingsVars; // fields for image, text and alignment
+
+              otherData = {
+                // decided to do this explicityly here
+                alignment,
+                componentType, // GUESS OTHERDATA HAS TO INCLUDE COMPONENT TYPE!!
+                title,
+                image_title,
+                image_url,
+                long_text,
+                image_alt,
+                paragraph_uuid,
+              }; // add more variables besides 'title' here
+            } else {
+              otherData = { componentType, title }; // add more variables besides 'title' here
+            }
           } else if (key.startsWith("rc-block")) {
             elm = document.querySelector(
               `.react-components-block[data-uuid="${data.block_uuid}"]:not(.processed)`
@@ -91,10 +123,6 @@ const App = ({ elmDataArr }) => {
             ) {
               let { blockType, ...nodeFields } = settingsVars;
               otherData = { componentType, title, ...nodeFields };
-              console.log("otherDataIs");
-              console.log(otherData);
-              console.log(settings.reactComponents);
-              console.log(key);
             } else {
               otherData = { componentType, title }; // add more variables besides 'title' here
             }
@@ -109,7 +137,6 @@ const App = ({ elmDataArr }) => {
         // elmDataArr has all the data needed to render the react app
         // dummy html element is needed to mount react
         // various componsnts are rendered into the paragraphs and blocks via a portal pattern
-        //
         if (elmDataArr.length) {
           const appContainer = document.createElement("div");
           appContainer.id = "react-app-root";

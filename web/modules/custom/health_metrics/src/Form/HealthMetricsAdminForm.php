@@ -68,6 +68,18 @@ class HealthMetricsAdminForm extends ConfigFormBase {
       ],
     ];
 
+    // Decimal number field
+    $form['excersize_max_weight'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Range for Helth Metrics Weight 0 - (this number)'),
+      '#description' => $this->t('Enter a decimal number'),
+      '#step' => 0.01, // Allows decimal input with 2 decimal places
+      '#min' => 0, // Optional: set minimum value
+      '#max' => 999999.99, // Optional: set maximum value
+      '#default_value' => $config->get('excersize_max_weight'), // Optional: set default value
+      '#required' => FALSE, // Set to TRUE if required
+    ];
+
     $form['help'] = [
       '#type' => 'details',
       '#title' => $this->t('Help'),
@@ -127,6 +139,7 @@ class HealthMetricsAdminForm extends ConfigFormBase {
     $config->set('display_mode', $form_state->getValue('display_mode'));
     $config->set('number_of_entries', $form_state->getValue('number_of_entries'));
     $config->set('start_date', $form_state->getValue('start_date'));
+    $config->set('excersize_max_weight', $form_state->getValue('excersize_max_weight'));
     
     $config->save();
 

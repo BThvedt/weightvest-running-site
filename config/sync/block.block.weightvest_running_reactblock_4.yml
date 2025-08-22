@@ -1,0 +1,22 @@
+uuid: a7065dcc-c8b2-4994-870c-2f972646d9c7
+langcode: en
+status: true
+dependencies:
+  module:
+    - react_components
+  theme:
+    - weightvest_running
+id: weightvest_running_reactblock_4
+theme: weightvest_running
+region: modals_region
+weight: 0
+provider: null
+plugin: react_block
+settings:
+  id: react_block
+  label: 'React block - Lightbox Modal'
+  label_display: visible
+  provider: react_components
+  component_type: lightbox_modal
+  component_title: ''
+visibility: {  }

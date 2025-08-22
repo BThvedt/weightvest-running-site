@@ -17,6 +17,9 @@ settings:
     -
       value: sample_component
       label: 'Sample Component'
+    -
+      value: image_and_text
+      label: 'Image and Text'
   allowed_values_function: ''
 module: options
 locked: false

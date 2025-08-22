@@ -35,6 +35,39 @@ function react_components_preprocess_paragraph__react_component(array &$variable
   $variables['uuid'] = $uuid;
 
   $variables['#attached']['library'][] = 'react_components/react-components-lib';
+
+  $component_type = $paragraph->get('field_component_type')->value;
+
+  if ($component_type == "image_and_text") {
+    $moreSettings = [];
+
+    $moreSettings['long_text'] = $paragraph->get('field_long_text')->processed;
+    $moreSettings['alignment'] = $paragraph->get('field_right_or_left')->value;
+
+    if ($paragraph->hasField('field_single_image') && !$paragraph->get('field_single_image')->isEmpty()) {
+      $media_field = $paragraph->get('field_single_image');
+      $media_entity = $media_field->entity;
+
+      $media_source = $media_entity->getSource();
+      $source_field = $media_source->getSourceFieldDefinition($media_entity->bundle->entity);
+      $source_field_name = $source_field->getName();
+      
+      $image_field = $media_entity->get($source_field_name);
+
+      $file_entity = $image_field->entity;
+      
+      $url = \Drupal::service('file_url_generator')->generateAbsoluteString($file_entity->getFileUri());
+
+      $moreSettings["image_title"] = $image_field->title;
+      $moreSettings["image_alt"] = $image_field->alt;
+      $moreSettings["image_url"] = $url;
+    }
+
+    // $moreSettings["paragraph_type"] = "image_and_text";
+    $finalSettings = array_merge($variables['#attached']['drupalSettings']['reactComponents'][$settingsKey], $moreSettings);
+    $variables['#attached']['drupalSettings']['reactComponents'][$settingsKey] = $finalSettings;
+  }
+
 }
 
 
@@ -111,13 +144,6 @@ function react_components_preprocess_block(&$variables) {
     } else if ($variables['configuration']['component_type'] == "fitness_metrics_page_block") {
       // get the fields from the node
 
-      /**
-       * field_40_full_circuit_weight Number (decimal)
-       * field_40_goblet_squat_weight Number (decimal)
-       * field_40_lunge_weight Number (decimal)
-       * field_40_pushup_weight Number (decimal)
-       * field_number_of_pullups Number (integer)
-       */
       $node = \Drupal::routeMatch()->getParameter('node');
 
       if ($node && $node->getType() == 'fitness_metrics') {
@@ -154,7 +180,13 @@ function react_components_preprocess_block(&$variables) {
           }
         }
 
+        // also let's get the config values from health_metrics
+        $site_config = \Drupal::config('system.site');
+
+        $moreSettings['exercise_max_weight'] = $site_config->get('excersize_max_weight'); // whoops spelled thsi wrong in config oh well
+        $moreSettings['max_pullups'] = $site_config->get('max_pullups'); 
         $moreSettings["blockType"] = "fitness_metrics_page_block";
+        $moreSettings['title'] = $node->getTitle();
 
         $uuid = $variables['elements']['content']['react_block']['#uuid'];
         $settingsKey = 'rc-block-' . $uuid;

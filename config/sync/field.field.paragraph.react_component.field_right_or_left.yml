@@ -1,0 +1,23 @@
+uuid: 14d0f029-1b62-4b53-9cf1-abff2500cea4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_right_or_left
+    - paragraphs.paragraphs_type.react_component
+  module:
+    - options
+id: paragraph.react_component.field_right_or_left
+field_name: field_right_or_left
+entity_type: paragraph
+bundle: react_component
+label: 'Right or Left'
+description: 'For "Image and Text" this determines if the image is on the right or left. Could potentially be used for other components as well. '
+required: false
+translatable: false
+default_value:
+  -
+    value: right
+default_value_callback: ''
+settings: {  }
+field_type: list_string
