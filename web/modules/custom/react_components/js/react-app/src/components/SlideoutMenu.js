@@ -7,7 +7,6 @@ import SlideoutMenuContents from "./SlideoutMenu/SlideoutMenuContents.js";
 
 function SlideoutMenu({ title, menuHtml, brandingHtml }) {
   const { menuOpen, setMenuOpen } = useContext(ComponentContext);
-  // const [isClosing, setIsClosing] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const [padding, setPadding] = useState("0px");
 

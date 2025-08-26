@@ -3,12 +3,18 @@ import ComponentContext from "./ComponentContext.js";
 
 const ComponentProvider = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  // const toggleMenuOpen = () =>
-  //   setMenuOpen((prev) => (prev === true ? false : true));
+  const [lightboxOpen, setLightBoxOpen] = useState(false);
+  const [componentImageData, setComponentImageData] = useState(null);
 
   return (
-    <ComponentContext.Provider value={{ menuOpen, setMenuOpen }}>
+    <ComponentContext.Provider
+      value={{
+        menuOpen,
+        setMenuOpen,
+        componentImageData,
+        setComponentImageData,
+      }}
+    >
       {children}
     </ComponentContext.Provider>
   );

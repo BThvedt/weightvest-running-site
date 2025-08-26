@@ -1,0 +1,25 @@
+.image-gallery-paragraph {
+  .gallery {
+    .gallery-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      img {
+        width: 49.5%;
+      }
+    }
+
+    &.odd-number {
+      .gallery-row {
+        &.odd {
+          justify-content: center;
+          img {
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+}

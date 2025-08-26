@@ -8,6 +8,8 @@ import SlideoutMenu from "./components/SlideoutMenu.js";
 import SlideoutMenuBtn from "./components/SlideoutMenuBtn.js";
 import FitnessMetricsPageBlock from "./components/FitnessMetricsPageBlock.js";
 import ImageAndText from "./components/ImageAndText.js";
+import LightboxModal from "./components/LightboxModal.js";
+import ImageGallery from "./components/ImageGallery.js";
 
 const ComponentArr = {
   hello_world: HelloWorld,
@@ -16,6 +18,8 @@ const ComponentArr = {
   slideout_menu_btn: SlideoutMenuBtn,
   fitness_metrics_page_block: FitnessMetricsPageBlock,
   image_and_text: ImageAndText,
+  lightbox_modal: LightboxModal,
+  image_gallery: ImageGallery,
 };
 
 // the app component, renders multiple components with a "portal" pattern
@@ -81,14 +85,21 @@ const App = ({ elmDataArr }) => {
             console.log(componentType);
 
             if (componentType === "image_and_text") {
+              // I decided to destructure everything explitly
+              // although this is a little fragile, shold use more destructuring shorthand
+              // less fragile if these variable names get updated on the php side
               let {
                 alignment,
                 title,
                 image_title,
-                image_url,
+                large_style_url,
+                origonal_file_url,
                 long_text,
                 image_alt,
                 paragraph_uuid,
+                picture_id,
+                image_width,
+                image_height,
               } = settingsVars; // fields for image, text and alignment
 
               otherData = {
@@ -97,11 +108,23 @@ const App = ({ elmDataArr }) => {
                 componentType, // GUESS OTHERDATA HAS TO INCLUDE COMPONENT TYPE!!
                 title,
                 image_title,
-                image_url,
+                large_style_url,
+                origonal_file_url,
+                long_text,
                 long_text,
                 image_alt,
                 paragraph_uuid,
+                picture_id,
+                image_width,
+                image_height,
               }; // add more variables besides 'title' here
+            } else if (componentType === "image_gallery") {
+              // let's go for shorter code with the gallery haha
+              // otherData =
+              let { title, componentType, img_arr } = settingsVars;
+              otherData = { title, componentType, img_arr };
+              // otherData is basically what get sent to the component, except
+              // for componentType which is used to determine which component
             } else {
               otherData = { componentType, title }; // add more variables besides 'title' here
             }

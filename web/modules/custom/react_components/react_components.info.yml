@@ -7,3 +7,4 @@ type: module
 dependencies:
   - paragraphs
   - health_metrics
+  - media

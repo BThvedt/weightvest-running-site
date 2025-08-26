@@ -1,4 +1,8 @@
 <?php
+use Drupal\image\Entity\ImageStyle;
+use Kint\Kint;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Session\AccountInterface;
 
 function react_components_theme($existing, $type, $theme, $path) {
   $module_path = \Drupal::service('extension.list.module')->getPath('react_components');
@@ -33,9 +37,7 @@ function react_components_preprocess_paragraph__react_component(array &$variable
   ];
 
   $variables['uuid'] = $uuid;
-
   $variables['#attached']['library'][] = 'react_components/react-components-lib';
-
   $component_type = $paragraph->get('field_component_type')->value;
 
   if ($component_type == "image_and_text") {
@@ -55,19 +57,76 @@ function react_components_preprocess_paragraph__react_component(array &$variable
       $image_field = $media_entity->get($source_field_name);
 
       $file_entity = $image_field->entity;
-      
-      $url = \Drupal::service('file_url_generator')->generateAbsoluteString($file_entity->getFileUri());
 
-      $moreSettings["image_title"] = $image_field->title;
+      $image_style = ImageStyle::load('large');
+      $large_style_url = $image_style->buildUrl($file_entity->getFileUri());
+      
+      $origonal_file_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file_entity->getFileUri());
+
+      // Convert URI to real system path
+      $file_system = \Drupal::service('file_system');
+      // the problme with $origional file url is that it's the full thing 
+      // while this function wants public://.. so gott use $file_entity->getFileUri()
+      $real_path = $file_system->realpath($file_entity->getFileUri());
+
+      // Use now image factory to get dimensions
+      $image_factory = \Drupal::service('image.factory');
+      $image = $image_factory->get($real_path);
+
       $moreSettings["image_alt"] = $image_field->alt;
-      $moreSettings["image_url"] = $url;
+      $moreSettings["large_style_url"] = $large_style_url;
+      $moreSettings["origonal_file_url"] = $origonal_file_url;
+      $moreSettings["picture_id"] = $media_entity->id();
+      $moreSettings['image_width'] = $image->getWidth();
+      $moreSettings['image_height'] = $image->getHeight();
+
     }
 
     // $moreSettings["paragraph_type"] = "image_and_text";
     $finalSettings = array_merge($variables['#attached']['drupalSettings']['reactComponents'][$settingsKey], $moreSettings);
     $variables['#attached']['drupalSettings']['reactComponents'][$settingsKey] = $finalSettings;
-  }
 
+  } else if ($component_type == "image_gallery") {
+    $moreSettings = ['img_arr' => []];
+
+    $media_items = $paragraph->get('field_gallery_images')->referencedEntities();
+
+    // kint($media_items);
+    $image_factory = \Drupal::service('image.factory');
+
+    // more succinct the 2nd time around
+    foreach ($media_items as $media) {
+      $image_vars = [];
+      if ($media->hasField('field_media_image') && !$media->get('field_media_image')->isEmpty()) {
+        $image_field = $media->get('field_media_image');
+        $file = $image_field->entity;
+        $file_system = \Drupal::service('file_system');
+
+        if ($file) {
+          $file_uri = $file->getFileUri();
+          $image_style = ImageStyle::load('large');
+          $origonal_file_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file_uri);
+          $large_style_url = $image_style->buildUrl($file_uri);
+          $real_path = $file_system->realpath($file->getFileUri());
+          $image = $image_factory->get($real_path);
+
+          $image_vars["picture_id"] = $media->id();
+          $image_vars["image_alt"] = $image_field->alt;
+          $image_vars["origonal_file_url"] = $origonal_file_url;
+          $image_vars["large_style_url"] = $large_style_url;
+          $image_vars['image_width'] = $image->getWidth();
+          $image_vars['image_height'] = $image->getHeight(); 
+
+          $moreSettings['img_arr'][] = $image_vars;
+        }
+      }
+    }
+
+    $finalSettings = array_merge($variables['#attached']['drupalSettings']['reactComponents'][$settingsKey], $moreSettings);
+    $variables['#attached']['drupalSettings']['reactComponents'][$settingsKey] = $finalSettings;
+
+    dpm($finalSettings);
+  }
 }
 
 
