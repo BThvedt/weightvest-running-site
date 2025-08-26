@@ -124,8 +124,6 @@ function react_components_preprocess_paragraph__react_component(array &$variable
 
     $finalSettings = array_merge($variables['#attached']['drupalSettings']['reactComponents'][$settingsKey], $moreSettings);
     $variables['#attached']['drupalSettings']['reactComponents'][$settingsKey] = $finalSettings;
-
-    dpm($finalSettings);
   }
 }
 

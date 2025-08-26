@@ -1,0 +1,11 @@
+uuid: e1544cab-4705-45f1-878c-7f44fe6c021e
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.single_image_paragraph
+label: 'Single Image Paragraph'
+description: 'The view mode for the single image paragraph'
+targetEntityType: media
+cache: true

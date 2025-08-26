@@ -15,7 +15,7 @@ plugin: react_block
 settings:
   id: react_block
   label: 'React block - Lightbox Modal'
-  label_display: visible
+  label_display: '0'
   provider: react_components
   component_type: lightbox_modal
   component_title: ''

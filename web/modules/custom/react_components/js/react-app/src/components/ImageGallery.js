@@ -124,7 +124,7 @@ function ImageGallery({ title, componentType, img_arr }) {
 
   return (
     <div className="image-gallery-paragraph">
-      <h2>{title}</h2>
+      <h3 className="font-large text-2xl mb-md">{title}</h3>
       <div
         className={`${hasEvenNumber ? "even-number" : "odd-number"} gallery`}
       >
@@ -140,23 +140,27 @@ function ImageGallery({ title, componentType, img_arr }) {
             }}
           >
             {row.map((img_data, i) => (
-              <img
-                key={img_data.picture_id}
-                src={img_data.large_style_url}
-                data-id={img_data.picture_id}
-                onLoad={handleImageLoad}
-                className="my-xs"
-                onClick={(e) => {
-                  const imgData = {
-                    clicked: e.target.dataset.id,
-                    imageArr: lightBoxData,
-                  };
+              <div className="img-container w-1/2 cursor-pointer">
+                <img
+                  key={img_data.picture_id}
+                  src={img_data.large_style_url}
+                  data-id={img_data.picture_id}
+                  onLoad={handleImageLoad}
+                  onClick={(e) => {
+                    const imgData = {
+                      clicked: e.target.dataset.id,
+                      imageArr: lightBoxData,
+                    };
 
-                  console.log(lightBoxData);
+                    console.log(lightBoxData);
 
-                  setComponentImageData(imgData);
-                }}
-              />
+                    setComponentImageData(imgData);
+                  }}
+                />
+                <div className="caption p-sm px-md text-md background sizing-border position-absolute bottom-0 w-full text-background transition-default">
+                  <p>{img_data.image_alt}</p>
+                </div>
+              </div>
             ))}
           </div>
         ))}

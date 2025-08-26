@@ -79,14 +79,14 @@
   <main id="main" class="grow-1" role="main">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
-    <div id="main-content-container" class="display-flex flex-row">
-      <div id="content" class="layout-content w-2/3 px-xl">
+    <div id="main-content-container" class="display-flex flex-col med:flex-row">
+      <div id="content" class="layout-content w-full med:w-2/3 px-xl sizing-border mb-xl">
 
         {{ page.content }}
       </div>{# /.layout-content #}
 
       {% if page.sidebar %}
-        <aside id="aside" class="sidebar w-1/3 px-xl" role="complementary">
+        <aside id="aside" class="sidebar w-full med:w-1/3 px-xl sizing-border" role="complementary">
           {{ page.sidebar }}
         </aside>
       {% endif %}

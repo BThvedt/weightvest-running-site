@@ -1,11 +1,29 @@
-.image-gallery-paragraph {
+.image-gallery-paragraph,
+.img-and-text-paragraph {
+  .img-container {
+    position: relative;
+    overflow: hidden;
+
+    .caption {
+      background-color: rgba(37, 40, 50, 0.7);
+      transform: translateY(100%);
+    }
+
+    &:hover {
+      .caption {
+        transform: translateY(0%);
+      }
+    }
+  }
+
   .gallery {
     .gallery-row {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      margin: 1% 0;
 
-      img {
+      .img-container {
         width: 49.5%;
       }
     }
@@ -14,9 +32,12 @@
       .gallery-row {
         &.odd {
           justify-content: center;
-          img {
+          .img-container {
             width: 100%;
-            object-fit: cover;
+            img {
+              width: 100%;
+              object-fit: cover;
+            }
           }
         }
       }

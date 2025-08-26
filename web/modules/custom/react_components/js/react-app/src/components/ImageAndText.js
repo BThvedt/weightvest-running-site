@@ -36,16 +36,17 @@ function ImageAndText({
   return (
     <>
       <div
-        className={`display-flex ${
-          alignment == "right" ? "flex-row" : "flex-row-reverse"
+        className={`img-and-text-paragraph display-flex flex-col-reverse scr:flex-row ${
+          alignment == "right" ? "scr:flex-row" : "scr:flex-row-reverse"
         }`}
       >
         <div
-          className="w-1/2"
+          className="w-full scr:w-1/2"
           dangerouslySetInnerHTML={{ __html: long_text }}
         ></div>
-        <div className="w-1/2">
+        <div className="img-container w-full scr:w-1/2 mb-lg scr:mb-0">
           <img
+            className="cursor-pointer"
             src={large_style_url}
             alt={image_alt}
             data-id={picture_id}
@@ -58,6 +59,9 @@ function ImageAndText({
               setComponentImageData(imgData);
             }}
           />
+          <div className="caption p-sm px-md text-md background sizing-border position-absolute bottom-0 w-full text-background transition-default">
+            <p>{image_alt}</p>
+          </div>
         </div>
       </div>
     </>

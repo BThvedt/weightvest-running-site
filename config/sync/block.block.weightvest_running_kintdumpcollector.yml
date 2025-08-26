@@ -1,0 +1,28 @@
+uuid: f55a2bc1-6ffb-4fb7-b104-e5ee66952515
+langcode: en
+status: true
+dependencies:
+  module:
+    - kint_block
+    - user
+  theme:
+    - weightvest_running
+id: weightvest_running_kintdumpcollector
+theme: weightvest_running
+region: highlighted
+weight: 0
+provider: null
+plugin: kint_block_dump
+settings:
+  id: kint_block_dump
+  label: 'Kint dump collector'
+  label_display: '0'
+  provider: kint_block
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      administrator: administrator

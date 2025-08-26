@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.react_component.field_component_title
     - field.field.paragraph.react_component.field_component_type
+    - field.field.paragraph.react_component.field_gallery_images
     - field.field.paragraph.react_component.field_long_text
     - field.field.paragraph.react_component.field_right_or_left
     - field.field.paragraph.react_component.field_single_image
@@ -32,6 +33,32 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_gallery_images:
+    type: media_library_widget
+    weight: 5
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings:
+      conditional_fields:
+        22a55e31-e4db-448c-a0a8-e6814c1b9e1c:
+          entity_type: paragraph
+          bundle: react_component
+          dependee: field_component_type
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: image_gallery
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_long_text:
     type: text_textarea
     weight: 3

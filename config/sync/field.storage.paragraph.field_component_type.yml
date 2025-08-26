@@ -20,6 +20,9 @@ settings:
     -
       value: image_and_text
       label: 'Image and Text'
+    -
+      value: image_gallery
+      label: 'Image Gallery'
   allowed_values_function: ''
 module: options
 locked: false
