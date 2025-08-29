@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.post.field_category
     - field.field.node.post.field_featured_image
     - field.field.node.post.field_featured_video
+    - field.field.node.post.field_list_summary
     - field.field.node.post.field_tags
     - image.style.large
     - node.type.post
@@ -55,4 +56,5 @@ content:
 hidden:
   field_category: true
   field_featured_video: true
+  field_list_summary: true
   field_tags: true

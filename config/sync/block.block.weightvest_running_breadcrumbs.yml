@@ -1,6 +1,6 @@
 uuid: 928d1f2f-9ddc-4f69-87bc-71510f9433cc
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
@@ -11,7 +11,7 @@ _core:
 id: weightvest_running_breadcrumbs
 theme: weightvest_running
 region: content
-weight: -10
+weight: -11
 provider: null
 plugin: system_breadcrumb_block
 settings:
@@ -23,4 +23,4 @@ visibility:
   request_path:
     id: request_path
     negate: true
-    pages: '<front>'
+    pages: "<front>\r\n/taxonomy/term/*"

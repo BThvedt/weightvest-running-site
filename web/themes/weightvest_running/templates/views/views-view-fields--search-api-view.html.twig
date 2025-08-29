@@ -1,0 +1,83 @@
+{#
+/**
+ * @file
+ * Default view template to display all the fields in a row.
+ *
+ * Available variables:
+ * - view: The view in use.
+ * - fields: A list of fields, each one contains:
+ *   - content: The output of the field.
+ *   - raw: The raw data for the field, if it exists. This is NOT output safe.
+ *   - class: The safe class ID to use.
+ *   - handler: The Views field handler controlling this field.
+ *   - inline: Whether or not the field should be inline.
+ *   - wrapper_element: An HTML element for a wrapper.
+ *   - wrapper_attributes: List of attributes for wrapper element.
+ *   - separator: An optional separator that may appear before a field.
+ *   - label: The field's label text.
+ *   - label_element: An HTML element for a label wrapper.
+ *   - label_attributes: List of attributes for label wrapper.
+ *   - label_suffix: Colon after the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ *   - has_label_colon: A boolean indicating whether to display a colon after
+ *     the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ * - row: The raw result from the query, with all data it fetched.
+ *
+ * @see template_preprocess_views_view_fields()
+ *
+ * @ingroup themeable
+ */
+#}
+
+<a class="no-underline" href="{{ path('entity.node.canonical', {'node': row._entity.id}) }}">
+
+  <div class="posts-views-row display-flex flex-row py-lg w-full">
+
+    <div class="img-container mr-lg w-2/5 sizing-border center overflow-hidden transition-fast py-xs h-full">
+      {{fields["field_featured_image"].content}}
+    </div>
+  
+    <div class="w-3/5 sizing-border">
+
+			{% if fields["title"] %}
+				<h1 class="font-large text-lg mb-xs">
+					{{ fields["title"].content|striptags|raw }}
+				</h1>
+			{% endif %}
+
+			{% if fields["created"] %}
+				<p class="mb-md text-default-lt position-relative right-1px bottom-2px">
+					{{ fields["created"].content }}
+				</p>
+			{% endif %}
+      
+			{% if fields["field_list_summary"] %}
+				<p class="mb-md">
+					{{ fields["field_list_summary"].content }}
+				</p>
+			{% endif %}
+
+			{% if fields["category_name"] %}
+				<p class="font-bold">
+					{{ fields["category_name"].content }}
+				</p>
+			{% endif %}
+
+      {% if row._entity and row._entity.field_tags %}
+        <div class="tags-wrapper">
+          {% for tag_item in row._entity.field_tags %}
+            <span class="tag curor-pointer text-blue font-bold slide-out-underline" data-tid="{{ tag_item.target_id }}">
+              <span class="span-looks-like-a-link">{{ tag_item.entity.name.value }}</span>
+            </span>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    </div>
+  
+  </div>
+</a>
+

@@ -34,6 +34,9 @@
         "drupal/kint-kint": "^2.1",
         "drupal/paragraphs": "^1.19",
         "drupal/s3fs": "^3.8",
+        "drupal/search_api": "^1.38",
+        "drupal/search_api_autocomplete": "^1.10",
+        "drupal/search_api_db": "^1.38",
         "drupal/tagclouds": "^2.0",
         "drush/drush": "^12.5"
     },

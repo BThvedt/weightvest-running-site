@@ -1,0 +1,33 @@
+// different styles for the version of the page
+#main {
+  .search-block-form {
+    margin-left: 0;
+    margin-right: 0;
+
+    #search-form-inner-wrapper {
+      width: 100%;
+      display: flex;
+
+      h2 {
+        flex-grow: 1; // stuff
+        display: block;
+      }
+
+      .input-and-submit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 0;
+      }
+    }
+  }
+}
+
+#views-exposed-form-search-api-view-page-1 {
+  position: relative;
+  right: 5px;
+}
+
+#block-weightvest-running-exposedformsearch-api-viewpage-1-2 {
+  flex-grow: 1;
+}

@@ -1,0 +1,28 @@
+uuid: 3716a12a-d247-4158-ac30-40fae7455b62
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.search_api_view
+  module:
+    - system
+    - views
+  theme:
+    - weightvest_running
+id: weightvest_running_exposedformsearch_api_viewpage_1
+theme: weightvest_running
+region: content
+weight: -9
+provider: null
+plugin: 'views_exposed_filter_block:search_api_view-page_1'
+settings:
+  id: 'views_exposed_filter_block:search_api_view-page_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /search

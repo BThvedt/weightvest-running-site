@@ -70,4 +70,52 @@ function weightvest_running_preprocess_block(&$variables) {
     }
   }
 }
- 
+
+function weightvest_running_preprocess_page(&$variables) {
+  $route_match = \Drupal::routeMatch();
+  if ($route_match->getRouteName() == 'entity.taxonomy_term.canonical') {
+    $term = $route_match->getParameter('taxonomy_term');
+    if ($term) {
+      $variables['current_term'] = $term;
+    }
+  }
+}
+
+// I'm doing a lot of themeing with the search form .. in fact it's pretty much completely overridden
+// so I grab the search paramater here and send it to the frontend so that the input retains
+// it's value
+// function weightvest_running_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+//   if ($form['#id'] == 'views-exposed-form-search-api-view-page-1') {
+//     dpm('ok');
+//     dpm(\Drupal::request()->query->get('s'));
+
+//     $query_term = \Drupal::request()->query->get('s');
+
+
+//   }
+// }
+
+// function weightvest_running_preprocess_form(array &$variables) {
+//   // Identify the form by its form_id.
+
+//   if ($variables['element']["#id"] == 'views-exposed-form-search-api-view-page-1') {
+//     $query_term = \Drupal::request()->query->get('s');
+
+//     dpm($query_term);
+//     $variables['query_term'] = $query_term;
+//   }
+// }
+
+
+function weightvest_running_preprocess_views_exposed_form(array &$variables) {
+
+  if ($variables['form']['#id'] == 'views-exposed-form-search-api-view-page-1') {
+
+    $query_term = \Drupal::request()->query->get('s');
+
+    $variables['query_term'] = $query_term;
+
+    // I think the caching might have been preventing teh variable from showing up
+    $variables['form']['#cache']['contexts'][] = 'url.query_args:search_api_fulltext';
+  }
+}

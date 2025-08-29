@@ -1,0 +1,24 @@
+uuid: 91145269-4504-4b3f-b402-b156d5b3c664
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_list_summary
+    - filter.format.full_html
+    - node.type.post
+  module:
+    - text
+id: node.post.field_list_summary
+field_name: field_list_summary
+entity_type: node
+bundle: post
+label: 'List Summary'
+description: 'The summary for lists of views'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text
