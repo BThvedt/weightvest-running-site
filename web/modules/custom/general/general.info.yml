@@ -1,0 +1,5 @@
+name: General
+type: module
+description: Module for small custom general stuff
+core_version_requirement: ^10 || ^11
+package: Custom

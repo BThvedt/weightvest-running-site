@@ -5785,6 +5785,10 @@ input {
   aspect-ratio: 2.3333333333;
 }
 
+.ratio-40\/27 {
+  aspect-ratio: 1.4814814815;
+}
+
 @media (max-width: 450px) {
   .max-mob\:p-0 {
     padding: 0;
@@ -9939,6 +9943,9 @@ input {
   }
   .max-mob\:ratio-21\/9 {
     aspect-ratio: 2.3333333333;
+  }
+  .max-mob\:ratio-40\/27 {
+    aspect-ratio: 1.4814814815;
   }
 }
 @media (min-width: 450px) {
@@ -14096,6 +14103,9 @@ input {
   .tab\:ratio-21\/9 {
     aspect-ratio: 2.3333333333;
   }
+  .tab\:ratio-40\/27 {
+    aspect-ratio: 1.4814814815;
+  }
 }
 @media (max-width: 640px) {
   .max-tab\:p-0 {
@@ -18251,6 +18261,9 @@ input {
   }
   .max-tab\:ratio-21\/9 {
     aspect-ratio: 2.3333333333;
+  }
+  .max-tab\:ratio-40\/27 {
+    aspect-ratio: 1.4814814815;
   }
 }
 @media (min-width: 640px) {
@@ -22408,6 +22421,9 @@ input {
   .med\:ratio-21\/9 {
     aspect-ratio: 2.3333333333;
   }
+  .med\:ratio-40\/27 {
+    aspect-ratio: 1.4814814815;
+  }
 }
 @media (max-width: 960px) {
   .max-med\:p-0 {
@@ -26564,6 +26580,9 @@ input {
   .max-med\:ratio-21\/9 {
     aspect-ratio: 2.3333333333;
   }
+  .max-med\:ratio-40\/27 {
+    aspect-ratio: 1.4814814815;
+  }
 }
 @media (min-width: 960px) {
   .scr\:p-0 {
@@ -30719,6 +30738,9 @@ input {
   }
   .scr\:ratio-21\/9 {
     aspect-ratio: 2.3333333333;
+  }
+  .scr\:ratio-40\/27 {
+    aspect-ratio: 1.4814814815;
   }
 }
 .container {

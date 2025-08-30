@@ -36,7 +36,7 @@
 
   <div class="posts-views-row display-flex flex-row py-lg w-full">
 
-    <div class="img-container mr-lg w-2/5 sizing-border center overflow-hidden transition-fast py-xs">
+    <div class="img-container h-full mr-lg w-2/5 sizing-border display-flex align-start overflow-hidden transition-fast py-xs">
       {{fields["field_featured_image"].content}}
     </div>
   
@@ -49,7 +49,17 @@
       <p class="mb-lg text-default-lt position-relative right-1px bottom-2px">
         {{ fields["created"].content }}
       </p>
-      
+
+      {% if fields["field_stars"] %}
+        {{ fields["field_stars"].content }}
+      {% endif %}
+
+      {% if fields["field_review_tagline"] %}
+        <p class="mb-lg text-default-lt">
+          {{ fields["field_review_tagline"].content }}
+        </p>
+      {% endif %}
+
       <p class="mb-lg">
         {{ fields["field_list_summary"].content }}
       </p>

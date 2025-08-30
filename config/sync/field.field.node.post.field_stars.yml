@@ -1,0 +1,23 @@
+uuid: 07a4fcee-4d54-4cdd-9071-cc7bf2b89c91
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_stars
+    - node.type.post
+id: node.post.field_stars
+field_name: field_stars
+entity_type: node
+bundle: post
+label: Stars
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0.0
+  max: 5.0
+  prefix: ''
+  suffix: ''
+field_type: decimal

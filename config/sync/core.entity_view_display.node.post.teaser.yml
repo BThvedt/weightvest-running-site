@@ -10,6 +10,8 @@ dependencies:
     - field.field.node.post.field_featured_image
     - field.field.node.post.field_featured_video
     - field.field.node.post.field_list_summary
+    - field.field.node.post.field_review_tagline
+    - field.field.node.post.field_stars
     - field.field.node.post.field_tags
     - image.style.large
     - node.type.post
@@ -57,4 +59,7 @@ hidden:
   field_category: true
   field_featured_video: true
   field_list_summary: true
+  field_review_tagline: true
+  field_stars: true
   field_tags: true
+  search_api_excerpt: true

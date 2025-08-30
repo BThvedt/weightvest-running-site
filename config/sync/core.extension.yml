@@ -30,6 +30,7 @@ module:
   filter: 0
   fixed_block_content: 0
   fontawesome: 0
+  general: 0
   hal: 0
   health_metrics: 0
   help: 0

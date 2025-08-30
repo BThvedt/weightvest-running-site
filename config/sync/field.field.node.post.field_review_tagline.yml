@@ -1,0 +1,19 @@
+uuid: 7851d968-b45f-4b73-ab98-ec57e0d80a60
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_review_tagline
+    - node.type.post
+id: node.post.field_review_tagline
+field_name: field_review_tagline
+entity_type: node
+bundle: post
+label: 'Review Tagline'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

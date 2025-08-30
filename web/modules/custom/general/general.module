@@ -1,0 +1,14 @@
+<?php
+
+// make stars in "reveiws" have a precision of 0.5
+// all posts have this field but it's hidden/shown by conditional fields
+function general_form_alter(array &$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Node edit form example; adjust for your entity/bundle.
+  if ($form_id === 'node_post_edit_form') {
+    // Replace 'field_my_number' with your field name.
+    if (isset($form['field_stars']['widget'][0]['value'])) {
+      $element = &$form['field_stars']['widget'][0]['value'];
+      $element['#step'] = '0.5';
+    }
+  }
+}

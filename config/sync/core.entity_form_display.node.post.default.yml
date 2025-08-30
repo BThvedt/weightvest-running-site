@@ -9,9 +9,12 @@ dependencies:
     - field.field.node.post.field_featured_image
     - field.field.node.post.field_featured_video
     - field.field.node.post.field_list_summary
+    - field.field.node.post.field_review_tagline
+    - field.field.node.post.field_stars
     - field.field.node.post.field_tags
     - node.type.post
   module:
+    - conditional_fields
     - media_library
     - paragraphs
     - path
@@ -37,7 +40,7 @@ content:
     third_party_settings: {  }
   field_body:
     type: paragraphs
-    weight: 10
+    weight: 12
     region: content
     settings:
       title: Paragraph
@@ -55,35 +58,88 @@ content:
     third_party_settings: {  }
   field_category:
     type: options_select
-    weight: 9
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   field_featured_image:
     type: media_library_widget
-    weight: 7
+    weight: 10
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_featured_video:
     type: media_library_widget
-    weight: 8
+    weight: 11
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_list_summary:
     type: text_textfield
-    weight: 11
+    weight: 13
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_review_tagline:
+    type: string_textfield
+    weight: 9
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        76c6fe81-443a-4c38-ae84-2804c59434b6:
+          entity_type: node
+          bundle: post
+          dependee: field_category
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                target_id: '3'
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_stars:
+    type: number
+    weight: 8
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        786794a3-5641-46f8-81c8-693699532413:
+          entity_type: node
+          bundle: post
+          dependee: field_category
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                target_id: '3'
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_tags:
     type: entity_reference_autocomplete
-    weight: 12
+    weight: 14
     region: content
     settings:
       match_operator: CONTAINS
