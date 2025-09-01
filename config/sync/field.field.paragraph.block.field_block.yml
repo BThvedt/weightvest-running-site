@@ -22,7 +22,9 @@ settings:
   selection_settings:
     plugin_ids:
       'views_block:posts-block_2': 'views_block:posts-block_2'
+      'views_block:content_recent-block_1': 'views_block:content_recent-block_1'
       'views_block:posts-block_1': 'views_block:posts-block_1'
+      'views_block:posts-block_4': 'views_block:posts-block_4'
       'views_block:posts-block_3': 'views_block:posts-block_3'
       react_block: react_block
 field_type: block_field

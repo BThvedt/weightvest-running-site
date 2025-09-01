@@ -30,6 +30,7 @@
         "drupal/eck": "^2.0",
         "drupal/field_group": "^4.0",
         "drupal/fixed_block_content": "^1.4",
+        "drupal/focal_point": "^2.1",
         "drupal/fontawesome": "^3.0",
         "drupal/kint-kint": "^2.1",
         "drupal/paragraphs": "^1.19",

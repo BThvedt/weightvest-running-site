@@ -32,45 +32,60 @@
  */
 #}
 
+{{ attach_library('weightvest_running/view-link-js') }}
+
 <a class="no-underline" href="{{ path('entity.node.canonical', {'node': row._entity.id}) }}">
 
   <div class="posts-views-row display-flex flex-row py-lg w-full">
 
-    <div class="img-container h-full mr-lg w-2/5 sizing-border display-flex align-start overflow-hidden transition-fast py-xs">
-      {{fields["field_featured_image"].content}}
+    <div class="img-container h-full mr-lg w-2/5 ratio-4/3 sizing-border display-flex align-start overflow-hidden transition-fast py-xs">
+      <div class="overflow-hidden radius-sm">
+        {{fields["field_featured_image"].content}}
+      </div>
     </div>
   
     <div class="w-3/5 sizing-border">
 
-      <h1 class="font-large text-lg mb-xs">
+      <h1 class="font-large text-lg">
         {{ fields["title"].content|striptags|raw }}
       </h1>
 
-      <p class="mb-lg text-default-lt position-relative right-1px bottom-2px">
+      <p class="mb-md text-default-lt position-relative bottom-2px text-md">
         {{ fields["created"].content }}
       </p>
 
       {% if fields["field_stars"] %}
-        {{ fields["field_stars"].content }}
+        <div class="position-relative top-2px mt-xs">
+          {{ fields["field_stars"].content }}
+        </div>
       {% endif %}
 
       {% if fields["field_review_tagline"] %}
-        <p class="mb-lg text-default-lt">
+        <p class="mb-sm text-default-lt text-md">
           {{ fields["field_review_tagline"].content }}
         </p>
       {% endif %}
 
-      <p class="mb-lg">
+      <p class="position-relative bottom-4px">
         {{ fields["field_list_summary"].content }}
       </p>
 
+      {% if fields["field_category"] %}
+        <div class="category-wrapper position-relative bottom-2px">
+          {{ fields["field_category"].content }}
+        </div>
+			{% endif %}
+
       {% if row._entity and row._entity.field_tags %}
         <div class="tags-wrapper">
-          {% for tag_item in row._entity.field_tags %}
-            <span class="tag curor-pointer text-blue font-bold slide-out-underline" data-tid="{{ tag_item.target_id }}">
-              <span class="span-looks-like-a-link">{{ tag_item.entity.name.value }}</span>
-            </span>
-          {% endfor %}
+          <p>
+            <span class="font-bold position-relative bottom-2px text-default-lt mr-sm">Tagged:</span>
+            {% for tag_item in row._entity.field_tags %}
+              <span class="tag curor-pointer text-blue font-bold slide-out-underline" data-term-id="{{ tag_item.target_id }}">
+                <span class="span-looks-like-a-link position-relative top-4px">{{ tag_item.entity.name.value }}</span>
+              </span>
+            {% endfor %}
+          </p>
         </div>
       {% endif %}
 

@@ -1,0 +1,11 @@
+.review-stars {
+  .star-rating {
+    margin-top: -0.9rem;
+
+    .empty-stars {
+      &.move-over {
+        right: 32px;
+      }
+    }
+  }
+}

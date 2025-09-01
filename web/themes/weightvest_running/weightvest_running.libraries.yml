@@ -12,3 +12,11 @@ banner-video:
     - core/jquery
     - core/drupal
     - core/once
+
+view-link-js:
+  js:
+    js/view-link.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once

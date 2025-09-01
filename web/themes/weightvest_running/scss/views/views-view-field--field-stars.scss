@@ -1,6 +1,9 @@
 .star-rating {
   margin-top: -0.9rem;
+
   .empty-stars {
-    right: 22px; // comment
+    &.move-over {
+      right: 22px; // comment
+    }
   }
 }

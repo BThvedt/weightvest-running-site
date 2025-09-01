@@ -35,12 +35,12 @@
 				<i class="fas fa-star text-blue"></i>
 			{% endfor %}
 			{% if half_star %}
-				<i class="fas fa-star-half text-blue"></i> {# FA6: fa-solid fa-star-half-stroke #}
+				<i class="fas fa-star-half text-blue"></i> 
 			{% endif %}
 		</span>
-		<span class="empty-stars z-1 position-relative">
+		<span class="empty-stars z-1 position-relative {{ half_star ? 'move-over' : 'dont-move-over' }}">
 			{% for i in 1..empty_stars %}
-				<i class="fas fa-star text-border"></i>     {# FA6: fa-regular fa-star #}
+				<i class="fas fa-star text-border"></i>  
 			{% endfor %}
 		</span>
 	</div>
