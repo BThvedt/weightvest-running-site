@@ -1,0 +1,20 @@
+uuid: 25ac99ca-d3e5-4a56-ab40-90cb189fa226
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+id: daily_log.field_water_content
+field_name: field_water_content
+entity_type: daily_log
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -10,6 +10,7 @@ dependencies:
     - field.field.daily_log.health_metric.field_resting_heartrate
     - field.field.daily_log.health_metric.field_sleep_time
     - field.field.daily_log.health_metric.field_sleep_wake_ups
+    - field.field.daily_log.health_metric.field_water_content
     - field.field.daily_log.health_metric.field_weight
 id: daily_log.health_metric.default
 targetEntityType: daily_log
@@ -18,62 +19,69 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
   field_body_fat:
     type: number
-    weight: 15
+    weight: 6
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_mental_energy:
     type: number
-    weight: 17
+    weight: 9
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_physical_energy:
     type: number
-    weight: 16
+    weight: 8
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_resting_heartrate:
     type: number
-    weight: 13
+    weight: 4
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_sleep_time:
     type: number
-    weight: 11
+    weight: 2
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_sleep_wake_ups:
     type: number
-    weight: 12
+    weight: 3
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_water_content:
+    type: number
+    weight: 7
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_weight:
     type: number
-    weight: 14
+    weight: 5
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 0
     region: content
     settings:
       match_operator: CONTAINS

@@ -10,6 +10,7 @@ import FitnessMetricsPageBlock from "./components/FitnessMetricsPageBlock.js";
 import ImageAndText from "./components/ImageAndText.js";
 import LightboxModal from "./components/LightboxModal.js";
 import ImageGallery from "./components/ImageGallery.js";
+import ResultsGraphs from "./components/ResultsGraphs.js";
 
 const ComponentArr = {
   hello_world: HelloWorld,
@@ -20,6 +21,7 @@ const ComponentArr = {
   image_and_text: ImageAndText,
   lightbox_modal: LightboxModal,
   image_gallery: ImageGallery,
+  results_graphs: ResultsGraphs,
 };
 
 // the app component, renders multiple components with a "portal" pattern
@@ -53,8 +55,6 @@ const App = ({ elmDataArr }) => {
       jQuery(document).ready(function ($) {
         const elmDataArr = [];
 
-        console.log(settings);
-
         if (Object.entries(settings).length === 0) {
           settings = JSON.parse(
             document.querySelector(
@@ -62,6 +62,8 @@ const App = ({ elmDataArr }) => {
             ).textContent
           );
         }
+
+        console.log(settings.reactComponents);
 
         for (const key in settings.reactComponents) {
           const data = settings.reactComponents[key];
@@ -141,7 +143,18 @@ const App = ({ elmDataArr }) => {
               const menuHtml = settingsVars["menuHtml"];
               const brandingHtml = settingsVars["brandingHtml"];
               otherData = { componentType, title, menuHtml, brandingHtml };
+              // buess I've been adding "blockType" to the other blocks..
+              // when it was in componentTYpe after all
+            } else if (settingsVars["componentType"] == "results_graphs") {
+              // #the-graph-data added in a special template
+              // loaded on the frontend to take advantage of caching
+              let rawData =
+                document.getElementById("the-graph-data").textContent;
+              let jsonGraphData = JSON.parse(rawData);
+
+              otherData = { componentType, title, jsonGraphData };
             } else if (
+              // the bar graph on fitness metrics pages
               settingsVars["blockType"] == "fitness_metrics_page_block"
             ) {
               let { blockType, ...nodeFields } = settingsVars;

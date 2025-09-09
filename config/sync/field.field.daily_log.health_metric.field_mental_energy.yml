@@ -1,4 +1,4 @@
-uuid: ba4c0208-e4ff-419a-ad13-9ded3c7c5c04
+uuid: 55f8dab2-a19e-49ca-901b-ff1b26b8ba0a
 langcode: en
 status: true
 dependencies:
@@ -10,14 +10,14 @@ field_name: field_mental_energy
 entity_type: daily_log
 bundle: health_metric
 label: 'Mental Energy'
-description: 'An arbitrary metric of Mental Energy from 0 to 10, with 4 being about average at the time of site creation. 0 is brain-death, 7 is excellent, 10 is crazy. Completely arbitrary. '
+description: ' Completely arbitrary measure of mental energy from 0 - 10 where 4 is average from when I started'
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  min: 0
-  max: 10
+  min: 0.0
+  max: 10.0
   prefix: ''
   suffix: ''
-field_type: integer
+field_type: decimal

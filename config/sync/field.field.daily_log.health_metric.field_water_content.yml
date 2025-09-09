@@ -1,0 +1,23 @@
+uuid: 82aba250-d69d-41d1-84de-5ab20f299769
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.daily_log.health_metric
+    - field.storage.daily_log.field_water_content
+id: daily_log.health_metric.field_water_content
+field_name: field_water_content
+entity_type: daily_log
+bundle: health_metric
+label: 'Water Content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0.0
+  max: 100.0
+  prefix: ''
+  suffix: ''
+field_type: decimal

@@ -1,0 +1,27 @@
+uuid: 52916247-6a68-4aa3-91e5-6866f1f84061
+langcode: en
+status: true
+dependencies:
+  module:
+    - react_components
+    - system
+  theme:
+    - weightvest_running
+id: weightvest_running_reactblock_5
+theme: weightvest_running
+region: content
+weight: 0
+provider: null
+plugin: react_block
+settings:
+  id: react_block
+  label: 'Results Graphs'
+  label_display: '0'
+  provider: react_components
+  component_type: results_graphs
+  component_title: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /results

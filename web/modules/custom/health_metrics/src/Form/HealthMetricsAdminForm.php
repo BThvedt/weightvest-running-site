@@ -80,6 +80,18 @@ class HealthMetricsAdminForm extends ConfigFormBase {
       '#required' => FALSE, // Set to TRUE if required
     ];
 
+    // integer field
+    $form['interval'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Interviel'),
+      '#description' => $this->t('Every 1st, 2nd, 3rd entery etc... '),
+      '#default_value' => $config->get('interval') ?? 1,
+      '#min' => 1,
+      '#max' => 100,
+      '#step' => 1,
+      '#required' => TRUE,
+    ];
+
     $form['help'] = [
       '#type' => 'details',
       '#title' => $this->t('Help'),
@@ -140,6 +152,7 @@ class HealthMetricsAdminForm extends ConfigFormBase {
     $config->set('number_of_entries', $form_state->getValue('number_of_entries'));
     $config->set('start_date', $form_state->getValue('start_date'));
     $config->set('excersize_max_weight', $form_state->getValue('excersize_max_weight'));
+    $config->set('interval', $form_state->getValue('interval'));
     
     $config->save();
 

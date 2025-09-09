@@ -26,7 +26,7 @@ function FitnessMetricsPageBlock({
 
   return (
     <>
-      <h2 class="font-header text-3xl">{title}</h2>
+      <h2 className="font-header text-3xl">{title}</h2>
       <div style={{ width: "100%", aspectRatio: "16/9" }}>
         <VictoryChart
           theme={VictoryTheme.material}

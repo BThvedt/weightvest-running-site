@@ -1,5 +1,6 @@
 <?php
 use Drupal\image\Entity\ImageStyle;
+use Drupal\Core\Entity\FieldableEntityInterface;
 use Kint\Kint;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Session\AccountInterface;
@@ -11,6 +12,15 @@ function react_components_theme($existing, $type, $theme, $path) {
     'react_block' => [
       'render element' => 'content',
       'template' => 'react-block', // Maps to your-custom-block.html.twig
+      'path' => $module_path . '/templates',
+      'variables' => [
+        'uuid' => '',
+      ],
+    ],
+    'react_graphs_block' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'react-graphs-block',
       'path' => $module_path . '/templates',
       'variables' => [
         'uuid' => '',
@@ -143,6 +153,9 @@ function react_components_preprocess_block(&$variables) {
       $variables['attributes']['id']  = $id;
     }
 
+    $uuid = $variables['elements']['content']['react_block']['#uuid'];
+    $settingsKey = 'rc-block-' . $uuid;
+
     // send the html of the menus as variables to this component
     // first, use the simplest way of loading a generic menu correctlly, and load 'main'
     if ($variables['configuration']['component_type'] == "slideout_menu") {
@@ -183,8 +196,8 @@ function react_components_preprocess_block(&$variables) {
       $branding_html = $renderer->render($site_branding_block_content);
 
       // the build() function gives blocks a uuid .. 
-      $uuid = $variables['elements']['content']['react_block']['#uuid'];
-      $settingsKey = 'rc-block-' . $uuid;
+      // $uuid = $variables['elements']['content']['react_block']['#uuid'];
+      // $settingsKey = 'rc-block-' . $uuid;
 
       // ok menu html lookd good. Now to load it to settings.. 
       $moreSettings = [
@@ -194,7 +207,6 @@ function react_components_preprocess_block(&$variables) {
       ];
 
       $finalSettings = array_merge($variables['content']['react_block']['#attached']['drupalSettings']['reactComponents'][$settingsKey], $moreSettings);
-
       $variables['content']['react_block']['#attached']['drupalSettings']['reactComponents'][$settingsKey] = $finalSettings;
 
       // alright the rest should be taken care of on the frontend
@@ -245,14 +257,182 @@ function react_components_preprocess_block(&$variables) {
         $moreSettings["blockType"] = "fitness_metrics_page_block";
         $moreSettings['title'] = $node->getTitle();
 
-        $uuid = $variables['elements']['content']['react_block']['#uuid'];
-        $settingsKey = 'rc-block-' . $uuid;
-
         // ugh this is ugly can't remember how this was set up if it can be made cleaner haha
         $finalSettings = array_merge($variables['content']['react_block']['#attached']['drupalSettings']['reactComponents'][$settingsKey], $moreSettings);
-
         $variables['content']['react_block']['#attached']['drupalSettings']['reactComponents'][$settingsKey] = $finalSettings;
+      } 
+    } else if ($variables['configuration']['component_type'] == "results_graphs") {
 
+      $entity_storage = \Drupal::entityTypeManager()->getStorage('daily_log');
+      $config = \Drupal::config("health_metrics.settings");
+
+      $display_mode = $config->get('display_mode');
+      $interval = intval($config->get('interval'));
+      
+      if ($display_mode == 'number') {
+
+        $num_of_entries = $config->get('number_of_entries');
+        $metric_query = $entity_storage->getQuery()
+          ->condition('type', 'health_metric') // assuming 'type' is the bundle field
+          ->accessCheck(TRUE) // security
+          ->sort('created', 'DESC')
+          ->range(0, $num_of_entries); // Get num_of_entries items starting from position 0; // sort by creation date
+
+        $diet_query = $entity_storage->getQuery()
+          ->condition('type', 'diet_entry') 
+          ->accessCheck(TRUE) 
+          ->sort('created', 'DESC')
+          ->range(0, $num_of_entries); 
+        
+        $workout_query = $entity_storage->getQuery()
+          ->condition('type', 'running_workout') 
+          ->accessCheck(TRUE) 
+          ->sort('created', 'DESC')
+          ->range(0, $num_of_entries); 
+
+      } else if ($display_mode == 'date') {
+
+        $string_start_date = $config->get('start_date');
+        $start_date = strtotime($string_start_date); // Convert date to timestamp
+
+        $metric_query = $entity_storage->getQuery()
+          ->condition('type', 'health_metric')
+          ->condition('created', $start_date, '>')
+          ->accessCheck(TRUE)
+          ->sort('created', 'DESC');
+        
+        $diet_query = $entity_storage->getQuery()
+          ->condition('type', 'diet_entry')
+          ->condition('created', $start_date, '>')
+          ->accessCheck(TRUE)
+          ->sort('created', 'DESC');
+        
+        $workout_query = $entity_storage->getQuery()
+          ->condition('type', 'running_workout')
+          ->condition('created', $start_date, '>')
+          ->accessCheck(TRUE)
+          ->sort('created', 'DESC'); 
+      }
+
+      $noninterval_metric_ids = array_values($metric_query->execute());
+      $noninterval_diet_ids = array_values($diet_query->execute());
+      $noninterval_workout_ids = array_values($workout_query->execute());
+
+      $metric_ids = [];
+      $diet_ids = [];
+      $workout_ids = [];
+
+      for ($i = 0; $i < count($noninterval_metric_ids); $i+=$interval) {
+        $metric_ids[] = $noninterval_metric_ids[$i];
+      }
+
+      for ($i = 0; $i < count($noninterval_diet_ids); $i+=$interval) {
+        $diet_ids[] = $noninterval_diet_ids[$i];
+      }
+
+      for ($i = 0; $i < count($noninterval_workout_ids); $i+=$interval) {
+        $workout_ids[] = $noninterval_workout_ids[$i];
+      }
+
+      $data = [];
+
+      if (!empty($metric_ids)) {
+        $entities = $entity_storage->loadMultiple($metric_ids);
+        // $data = [];
+        foreach ($entities as $entity) {
+          /** @var FieldableEntityInterface $entity */
+          $formatted_date = \Drupal::service('date.formatter')->format(
+            $entity->get('created')->value,
+            'custom',
+            'Y-m-d'
+          );
+
+          $data[$formatted_date] = Array(
+            'weight' => $entity->get('field_weight')->value,
+            'body_fat' => $entity->get('field_body_fat')->value,
+            'water_content' => $entity->get('field_water_content')->value,
+            'mental_energy' => $entity->get('field_mental_energy')->value,
+            'physical_energy' => $entity->get('field_physical_energy')->value,
+            'resting_heartrate' => $entity->get('field_resting_heartrate')->value,
+            'sleep_time' => $entity->get('field_sleep_time')->value,
+            'sleep_wakeups' => $entity->get('field_sleep_wake_ups')->value
+          );
+        }
+      }
+
+      if (!empty($diet_ids)) {
+        $entities = $entity_storage->loadMultiple($diet_ids);
+        // $data = [];
+        foreach ($entities as $entity) {
+          /** @var FieldableEntityInterface $entity */
+          $formatted_date = \Drupal::service('date.formatter')->format(
+            $entity->get('created')->value,
+            'custom',
+            'Y-m-d'
+          );
+
+          $diet_data = Array(
+            'field_calories' => $entity->get('field_calories')->value,
+            'field_maintenance_calories' => $entity->get('field_maintenance_calories')->value,
+          );
+
+          if (array_key_exists($formatted_date, $data)) {
+            $data[$formatted_date] = array_merge($data[$formatted_date], $diet_data);
+          } else {
+            $data[$formatted_date] = $diet_data;
+          }
+
+        }
+      }
+
+      if (!empty($workout_ids)) {
+        $entities = $entity_storage->loadMultiple($workout_ids);
+        // $data = [];
+        foreach ($entities as $entity) {
+          /** @var FieldableEntityInterface $entity */
+          $formatted_date = \Drupal::service('date.formatter')->format(
+            $entity->get('created')->value,
+            'custom',
+            'Y-m-d'
+          );
+
+          $workout_data = Array(
+            'field_distance' => $entity->get('field_distance')->value,
+            'field_heart_rate' => $entity->get('field_heart_rate')->value,
+            'field_run_time' => $entity->get('field_run_time')->value,
+            'field_stride_length' => $entity->get('field_stride_length')->value,
+            'field_strides_per_minute' => $entity->get('field_strides_per_minute')->value,
+            'field_weight_added' => $entity->get('field_weight_added')->value,
+          );
+
+          if (array_key_exists($formatted_date, $data)) {
+            $data[$formatted_date] = array_merge($data[$formatted_date], $workout_data);
+          } else {
+            $data[$formatted_date] = $workout_data;
+          }
+        }
+      }
+
+      // for this one I add the variables directly to the markeup instead of the Javascript. That way I can use drupal's caching
+      $variables["graph_data"] = json_encode($data);
+      //dpm($variables['content']['react_block']['#attached']['drupalSettings']['reactComponents'][$settingsKey] );
+
+    }
+  }
+}
+
+function react_components_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  $plugin_id = $variables['elements']['#plugin_id'];
+
+  // Various templates for different types of blocks if needed
+  if ($plugin_id == 'react_block') {
+
+    // nested deep enough for ya?
+    $reactComponents = $variables['elements']['content']['react_block']['#attached']['drupalSettings']['reactComponents'];
+
+    foreach($reactComponents as $k=>$v) {
+      if ($v['componentType'] == 'results_graphs') {
+        $suggestions[] = 'react_graphs_block';
       }
     }
   }

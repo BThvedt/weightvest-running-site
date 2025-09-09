@@ -1,4 +1,4 @@
-uuid: 7be183e1-2fa0-436e-b257-151b69588544
+uuid: 555aede9-a4be-4540-80b7-c2796dfbdd23
 langcode: en
 status: true
 dependencies:
@@ -7,10 +7,10 @@ dependencies:
 id: daily_log.field_mental_energy
 field_name: field_mental_energy
 entity_type: daily_log
-type: integer
+type: decimal
 settings:
-  unsigned: false
-  size: normal
+  precision: 10
+  scale: 2
 module: core
 locked: false
 cardinality: 1

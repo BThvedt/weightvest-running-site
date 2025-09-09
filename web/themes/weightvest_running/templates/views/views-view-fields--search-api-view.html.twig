@@ -71,19 +71,19 @@
 			{% endif %}
       
 			{% if fields["field_list_summary"] %}
-				<p class="position-relative bottom-4px">
+				<p class="position-relative bottom-4px text-base">
 					{{ fields["field_list_summary"].content }}
 				</p>
 			{% endif %}
 
 			{% if fields["category_name"] %}
-				<div class="category-wrapper position-relative bottom-2px">
+				<div class="category-wrapper position-relative bottom-2px text-base">
 					{{ fields["category_name"].content }}
 				</div>
 			{% endif %}
 
       {% if row._entity and row._entity.field_tags %}
-        <div class="tags-wrapper">
+        <div class="tags-wrapper text-base">
 					<p>
 					<span class="font-bold position-relative bottom-2px text-default-lt mr-sm">Tagged:</span>
 						{% for tag_item in row._entity.field_tags %}
