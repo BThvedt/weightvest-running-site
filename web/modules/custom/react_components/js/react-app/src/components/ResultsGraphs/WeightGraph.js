@@ -27,8 +27,8 @@ const WeightGraph = ({ weightData }) => {
   );
 
   return (
-    <div>
-      <h3 className="font-large text-lg mb-0">Weight</h3>
+    <div className="graph-wrapper w-1/3 max-med:w-1/2 mb-3xl">
+      <h3 className="font-large text-lg mb-0">Body Weight </h3>
 
       <VictoryChart
         containerComponent={

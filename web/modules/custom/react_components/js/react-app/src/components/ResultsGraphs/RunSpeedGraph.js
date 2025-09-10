@@ -46,7 +46,7 @@ const RunSpeedGraph = ({ distanceData, timeData }) => {
   );
 
   return (
-    <div>
+    <div className="graph-wrapper w-1/3 max-med:w-1/2 mb-3xl">
       <h3 className="font-large text-lg mb-0">Run Speed</h3>
       <VictoryChart
         containerComponent={
@@ -77,7 +77,7 @@ const RunSpeedGraph = ({ distanceData, timeData }) => {
           dependentAxis
           tickValues={ticks}
           tickFormat={(y) => y.toFixed(1)}
-          label="Speed (mph)"
+          label="(mph)"
           style={{
             ticks: { size: 4 },
             axisLabel: { padding: 35, fontSize: 11 },
@@ -98,6 +98,7 @@ const RunSpeedGraph = ({ distanceData, timeData }) => {
           data={speedSeries}
           style={{ data: { stroke: "#2978a0", strokeWidth: 2 } }}
         />
+
         <VictoryScatter
           data={speedSeries}
           size={3} // smaller dots

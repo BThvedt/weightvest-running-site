@@ -1,8 +1,13 @@
 import React from "react";
-import BodyFatGraph from "./ResultsGraphs/BodyFatGraph.js";
+import BodyFatAndWaterGraph from "./ResultsGraphs/BodyFatAndWaterGraph.js";
 import RunSpeedGraph from "./ResultsGraphs/RunSpeedGraph.js";
 import CalorieGraph from "./ResultsGraphs/CalorieGraph.js";
 import WeightGraph from "./ResultsGraphs/WeightGraph.js";
+import MentalPhysical from "./ResultsGraphs/MentalPhysical.js";
+import WeightAdded from "./ResultsGraphs/WeightAdded.js";
+import Heartrate from "./ResultsGraphs/HeartRate.js";
+import SleepTime from "./ResultsGraphs/SleepTime.js";
+import WakeUps from "./ResultsGraphs/WakeUps.js";
 
 function ResultsGraphs({ jsonGraphData }) {
   // ok just parse everything, work on graphs tomorrow
@@ -19,6 +24,7 @@ function ResultsGraphs({ jsonGraphData }) {
   const weightAddedData = [];
   const mentalEnergyData = [];
   const physicalEnergyData = [];
+  const heartRateData = [];
   const restingHeartrateData = [];
   const sleepTimeData = [];
   const sleepWakeups = [];
@@ -37,21 +43,22 @@ function ResultsGraphs({ jsonGraphData }) {
 
   for (var date in jsonGraphData) {
     let {
-      body_fat,
-      field_calories,
-      field_maintenance_calories,
-      field_run_time,
+      body_fat, // done
+      field_calories, // done
+      field_maintenance_calories, // done
+      field_run_time, // done
       field_stride_length,
       field_strides_per_minute,
-      field_weight_added,
-      mental_energy,
-      physical_energy,
-      resting_heartrate,
-      sleep_time,
+      field_weight_added, // done
+      mental_energy, // done
+      physical_energy, // done
+      field_heart_rate, // done
+      resting_heartrate, // done
+      sleep_time, // done
       sleep_wakeups,
-      weight,
-      field_distance,
-      water_content,
+      weight, // done
+      field_distance, // done
+      water_content, // done
     } = jsonGraphData[date];
 
     console.log(jsonGraphData);
@@ -66,6 +73,7 @@ function ResultsGraphs({ jsonGraphData }) {
     formatIntoArray(date, mental_energy, mentalEnergyData);
     formatIntoArray(date, physical_energy, physicalEnergyData);
     formatIntoArray(date, resting_heartrate, restingHeartrateData);
+    formatIntoArray(date, field_heart_rate, heartRateData);
     formatIntoArray(date, sleep_time, sleepTimeData);
     formatIntoArray(date, sleep_wakeups, sleepWakeups);
     formatIntoArray(date, weight, weightData);
@@ -79,14 +87,25 @@ function ResultsGraphs({ jsonGraphData }) {
 
   return (
     <>
-      <div className="display-flex">
-        <BodyFatGraph data={bodyFatData} />
+      <div className="display-flex flex-wrap">
+        <BodyFatAndWaterGraph data={bodyFatData} waterData={waterContentData} />
         <RunSpeedGraph distanceData={distanceData} timeData={runTimeData} />
         <CalorieGraph
           calorieData={calorieData}
           maintenanceCalorieData={maintenanceCalorieData}
         />
         <WeightGraph weightData={weightData} />
+        <MentalPhysical
+          mentalData={mentalEnergyData}
+          physicalData={physicalEnergyData}
+        />
+        <WeightAdded weightAddedData={weightAddedData} />
+        <Heartrate
+          restingData={restingHeartrateData}
+          runningData={heartRateData}
+        />
+        <SleepTime sleepData={sleepTimeData} />
+        <WakeUps wakeUpData={sleepWakeups} />
         {/* <BodyFatGraph data={bodyFatData} />
         <BodyFatGraph data={bodyFatData} /> */}
       </div>

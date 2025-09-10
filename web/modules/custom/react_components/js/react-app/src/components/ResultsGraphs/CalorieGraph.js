@@ -106,10 +106,10 @@ const CalorieGraph = ({ calorieData, maintenanceCalorieData }) => {
   );
 
   return (
-    <div>
+    <div className="graph-wrapper w-1/3 max-med:w-1/2 mb-3xl">
       <div className="display-flex justify-between">
         <h3 className="font-large text-lg mb-0">Calorie Data</h3>
-        <div>
+        <div className="pr-md">
           <div className="display-flex items-center text-blue font-large text-md">
             <div className="border-blue border-solid w-lg border-md h-0 mr-xs line-height-sm"></div>
             <p>Cals</p>
