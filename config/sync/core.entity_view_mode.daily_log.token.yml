@@ -1,0 +1,11 @@
+uuid: d2acd830-617e-4bd3-81c9-f057e4ceace5
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+id: daily_log.token
+label: Token
+description: ''
+targetEntityType: daily_log
+cache: true

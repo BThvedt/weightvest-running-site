@@ -84,7 +84,7 @@
 
 				{% if current_term %}
 					<div class="taxonomy-term-header">
-						<h1 class="text-3xl font-header">{{'Tagged With:'|t}} {{ current_term.name.value }}</h1>
+						<h1 class="text-3xl font-header">{{'Content In:'|t}} {{ current_term.name.value }}</h1>
 						{% if current_term.description.value %}
 							<div class="term-description">
 								{{ current_term.description.value|raw }}

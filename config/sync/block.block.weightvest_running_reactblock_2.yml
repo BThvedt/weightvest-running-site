@@ -14,9 +14,9 @@ provider: null
 plugin: react_block
 settings:
   id: react_block
-  label: 'The Results ..'
+  label: Results
   label_display: visible
   provider: react_components
-  component_type: hello_world
+  component_type: results_sidebar
   component_title: ''
 visibility: {  }

@@ -24,7 +24,7 @@ function mergeHeartrates(restingData, runningData) {
     .sort((a, b) => a.x - b.x);
 }
 
-const Heartrate = ({ restingData, runningData }) => {
+const Heartrate = ({ restingData, runningData, TitleComponent, title }) => {
   const series = mergeHeartrates(restingData, runningData);
 
   // y-domain from both series with 5% pad
@@ -43,8 +43,8 @@ const Heartrate = ({ restingData, runningData }) => {
   );
 
   return (
-    <div className="graph-wrapper w-1/3 max-med:w-1/2 mb-3xl">
-      <h3 className="font-large text-lg mb-0">Runinng/Resting Heartrate</h3>
+    <>
+      <TitleComponent>{title}</TitleComponent>
 
       <VictoryChart
         containerComponent={
@@ -137,7 +137,7 @@ const Heartrate = ({ restingData, runningData }) => {
           }
         />
       </VictoryChart>
-    </div>
+    </>
   );
 };
 

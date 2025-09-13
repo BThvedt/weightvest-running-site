@@ -26,6 +26,15 @@ function react_components_theme($existing, $type, $theme, $path) {
         'uuid' => '',
       ],
     ],
+    'react_graphs_sidebar_block' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'react-sidebar-graphs-block',
+      'path' => $module_path . '/templates',
+      'variables' => [
+        'uuid' => '',
+      ],
+    ],
     'paragraph__react_component' => [
       'render element' => 'elements',
       'path' => $module_path . '/templates',
@@ -261,7 +270,7 @@ function react_components_preprocess_block(&$variables) {
         $finalSettings = array_merge($variables['content']['react_block']['#attached']['drupalSettings']['reactComponents'][$settingsKey], $moreSettings);
         $variables['content']['react_block']['#attached']['drupalSettings']['reactComponents'][$settingsKey] = $finalSettings;
       } 
-    } else if ($variables['configuration']['component_type'] == "results_graphs") {
+    } else if ($variables['configuration']['component_type'] == "results_graphs" || $variables['configuration']['component_type'] == "results_sidebar") {
 
       $entity_storage = \Drupal::entityTypeManager()->getStorage('daily_log');
       $config = \Drupal::config("health_metrics.settings");
@@ -433,8 +442,10 @@ function react_components_theme_suggestions_block_alter(array &$suggestions, arr
     foreach($reactComponents as $k=>$v) {
       if ($v['componentType'] == 'results_graphs') {
         $suggestions[] = 'react_graphs_block';
+      } else if ($v['componentType'] == 'results_sidebar') {
+        $suggestions[] = 'react_graphs_sidebar_block';
       }
-    }
-  }
+    } 
+  } 
 }
 

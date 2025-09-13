@@ -11,6 +11,7 @@ import ImageAndText from "./components/ImageAndText.js";
 import LightboxModal from "./components/LightboxModal.js";
 import ImageGallery from "./components/ImageGallery.js";
 import ResultsGraphs from "./components/ResultsGraphs.js";
+import ResultsSidebar from "./components/ResultsSidebar.js";
 
 const ComponentArr = {
   hello_world: HelloWorld,
@@ -22,6 +23,7 @@ const ComponentArr = {
   lightbox_modal: LightboxModal,
   image_gallery: ImageGallery,
   results_graphs: ResultsGraphs,
+  results_sidebar: ResultsSidebar,
 };
 
 // the app component, renders multiple components with a "portal" pattern
@@ -62,8 +64,6 @@ const App = ({ elmDataArr }) => {
             ).textContent
           );
         }
-
-        console.log(settings.reactComponents);
 
         for (const key in settings.reactComponents) {
           const data = settings.reactComponents[key];
@@ -145,7 +145,10 @@ const App = ({ elmDataArr }) => {
               otherData = { componentType, title, menuHtml, brandingHtml };
               // buess I've been adding "blockType" to the other blocks..
               // when it was in componentTYpe after all
-            } else if (settingsVars["componentType"] == "results_graphs") {
+            } else if (
+              settingsVars["componentType"] == "results_graphs" ||
+              settingsVars["componentType"] == "results_sidebar"
+            ) {
               // #the-graph-data added in a special template
               // loaded on the frontend to take advantage of caching
               let rawData =

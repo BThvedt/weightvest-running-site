@@ -23,7 +23,7 @@ function mergeFatandWater(data, waterData) {
     .sort((a, b) => a.x - b.x);
 }
 
-const BodyFatAndWaterGraph = ({ data, waterData }) => {
+const BodyFatAndWaterGraph = ({ data, waterData, TitleComponent, title }) => {
   const series = mergeFatandWater(data, waterData);
 
   // Calculate min/max with a buffer
@@ -43,8 +43,8 @@ const BodyFatAndWaterGraph = ({ data, waterData }) => {
   );
 
   return (
-    <div className="graph-wrapper w-1/3 max-med:w-1/2 mb-3xl">
-      <h3 className="font-large text-lg mb-0">Body Fat and Water %</h3>
+    <>
+      <TitleComponent>{title}</TitleComponent>
 
       <VictoryChart
         containerComponent={
@@ -135,7 +135,7 @@ const BodyFatAndWaterGraph = ({ data, waterData }) => {
           }
         />
       </VictoryChart>
-    </div>
+    </>
   );
 };
 

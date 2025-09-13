@@ -8,6 +8,8 @@ import WeightAdded from "./ResultsGraphs/WeightAdded.js";
 import Heartrate from "./ResultsGraphs/HeartRate.js";
 import SleepTime from "./ResultsGraphs/SleepTime.js";
 import WakeUps from "./ResultsGraphs/WakeUps.js";
+import GraphWrapper from "./ResultsGraphs/GraphWrapper.js";
+import BigTitle from "./ResultsGraphs/BigTitle.js";
 
 function ResultsGraphs({ jsonGraphData }) {
   // ok just parse everything, work on graphs tomorrow
@@ -61,8 +63,6 @@ function ResultsGraphs({ jsonGraphData }) {
       water_content, // done
     } = jsonGraphData[date];
 
-    console.log(jsonGraphData);
-
     formatIntoArray(date, body_fat, bodyFatData);
     formatIntoArray(date, field_calories, calorieData);
     formatIntoArray(date, field_maintenance_calories, maintenanceCalorieData);
@@ -88,26 +88,82 @@ function ResultsGraphs({ jsonGraphData }) {
   return (
     <>
       <div className="display-flex flex-wrap">
-        <BodyFatAndWaterGraph data={bodyFatData} waterData={waterContentData} />
-        <RunSpeedGraph distanceData={distanceData} timeData={runTimeData} />
-        <CalorieGraph
-          calorieData={calorieData}
-          maintenanceCalorieData={maintenanceCalorieData}
-        />
-        <WeightGraph weightData={weightData} />
-        <MentalPhysical
-          mentalData={mentalEnergyData}
-          physicalData={physicalEnergyData}
-        />
-        <WeightAdded weightAddedData={weightAddedData} />
-        <Heartrate
-          restingData={restingHeartrateData}
-          runningData={heartRateData}
-        />
-        <SleepTime sleepData={sleepTimeData} />
-        <WakeUps wakeUpData={sleepWakeups} />
-        {/* <BodyFatGraph data={bodyFatData} />
-        <BodyFatGraph data={bodyFatData} /> */}
+        <GraphWrapper>
+          <BodyFatAndWaterGraph
+            TitleComponent={BigTitle}
+            title={"Body Composition"}
+            data={bodyFatData}
+            waterData={waterContentData}
+          />
+        </GraphWrapper>
+
+        <GraphWrapper>
+          <RunSpeedGraph
+            TitleComponent={BigTitle}
+            title={"Run Speed"}
+            distanceData={distanceData}
+            timeData={runTimeData}
+          />
+        </GraphWrapper>
+
+        <GraphWrapper>
+          <CalorieGraph
+            TitleComponent={BigTitle}
+            title={"Calorie Data"}
+            calorieData={calorieData}
+            maintenanceCalorieData={maintenanceCalorieData}
+          />
+        </GraphWrapper>
+
+        <GraphWrapper>
+          <WeightGraph
+            TitleComponent={BigTitle}
+            title={"Body Weight"}
+            weightData={weightData}
+          />
+        </GraphWrapper>
+
+        <GraphWrapper>
+          <MentalPhysical
+            TitleComponent={BigTitle}
+            title={"Physical/Mental Energy"}
+            mentalData={mentalEnergyData}
+            physicalData={physicalEnergyData}
+          />
+        </GraphWrapper>
+
+        <GraphWrapper>
+          <WeightAdded
+            TitleComponent={BigTitle}
+            title={"Weight Added"}
+            weightAddedData={weightAddedData}
+          />
+        </GraphWrapper>
+
+        <GraphWrapper>
+          <Heartrate
+            TitleComponent={BigTitle}
+            title={"Runinng/Resting Heartrate"}
+            restingData={restingHeartrateData}
+            runningData={heartRateData}
+          />
+        </GraphWrapper>
+
+        <GraphWrapper>
+          <SleepTime
+            TitleComponent={BigTitle}
+            title={"Sleep Time"}
+            sleepData={sleepTimeData}
+          />
+        </GraphWrapper>
+
+        <GraphWrapper>
+          <WakeUps
+            TitleComponent={BigTitle}
+            title={"Wake ups"}
+            wakeUpData={sleepWakeups}
+          />
+        </GraphWrapper>
       </div>
     </>
   );

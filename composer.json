@@ -34,6 +34,8 @@
         "drupal/fontawesome": "^3.0",
         "drupal/kint-kint": "^2.1",
         "drupal/paragraphs": "^1.19",
+        "drupal/pathauto": "^1.13",
+        "drupal/redirect": "^1.12",
         "drupal/s3fs": "^3.8",
         "drupal/search_api": "^1.38",
         "drupal/search_api_autocomplete": "^1.10",

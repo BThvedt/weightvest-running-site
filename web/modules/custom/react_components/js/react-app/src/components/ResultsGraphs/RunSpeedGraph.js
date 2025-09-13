@@ -23,7 +23,7 @@ function toSpeedSeries(distanceData, timeData) {
     .sort((a, b) => a.x - b.x);
 }
 
-const RunSpeedGraph = ({ distanceData, timeData }) => {
+const RunSpeedGraph = ({ distanceData, timeData, TitleComponent, title }) => {
   const speedSeries = useMemo(
     () => toSpeedSeries(distanceData, timeData),
     [distanceData, timeData]
@@ -46,8 +46,8 @@ const RunSpeedGraph = ({ distanceData, timeData }) => {
   );
 
   return (
-    <div className="graph-wrapper w-1/3 max-med:w-1/2 mb-3xl">
-      <h3 className="font-large text-lg mb-0">Run Speed</h3>
+    <>
+      <TitleComponent>{title}</TitleComponent>
       <VictoryChart
         containerComponent={
           <VictoryVoronoiContainer
@@ -105,7 +105,7 @@ const RunSpeedGraph = ({ distanceData, timeData }) => {
           style={{ data: { fill: "#ff6b00" } }}
         />
       </VictoryChart>
-    </div>
+    </>
   );
 };
 

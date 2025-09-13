@@ -9,7 +9,7 @@ import {
   VictoryTooltip,
 } from "victory";
 
-const WeightAdded = ({ weightAddedData }) => {
+const WeightAdded = ({ weightAddedData, TitleComponent, title }) => {
   // Calculate min/max with a buffer
   const values = weightAddedData.map((d) => d.y);
   const minY = Math.min(...values);
@@ -27,8 +27,8 @@ const WeightAdded = ({ weightAddedData }) => {
   );
 
   return (
-    <div className="graph-wrapper w-1/3 max-med:w-1/2 mb-3xl">
-      <h3 className="font-large text-lg mb-0">Weight Added</h3>
+    <>
+      <TitleComponent>{title}</TitleComponent>
 
       <VictoryChart
         containerComponent={
@@ -88,7 +88,7 @@ const WeightAdded = ({ weightAddedData }) => {
           style={{ data: { fill: "#ff6b00" } }}
         />
       </VictoryChart>
-    </div>
+    </>
   );
 };
 

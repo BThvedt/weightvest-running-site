@@ -10,7 +10,12 @@ import {
   Point,
 } from "victory";
 
-const MentalPhysical = ({ mentalData, physicalData }) => {
+const MentalPhysical = ({
+  mentalData,
+  physicalData,
+  TitleComponent,
+  title,
+}) => {
   // lookups
   const physByTime = new Map(physicalData.map((d) => [d.x.getTime(), d.y]));
   const equalKeys = new Set(
@@ -23,8 +28,8 @@ const MentalPhysical = ({ mentalData, physicalData }) => {
     .map((m) => ({ x: m.x, y: m.y }));
 
   return (
-    <div className="graph-wrapper w-1/3 max-med:w-1/2 mb-3xl">
-      <h3 className="font-large text-lg mb-0">Physical/Mental Energy</h3>
+    <>
+      <TitleComponent>{title}</TitleComponent>
 
       <VictoryChart
         containerComponent={
@@ -145,7 +150,7 @@ const MentalPhysical = ({ mentalData, physicalData }) => {
           }
         />
       </VictoryChart>
-    </div>
+    </>
   );
 };
 

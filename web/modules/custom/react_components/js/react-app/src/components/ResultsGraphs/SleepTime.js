@@ -9,7 +9,7 @@ import {
   VictoryTooltip,
 } from "victory";
 
-const SleepTime = ({ sleepData }) => {
+const SleepTime = ({ sleepData, TitleComponent, title }) => {
   // Calculate min/max with a buffer
   const values = sleepData.map((d) => d.y);
   const minY = Math.min(...values);
@@ -27,8 +27,8 @@ const SleepTime = ({ sleepData }) => {
   );
 
   return (
-    <div className="graph-wrapper w-1/3 max-med:w-1/2 mb-3xl">
-      <h3 className="font-large text-lg mb-0">Sleep Time</h3>
+    <>
+      <TitleComponent>{title}</TitleComponent>
 
       <VictoryChart
         containerComponent={
@@ -87,7 +87,7 @@ const SleepTime = ({ sleepData }) => {
           style={{ data: { fill: "#ff6b00" } }}
         />
       </VictoryChart>
-    </div>
+    </>
   );
 };
 

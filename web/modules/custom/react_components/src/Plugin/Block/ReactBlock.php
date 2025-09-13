@@ -80,7 +80,8 @@ class ReactBlock extends BlockBase {
         'slideout_menu_btn' => $this->t('Slideout Menu Btn'),
         'fitness_metrics_page_block' => $this->t('Fitness Metrics Page Block'),
         'lightbox_modal' => $this->t('Lightbox Modal'),
-        'results_graphs' => $this->t("Results Graphs")
+        'results_graphs' => $this->t("Results Graphs"),
+        'results_sidebar'=> $this->t("Results Siddbar")
       ],
       '#default_value' => $this->configuration['component_type'],
       '#required' => TRUE,

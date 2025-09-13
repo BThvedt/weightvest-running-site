@@ -10,10 +10,10 @@ import {
   VictoryBar,
 } from "victory";
 
-const WakeUps = ({ wakeUpData }) => {
+const WakeUps = ({ wakeUpData, TitleComponent, title }) => {
   return (
-    <div className="graph-wrapper w-1/3 max-med:w-1/2 mb-3xl">
-      <h3 className="font-large text-lg mb-0">Wake ups</h3>
+    <>
+      <TitleComponent>{title}</TitleComponent>
 
       <VictoryChart
         domain={{ y: [0, 3] }}
@@ -63,7 +63,7 @@ const WakeUps = ({ wakeUpData }) => {
           }
         />
       </VictoryChart>
-    </div>
+    </>
   );
 };
 
