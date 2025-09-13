@@ -38,3 +38,4 @@ hidden:
   field_40_lunge_weight: true
   field_40_pushup_weight: true
   field_number_of_pullups: true
+  search_api_excerpt: true
