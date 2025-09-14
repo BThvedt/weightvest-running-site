@@ -10,6 +10,8 @@ import SleepTime from "./ResultsGraphs/SleepTime.js";
 import WakeUps from "./ResultsGraphs/WakeUps.js";
 import GraphWrapper from "./ResultsGraphs/GraphWrapper.js";
 import BigTitle from "./ResultsGraphs/BigTitle.js";
+import StrideLength from "./ResultsGraphs/StrideLength.js";
+import StridesPerMinute from "./ResultsGraphs/StridesPerMinute.js";
 
 function ResultsGraphs({ jsonGraphData }) {
   // ok just parse everything, work on graphs tomorrow
@@ -162,6 +164,22 @@ function ResultsGraphs({ jsonGraphData }) {
             TitleComponent={BigTitle}
             title={"Wake ups"}
             wakeUpData={sleepWakeups}
+          />
+        </GraphWrapper>
+
+        <GraphWrapper>
+          <StrideLength
+            TitleComponent={BigTitle}
+            title={"Stride Length"}
+            strideLengthData={strideLengthData}
+          />
+        </GraphWrapper>
+
+        <GraphWrapper>
+          <StridesPerMinute
+            TitleComponent={BigTitle}
+            title={"Cadence"}
+            stridesPerMinuteData={stridesPerMinuteData}
           />
         </GraphWrapper>
       </div>

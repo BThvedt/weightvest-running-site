@@ -11,6 +11,8 @@ import WakeUps from "./ResultsGraphs/WakeUps.js";
 import SidebarGraphWrapper from "./ResultsGraphs/SidebarGraphWrapper.js";
 import BigTitle from "./ResultsGraphs/BigTitle.js";
 import SidebarTitle from "./ResultsGraphs/SidebarTitle.js";
+import StrideLength from "./ResultsGraphs/StrideLength.js";
+import StridesPerMinute from "./ResultsGraphs/StridesPerMinute.js";
 
 function ResultsSidebar({ jsonGraphData }) {
   const bodyFatData = [];
@@ -81,7 +83,7 @@ function ResultsSidebar({ jsonGraphData }) {
   const numOfGraphs = 2;
 
   while (randomNumberArr.length < numOfGraphs) {
-    let randNum = Math.floor(Math.random() * 9) + 1; // 1-9
+    let randNum = Math.floor(Math.random() * 11) + 1; // 1-9
     if (randomNumberArr.indexOf(randNum) == -1) {
       randomNumberArr.push(randNum);
     }
@@ -164,6 +166,22 @@ function ResultsSidebar({ jsonGraphData }) {
             TitleComponent={SidebarTitle}
             title={"Wake ups"}
             wakeUpData={sleepWakeups}
+          />
+        </SidebarGraphWrapper>
+
+        <SidebarGraphWrapper showNum={10} randArr={randomNumberArr}>
+          <StrideLength
+            TitleComponent={SidebarTitle}
+            title={"Wake ups"}
+            strideLengthData={strideLengthData}
+          />
+        </SidebarGraphWrapper>
+
+        <SidebarGraphWrapper showNum={11} randArr={randomNumberArr}>
+          <StridesPerMinute
+            TitleComponent={SidebarTitle}
+            title={"Wake ups"}
+            stridesPerMinuteData={stridesPerMinuteData}
           />
         </SidebarGraphWrapper>
       </div>

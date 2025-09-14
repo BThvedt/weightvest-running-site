@@ -155,6 +155,11 @@ const App = ({ elmDataArr }) => {
               // loaded on the frontend to take advantage of caching
               let rawData =
                 document.getElementById("the-graph-data").textContent;
+
+              if (!rawData) {
+                rawData = "{}";
+              }
+
               let jsonGraphData = JSON.parse(rawData);
 
               otherData = { componentType, title, jsonGraphData };
@@ -170,6 +175,11 @@ const App = ({ elmDataArr }) => {
             ) {
               let rawData =
                 document.getElementById("the-metrics-data").textContent;
+
+              if (!rawData) {
+                rawData = "[]";
+              }
+
               let jsonGraphData = JSON.parse(rawData);
 
               otherData = { componentType, title, jsonGraphData };

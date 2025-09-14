@@ -8,16 +8,14 @@ import {
   VictoryLabel,
 } from "victory";
 
-function FitnessMetricsResultsBlock({ jsonGraphData }) {
-  console.log("THE JSON DATA IS");
-  console.log(jsonGraphData);
-
+function FitnessMetricsResultsBlock({ jsonGraphData, title }) {
   if (jsonGraphData.length == 0) {
     return null;
   }
 
   return (
     <>
+      <h2 className="text-3xl font-header mb-sm">{title}</h2>
       <div className="display-flex flex-wrap">
         {jsonGraphData.map((dataObj) => {
           let {
@@ -28,7 +26,7 @@ function FitnessMetricsResultsBlock({ jsonGraphData }) {
             lunge,
             pullups,
             pushups,
-            title,
+            // title, // node title
             url,
             exercise_max_weight,
           } = dataObj;

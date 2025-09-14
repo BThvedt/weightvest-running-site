@@ -16,10 +16,10 @@ plugin: react_block
 settings:
   id: react_block
   label: 'Other Metrics'
-  label_display: visible
+  label_display: '0'
   provider: react_components
   component_type: fitness_metrics_multiple
-  component_title: 'Fitness Metrics'
+  component_title: 'Other Metrics'
 visibility:
   request_path:
     id: request_path
