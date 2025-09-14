@@ -31,7 +31,7 @@
 <div{{ attributes }}>
   {{ title_prefix }}
   {% if label %}
-    <h2{{ title_attributes }}>{{ label }}</h2>
+    <h2{{ title_attributes.addClass("text-3xl font-header mb-sm") }}>{{ label }}</h2>
   {% endif %}
   {{ title_suffix }}
   {% block content %}

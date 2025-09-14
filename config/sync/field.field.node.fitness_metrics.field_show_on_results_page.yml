@@ -1,0 +1,21 @@
+uuid: 05b58ccd-ef8e-4258-a72c-197db59aff79
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_show_on_results_page
+    - node.type.fitness_metrics
+id: node.fitness_metrics.field_show_on_results_page
+field_name: field_show_on_results_page
+entity_type: node
+bundle: fitness_metrics
+label: 'Show on Results Page'
+description: 'If set to true, this should show on the results page'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'True'
+  off_label: 'False'
+field_type: boolean

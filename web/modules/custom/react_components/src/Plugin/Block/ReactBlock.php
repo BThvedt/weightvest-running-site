@@ -81,7 +81,8 @@ class ReactBlock extends BlockBase {
         'fitness_metrics_page_block' => $this->t('Fitness Metrics Page Block'),
         'lightbox_modal' => $this->t('Lightbox Modal'),
         'results_graphs' => $this->t("Results Graphs"),
-        'results_sidebar'=> $this->t("Results Siddbar")
+        'results_sidebar'=> $this->t("Results Siddbar"),
+        'fitness_metrics_multiple'=> $this->t("Fitness Metrics Multiple")
       ],
       '#default_value' => $this->configuration['component_type'],
       '#required' => TRUE,

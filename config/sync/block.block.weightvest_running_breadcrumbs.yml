@@ -11,7 +11,7 @@ _core:
 id: weightvest_running_breadcrumbs
 theme: weightvest_running
 region: content
-weight: -11
+weight: -7
 provider: null
 plugin: system_breadcrumb_block
 settings:

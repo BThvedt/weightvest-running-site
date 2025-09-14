@@ -1,0 +1,27 @@
+uuid: 6cd457b8-8edb-420d-bf48-83e632e2681a
+langcode: en
+status: true
+dependencies:
+  module:
+    - react_components
+    - system
+  theme:
+    - weightvest_running
+id: weightvest_running_reactblock_6
+theme: weightvest_running
+region: content
+weight: -8
+provider: null
+plugin: react_block
+settings:
+  id: react_block
+  label: 'Other Metrics'
+  label_display: visible
+  provider: react_components
+  component_type: fitness_metrics_multiple
+  component_title: 'Fitness Metrics'
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /results

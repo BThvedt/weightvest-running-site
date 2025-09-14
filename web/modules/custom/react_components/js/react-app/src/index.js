@@ -12,6 +12,7 @@ import LightboxModal from "./components/LightboxModal.js";
 import ImageGallery from "./components/ImageGallery.js";
 import ResultsGraphs from "./components/ResultsGraphs.js";
 import ResultsSidebar from "./components/ResultsSidebar.js";
+import FitnessMetricsResultsBlock from "./components/FittnessMetricsResultsBlock.js";
 
 const ComponentArr = {
   hello_world: HelloWorld,
@@ -24,6 +25,7 @@ const ComponentArr = {
   image_gallery: ImageGallery,
   results_graphs: ResultsGraphs,
   results_sidebar: ResultsSidebar,
+  fitness_metrics_multiple: FitnessMetricsResultsBlock,
 };
 
 // the app component, renders multiple components with a "portal" pattern
@@ -162,6 +164,15 @@ const App = ({ elmDataArr }) => {
             ) {
               let { blockType, ...nodeFields } = settingsVars;
               otherData = { componentType, title, ...nodeFields };
+            } else if (
+              // the bar graph on fitness metrics pages
+              settingsVars["componentType"] == "fitness_metrics_multiple"
+            ) {
+              let rawData =
+                document.getElementById("the-metrics-data").textContent;
+              let jsonGraphData = JSON.parse(rawData);
+
+              otherData = { componentType, title, jsonGraphData };
             } else {
               otherData = { componentType, title }; // add more variables besides 'title' here
             }

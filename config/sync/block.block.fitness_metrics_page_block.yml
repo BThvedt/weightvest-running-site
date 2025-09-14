@@ -10,7 +10,7 @@ dependencies:
 id: fitness_metrics_page_block
 theme: weightvest_running
 region: content
-weight: -10
+weight: -12
 provider: null
 plugin: react_block
 settings:

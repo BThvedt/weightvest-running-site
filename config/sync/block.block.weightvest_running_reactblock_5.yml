@@ -10,13 +10,13 @@ dependencies:
 id: weightvest_running_reactblock_5
 theme: weightvest_running
 region: content
-weight: 0
+weight: -9
 provider: null
 plugin: react_block
 settings:
   id: react_block
-  label: 'Results Graphs'
-  label_display: '0'
+  label: 'Graphs n Stuff'
+  label_display: visible
   provider: react_components
   component_type: results_graphs
   component_title: ''

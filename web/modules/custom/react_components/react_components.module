@@ -4,6 +4,8 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Kint\Kint;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Cache\CacheableMetadata;
 
 function react_components_theme($existing, $type, $theme, $path) {
   $module_path = \Drupal::service('extension.list.module')->getPath('react_components');
@@ -30,6 +32,15 @@ function react_components_theme($existing, $type, $theme, $path) {
       'base hook' => 'block',
       'render element' => 'elements',
       'template' => 'react-sidebar-graphs-block',
+      'path' => $module_path . '/templates',
+      'variables' => [
+        'uuid' => '',
+      ],
+    ],
+    'fitness_metrics' => [
+      'base hook' => 'block',
+      'render element' => 'elements',
+      'template' => 'react-fitness-metrics-block',
       'path' => $module_path . '/templates',
       'variables' => [
         'uuid' => '',
@@ -425,7 +436,50 @@ function react_components_preprocess_block(&$variables) {
       // for this one I add the variables directly to the markeup instead of the Javascript. That way I can use drupal's caching
       $variables["graph_data"] = json_encode($data);
       //dpm($variables['content']['react_block']['#attached']['drupalSettings']['reactComponents'][$settingsKey] );
+      $variables['#cache']['max-age'] = 86400; // let's set a 1 day cache
 
+    } else if ($variables['configuration']['component_type'] == "fitness_metrics_multiple") {
+      $query = \Drupal::entityQuery('node')
+        ->accessCheck(TRUE)
+        ->condition('type', 'fitness_metrics')
+        ->condition('status', 1)
+        ->condition('field_show_on_results_page', 1)
+        ->sort('created', 'DESC');
+        // Optional: limit if you expect many
+        // ->range(0, 200)
+
+      $nids = $query->execute();
+      if (!$nids) {
+        $variables['metrics_data'] = [];
+        return;
+      }
+
+      /** @var \Drupal\node\NodeInterface[] $nodes */
+      $nodes = Node::loadMultiple($nids);
+
+      $metrics_config = \Drupal::config('health_metrics.settings');
+
+      $items = [];
+      foreach ($nodes as $node) {
+        $items[] = [
+          'id'    => $node->id(),
+          'title' => $node->label(),
+          // Replace/add fields you need:
+          'full_circuit'  => $node->get('field_40_full_circuit_weight')->value ?? null,
+          'goblet_squat'=> $node->get('field_40_goblet_squat_weight')->value ?? null,
+          'lunge'  => $node->get('field_40_lunge_weight')->value ?? null,
+          'pushups'=> $node->get('field_40_pushup_weight')->value ?? null,
+          'pullups'  => $node->get('field_number_of_pullups')->value ?? null,
+          'url'   => $node->toUrl()->toString(),
+          // Example of boolean field (already true from query, but available):
+          'created' => \Drupal::service('date.formatter')
+            ->format($node->getCreatedTime(), 'custom', 'M d, Y'),
+          'exercise_max_weight' => $metrics_config->get('excersize_max_weight')
+        ];
+      }
+
+      $variables['metrics_data'] = json_encode($items );
+      $variables['#cache']['max-age'] = 86400; // let's set a 1 day cache
     }
   }
 }
@@ -444,6 +498,8 @@ function react_components_theme_suggestions_block_alter(array &$suggestions, arr
         $suggestions[] = 'react_graphs_block';
       } else if ($v['componentType'] == 'results_sidebar') {
         $suggestions[] = 'react_graphs_sidebar_block';
+      } else if ($v['componentType'] == 'fitness_metrics_multiple') {
+        $suggestions[] = 'fitness_metrics';
       }
     } 
   } 
