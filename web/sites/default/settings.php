@@ -921,4 +921,15 @@ if (!$is_local) {
   $settings['cache']['bins']['render'] = 'cache.backend.null';
   $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
   $settings['cache']['bins']['page'] = 'cache.backend.null';
+
+  // Tell Drupal it's behind a reverse proxy (ALB/ELB/Nginx, etc.). It's using a load balancer
+  $settings['reverse_proxy'] = TRUE;
+
+  // Trust standard X-Forwarded-* headers.
+  $settings['reverse_proxy_trusted_headers'] = \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL;
+
+  // Safety shim: if ALB sets X-Forwarded-Proto=https, force HTTPS on.
+  if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+    $_SERVER['HTTPS'] = 'on';
+  }
 }
