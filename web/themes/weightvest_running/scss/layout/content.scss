@@ -2,10 +2,17 @@
   .paragraph {
     margin-bottom: 1rem;
 
-    p {
+    p,
+    ul {
       &:not(:last-of-type) {
         margin-bottom: 1rem;
       }
     }
+  }
+
+  ul {
+    padding-left: 2em;
+    list-style: initial; // start
+    margin-bottom: 1rem;
   }
 }
