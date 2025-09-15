@@ -922,30 +922,35 @@ if (!$is_local) {
   $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
   $settings['cache']['bins']['page'] = 'cache.backend.null';
 
+  // below was a bunch of stuff I was trying .. was getting a "not secure" warning
+  // and I think it poppped up after I switched to a load balancer
+  // turns out I needed to edit the load balancer to redirect http to https://
+  // all this stuff below I don't think did anything.. 
+
   // Tell Drupal it's behind a reverse proxy (ALB/ELB/Nginx, etc.). It's using a load balancer
-  $settings['reverse_proxy'] = TRUE;
+  // $settings['reverse_proxy'] = TRUE;
 
-  // Trust standard X-Forwarded-* headers.
-  $settings['reverse_proxy_trusted_headers'] = \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL;
+  // // Trust standard X-Forwarded-* headers.
+  // $settings['reverse_proxy_trusted_headers'] = \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL;
 
-  $settings['reverse_proxy_addresses'] = [
-    '10.0.0.0/8',
-    '::/0'
-    // '172.16.0.0/12',
-    // '192.168.0.0/16',
-    // If unsure, you can temporarily use '0.0.0.0/0' and '::/0' to test,
-    // then lock it down to your actual subnets.
-    // '0.0.0.0/0',
-    // '::/0',
-  ];
+  // $settings['reverse_proxy_addresses'] = [
+  //   '10.0.0.0/8',
+  //   '::/0'
+  //   // '172.16.0.0/12',
+  //   // '192.168.0.0/16',
+  //   // If unsure, you can temporarily use '0.0.0.0/0' and '::/0' to test,
+  //   // then lock it down to your actual subnets.
+  //   // '0.0.0.0/0',
+  //   // '::/0',
+  // ];
 
-  // Safety shim: if ALB sets X-Forwarded-Proto=https, force HTTPS on.
-  if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
-    $_SERVER['HTTPS'] = 'on';
-  }
+  // // Safety shim: if ALB sets X-Forwarded-Proto=https, force HTTPS on.
+  // if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+  //   $_SERVER['HTTPS'] = 'on';
+  // }
 
-  // If your public files were generating http links, force https.
-  $settings['file_public_base_url'] = 'https://weight-vest-running.com/sites/default/files';
+  // // If your public files were generating http links, force https.
+  // $settings['file_public_base_url'] = 'https://weight-vest-running.com/sites/default/files';
 
-  $base_url = 'https://weight-vest-running.com'; // Note: deprecated, but still works.
+  // $base_url = 'https://weight-vest-running.com'; // Note: deprecated, but still works.
 }
