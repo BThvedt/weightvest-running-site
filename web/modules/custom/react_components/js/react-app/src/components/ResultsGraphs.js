@@ -178,7 +178,7 @@ function ResultsGraphs({ jsonGraphData }) {
         <GraphWrapper>
           <StridesPerMinute
             TitleComponent={BigTitle}
-            title={"Cadence"}
+            title={"Running Cadence"}
             stridesPerMinuteData={stridesPerMinuteData}
           />
         </GraphWrapper>

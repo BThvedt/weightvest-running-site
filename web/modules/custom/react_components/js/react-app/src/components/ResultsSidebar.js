@@ -172,7 +172,7 @@ function ResultsSidebar({ jsonGraphData }) {
         <SidebarGraphWrapper showNum={10} randArr={randomNumberArr}>
           <StrideLength
             TitleComponent={SidebarTitle}
-            title={"Wake ups"}
+            title={"Stride Length"}
             strideLengthData={strideLengthData}
           />
         </SidebarGraphWrapper>
@@ -180,7 +180,7 @@ function ResultsSidebar({ jsonGraphData }) {
         <SidebarGraphWrapper showNum={11} randArr={randomNumberArr}>
           <StridesPerMinute
             TitleComponent={SidebarTitle}
-            title={"Wake ups"}
+            title={"Running Cadence"}
             stridesPerMinuteData={stridesPerMinuteData}
           />
         </SidebarGraphWrapper>
