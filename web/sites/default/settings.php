@@ -946,4 +946,6 @@ if (!$is_local) {
 
   // If your public files were generating http links, force https.
   $settings['file_public_base_url'] = 'https://weight-vest-running.com/sites/default/files';
+
+  $base_url = 'https://weight-vest-running.com'; // Note: deprecated, but still works.
 }
