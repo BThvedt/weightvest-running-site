@@ -928,6 +928,17 @@ if (!$is_local) {
   // Trust standard X-Forwarded-* headers.
   $settings['reverse_proxy_trusted_headers'] = \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL;
 
+  $settings['reverse_proxy_addresses'] = [
+    '10.0.0.0/8',
+    '::/0'
+    // '172.16.0.0/12',
+    // '192.168.0.0/16',
+    // If unsure, you can temporarily use '0.0.0.0/0' and '::/0' to test,
+    // then lock it down to your actual subnets.
+    // '0.0.0.0/0',
+    // '::/0',
+  ];
+
   // Safety shim: if ALB sets X-Forwarded-Proto=https, force HTTPS on.
   if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
     $_SERVER['HTTPS'] = 'on';
