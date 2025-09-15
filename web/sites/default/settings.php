@@ -932,4 +932,7 @@ if (!$is_local) {
   if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
     $_SERVER['HTTPS'] = 'on';
   }
+
+  // If your public files were generating http links, force https.
+  $settings['file_public_base_url'] = 'https://weight-vest-running.com//sites/default/files';
 }
