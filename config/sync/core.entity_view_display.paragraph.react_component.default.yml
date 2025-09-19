@@ -9,8 +9,10 @@ dependencies:
     - field.field.paragraph.react_component.field_long_text
     - field.field.paragraph.react_component.field_right_or_left
     - field.field.paragraph.react_component.field_single_image
+    - image.style.large_focal
     - paragraphs.paragraphs_type.react_component
   module:
+    - media
     - options
     - text
 id: paragraph.react_component.default
@@ -34,11 +36,13 @@ content:
     weight: 1
     region: content
   field_gallery_images:
-    type: entity_reference_entity_view
+    type: media_thumbnail
     label: above
     settings:
-      view_mode: default
-      link: false
+      image_link: ''
+      image_style: large_focal
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 5
     region: content
@@ -65,4 +69,5 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
-hidden: {  }
+hidden:
+  search_api_excerpt: true

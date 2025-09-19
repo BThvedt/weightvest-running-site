@@ -1,0 +1,25 @@
+uuid: 806fc54e-a8df-43f7-b89e-95d8fc772c81
+langcode: en
+status: true
+dependencies:
+  module:
+    - general
+    - system
+  theme:
+    - weightvest_running
+id: weightvest_running_guineapigblock
+theme: weightvest_running
+region: footer
+weight: -13
+provider: null
+plugin: guinea_pig_block
+settings:
+  id: guinea_pig_block
+  label: 'Guinea Pig Block'
+  label_display: '0'
+  provider: general
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: /penny

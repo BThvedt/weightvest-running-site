@@ -12,7 +12,7 @@ function ImageGallery({ title, componentType, img_arr }) {
   const { setComponentImageData } = useContext(ComponentContext);
 
   const firstRowRef = useRef(null);
-  let hasEvenNumber = img_arr % 2 == 0;
+  let hasEvenNumber = img_arr.length % 2 == 0;
   const totalCount = img_arr.length;
 
   useEffect(() => {
@@ -140,8 +140,12 @@ function ImageGallery({ title, componentType, img_arr }) {
             }}
           >
             {row.map((img_data, i) => (
-              <div className="img-container w-1/2 cursor-pointer">
+              <div
+                key={i}
+                className="img-container w-1/2 cursor-pointer ratio-4/3 display-flex align-center justify-center"
+              >
                 <img
+                  className="min-h-full min-w-full object-cover"
                   key={img_data.picture_id}
                   src={img_data.large_style_url}
                   data-id={img_data.picture_id}

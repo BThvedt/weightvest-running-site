@@ -2566,7 +2566,7 @@ input {
 }
 
 .border-md {
-  border-width: 3px;
+  border-width: 2px;
 }
 
 .border-lg {
@@ -2592,8 +2592,8 @@ input {
 }
 
 .bx-md {
-  border-left-width: 3px;
-  border-right-width: 3px;
+  border-left-width: 2px;
+  border-right-width: 2px;
 }
 
 .bx-lg {
@@ -2622,8 +2622,8 @@ input {
 }
 
 .by-md {
-  border-top-width: 3px;
-  border-bottom-width: 3px;
+  border-top-width: 2px;
+  border-bottom-width: 2px;
 }
 
 .by-lg {
@@ -2650,7 +2650,7 @@ input {
 }
 
 .bt-md {
-  border-top-width: 3px;
+  border-top-width: 2px;
 }
 
 .bt-lg {
@@ -2674,7 +2674,7 @@ input {
 }
 
 .bl-md {
-  border-left-width: 3px;
+  border-left-width: 2px;
 }
 
 .bl-lg {
@@ -2698,7 +2698,7 @@ input {
 }
 
 .br-md {
-  border-right-width: 3px;
+  border-right-width: 2px;
 }
 
 .br-lg {
@@ -2722,7 +2722,7 @@ input {
 }
 
 .bb-md {
-  border-bottom-width: 3px;
+  border-bottom-width: 2px;
 }
 
 .bb-lg {
@@ -2746,7 +2746,7 @@ input {
 }
 
 .outline-md {
-  outline-width: 3px;
+  outline-width: 2px;
 }
 
 .outline-lg {
@@ -2770,7 +2770,7 @@ input {
 }
 
 .outline-offset-md {
-  outline-offset: 3px;
+  outline-offset: 2px;
 }
 
 .outline-offset-lg {
@@ -7527,7 +7527,7 @@ input {
     border-width: 1px;
   }
   .max-mob\:border-md {
-    border-width: 3px;
+    border-width: 2px;
   }
   .max-mob\:border-lg {
     border-width: 5px;
@@ -7547,8 +7547,8 @@ input {
     border-right-width: 1px;
   }
   .max-mob\:bx-md {
-    border-left-width: 3px;
-    border-right-width: 3px;
+    border-left-width: 2px;
+    border-right-width: 2px;
   }
   .max-mob\:bx-lg {
     border-left-width: 5px;
@@ -7571,8 +7571,8 @@ input {
     border-bottom-width: 1px;
   }
   .max-mob\:by-md {
-    border-top-width: 3px;
-    border-bottom-width: 3px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
   }
   .max-mob\:by-lg {
     border-top-width: 5px;
@@ -7593,7 +7593,7 @@ input {
     border-top-width: 1px;
   }
   .max-mob\:bt-md {
-    border-top-width: 3px;
+    border-top-width: 2px;
   }
   .max-mob\:bt-lg {
     border-top-width: 5px;
@@ -7611,7 +7611,7 @@ input {
     border-left-width: 1px;
   }
   .max-mob\:bl-md {
-    border-left-width: 3px;
+    border-left-width: 2px;
   }
   .max-mob\:bl-lg {
     border-left-width: 5px;
@@ -7629,7 +7629,7 @@ input {
     border-right-width: 1px;
   }
   .max-mob\:br-md {
-    border-right-width: 3px;
+    border-right-width: 2px;
   }
   .max-mob\:br-lg {
     border-right-width: 5px;
@@ -7647,7 +7647,7 @@ input {
     border-bottom-width: 1px;
   }
   .max-mob\:bb-md {
-    border-bottom-width: 3px;
+    border-bottom-width: 2px;
   }
   .max-mob\:bb-lg {
     border-bottom-width: 5px;
@@ -7665,7 +7665,7 @@ input {
     outline-width: 1px;
   }
   .max-mob\:outline-md {
-    outline-width: 3px;
+    outline-width: 2px;
   }
   .max-mob\:outline-lg {
     outline-width: 5px;
@@ -7683,7 +7683,7 @@ input {
     outline-offset: 1px;
   }
   .max-mob\:outline-offset-md {
-    outline-offset: 3px;
+    outline-offset: 2px;
   }
   .max-mob\:outline-offset-lg {
     outline-offset: 5px;
@@ -11686,7 +11686,7 @@ input {
     border-width: 1px;
   }
   .tab\:border-md {
-    border-width: 3px;
+    border-width: 2px;
   }
   .tab\:border-lg {
     border-width: 5px;
@@ -11706,8 +11706,8 @@ input {
     border-right-width: 1px;
   }
   .tab\:bx-md {
-    border-left-width: 3px;
-    border-right-width: 3px;
+    border-left-width: 2px;
+    border-right-width: 2px;
   }
   .tab\:bx-lg {
     border-left-width: 5px;
@@ -11730,8 +11730,8 @@ input {
     border-bottom-width: 1px;
   }
   .tab\:by-md {
-    border-top-width: 3px;
-    border-bottom-width: 3px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
   }
   .tab\:by-lg {
     border-top-width: 5px;
@@ -11752,7 +11752,7 @@ input {
     border-top-width: 1px;
   }
   .tab\:bt-md {
-    border-top-width: 3px;
+    border-top-width: 2px;
   }
   .tab\:bt-lg {
     border-top-width: 5px;
@@ -11770,7 +11770,7 @@ input {
     border-left-width: 1px;
   }
   .tab\:bl-md {
-    border-left-width: 3px;
+    border-left-width: 2px;
   }
   .tab\:bl-lg {
     border-left-width: 5px;
@@ -11788,7 +11788,7 @@ input {
     border-right-width: 1px;
   }
   .tab\:br-md {
-    border-right-width: 3px;
+    border-right-width: 2px;
   }
   .tab\:br-lg {
     border-right-width: 5px;
@@ -11806,7 +11806,7 @@ input {
     border-bottom-width: 1px;
   }
   .tab\:bb-md {
-    border-bottom-width: 3px;
+    border-bottom-width: 2px;
   }
   .tab\:bb-lg {
     border-bottom-width: 5px;
@@ -11824,7 +11824,7 @@ input {
     outline-width: 1px;
   }
   .tab\:outline-md {
-    outline-width: 3px;
+    outline-width: 2px;
   }
   .tab\:outline-lg {
     outline-width: 5px;
@@ -11842,7 +11842,7 @@ input {
     outline-offset: 1px;
   }
   .tab\:outline-offset-md {
-    outline-offset: 3px;
+    outline-offset: 2px;
   }
   .tab\:outline-offset-lg {
     outline-offset: 5px;
@@ -15845,7 +15845,7 @@ input {
     border-width: 1px;
   }
   .max-tab\:border-md {
-    border-width: 3px;
+    border-width: 2px;
   }
   .max-tab\:border-lg {
     border-width: 5px;
@@ -15865,8 +15865,8 @@ input {
     border-right-width: 1px;
   }
   .max-tab\:bx-md {
-    border-left-width: 3px;
-    border-right-width: 3px;
+    border-left-width: 2px;
+    border-right-width: 2px;
   }
   .max-tab\:bx-lg {
     border-left-width: 5px;
@@ -15889,8 +15889,8 @@ input {
     border-bottom-width: 1px;
   }
   .max-tab\:by-md {
-    border-top-width: 3px;
-    border-bottom-width: 3px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
   }
   .max-tab\:by-lg {
     border-top-width: 5px;
@@ -15911,7 +15911,7 @@ input {
     border-top-width: 1px;
   }
   .max-tab\:bt-md {
-    border-top-width: 3px;
+    border-top-width: 2px;
   }
   .max-tab\:bt-lg {
     border-top-width: 5px;
@@ -15929,7 +15929,7 @@ input {
     border-left-width: 1px;
   }
   .max-tab\:bl-md {
-    border-left-width: 3px;
+    border-left-width: 2px;
   }
   .max-tab\:bl-lg {
     border-left-width: 5px;
@@ -15947,7 +15947,7 @@ input {
     border-right-width: 1px;
   }
   .max-tab\:br-md {
-    border-right-width: 3px;
+    border-right-width: 2px;
   }
   .max-tab\:br-lg {
     border-right-width: 5px;
@@ -15965,7 +15965,7 @@ input {
     border-bottom-width: 1px;
   }
   .max-tab\:bb-md {
-    border-bottom-width: 3px;
+    border-bottom-width: 2px;
   }
   .max-tab\:bb-lg {
     border-bottom-width: 5px;
@@ -15983,7 +15983,7 @@ input {
     outline-width: 1px;
   }
   .max-tab\:outline-md {
-    outline-width: 3px;
+    outline-width: 2px;
   }
   .max-tab\:outline-lg {
     outline-width: 5px;
@@ -16001,7 +16001,7 @@ input {
     outline-offset: 1px;
   }
   .max-tab\:outline-offset-md {
-    outline-offset: 3px;
+    outline-offset: 2px;
   }
   .max-tab\:outline-offset-lg {
     outline-offset: 5px;
@@ -20004,7 +20004,7 @@ input {
     border-width: 1px;
   }
   .med\:border-md {
-    border-width: 3px;
+    border-width: 2px;
   }
   .med\:border-lg {
     border-width: 5px;
@@ -20024,8 +20024,8 @@ input {
     border-right-width: 1px;
   }
   .med\:bx-md {
-    border-left-width: 3px;
-    border-right-width: 3px;
+    border-left-width: 2px;
+    border-right-width: 2px;
   }
   .med\:bx-lg {
     border-left-width: 5px;
@@ -20048,8 +20048,8 @@ input {
     border-bottom-width: 1px;
   }
   .med\:by-md {
-    border-top-width: 3px;
-    border-bottom-width: 3px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
   }
   .med\:by-lg {
     border-top-width: 5px;
@@ -20070,7 +20070,7 @@ input {
     border-top-width: 1px;
   }
   .med\:bt-md {
-    border-top-width: 3px;
+    border-top-width: 2px;
   }
   .med\:bt-lg {
     border-top-width: 5px;
@@ -20088,7 +20088,7 @@ input {
     border-left-width: 1px;
   }
   .med\:bl-md {
-    border-left-width: 3px;
+    border-left-width: 2px;
   }
   .med\:bl-lg {
     border-left-width: 5px;
@@ -20106,7 +20106,7 @@ input {
     border-right-width: 1px;
   }
   .med\:br-md {
-    border-right-width: 3px;
+    border-right-width: 2px;
   }
   .med\:br-lg {
     border-right-width: 5px;
@@ -20124,7 +20124,7 @@ input {
     border-bottom-width: 1px;
   }
   .med\:bb-md {
-    border-bottom-width: 3px;
+    border-bottom-width: 2px;
   }
   .med\:bb-lg {
     border-bottom-width: 5px;
@@ -20142,7 +20142,7 @@ input {
     outline-width: 1px;
   }
   .med\:outline-md {
-    outline-width: 3px;
+    outline-width: 2px;
   }
   .med\:outline-lg {
     outline-width: 5px;
@@ -20160,7 +20160,7 @@ input {
     outline-offset: 1px;
   }
   .med\:outline-offset-md {
-    outline-offset: 3px;
+    outline-offset: 2px;
   }
   .med\:outline-offset-lg {
     outline-offset: 5px;
@@ -24163,7 +24163,7 @@ input {
     border-width: 1px;
   }
   .max-med\:border-md {
-    border-width: 3px;
+    border-width: 2px;
   }
   .max-med\:border-lg {
     border-width: 5px;
@@ -24183,8 +24183,8 @@ input {
     border-right-width: 1px;
   }
   .max-med\:bx-md {
-    border-left-width: 3px;
-    border-right-width: 3px;
+    border-left-width: 2px;
+    border-right-width: 2px;
   }
   .max-med\:bx-lg {
     border-left-width: 5px;
@@ -24207,8 +24207,8 @@ input {
     border-bottom-width: 1px;
   }
   .max-med\:by-md {
-    border-top-width: 3px;
-    border-bottom-width: 3px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
   }
   .max-med\:by-lg {
     border-top-width: 5px;
@@ -24229,7 +24229,7 @@ input {
     border-top-width: 1px;
   }
   .max-med\:bt-md {
-    border-top-width: 3px;
+    border-top-width: 2px;
   }
   .max-med\:bt-lg {
     border-top-width: 5px;
@@ -24247,7 +24247,7 @@ input {
     border-left-width: 1px;
   }
   .max-med\:bl-md {
-    border-left-width: 3px;
+    border-left-width: 2px;
   }
   .max-med\:bl-lg {
     border-left-width: 5px;
@@ -24265,7 +24265,7 @@ input {
     border-right-width: 1px;
   }
   .max-med\:br-md {
-    border-right-width: 3px;
+    border-right-width: 2px;
   }
   .max-med\:br-lg {
     border-right-width: 5px;
@@ -24283,7 +24283,7 @@ input {
     border-bottom-width: 1px;
   }
   .max-med\:bb-md {
-    border-bottom-width: 3px;
+    border-bottom-width: 2px;
   }
   .max-med\:bb-lg {
     border-bottom-width: 5px;
@@ -24301,7 +24301,7 @@ input {
     outline-width: 1px;
   }
   .max-med\:outline-md {
-    outline-width: 3px;
+    outline-width: 2px;
   }
   .max-med\:outline-lg {
     outline-width: 5px;
@@ -24319,7 +24319,7 @@ input {
     outline-offset: 1px;
   }
   .max-med\:outline-offset-md {
-    outline-offset: 3px;
+    outline-offset: 2px;
   }
   .max-med\:outline-offset-lg {
     outline-offset: 5px;
@@ -28322,7 +28322,7 @@ input {
     border-width: 1px;
   }
   .scr\:border-md {
-    border-width: 3px;
+    border-width: 2px;
   }
   .scr\:border-lg {
     border-width: 5px;
@@ -28342,8 +28342,8 @@ input {
     border-right-width: 1px;
   }
   .scr\:bx-md {
-    border-left-width: 3px;
-    border-right-width: 3px;
+    border-left-width: 2px;
+    border-right-width: 2px;
   }
   .scr\:bx-lg {
     border-left-width: 5px;
@@ -28366,8 +28366,8 @@ input {
     border-bottom-width: 1px;
   }
   .scr\:by-md {
-    border-top-width: 3px;
-    border-bottom-width: 3px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
   }
   .scr\:by-lg {
     border-top-width: 5px;
@@ -28388,7 +28388,7 @@ input {
     border-top-width: 1px;
   }
   .scr\:bt-md {
-    border-top-width: 3px;
+    border-top-width: 2px;
   }
   .scr\:bt-lg {
     border-top-width: 5px;
@@ -28406,7 +28406,7 @@ input {
     border-left-width: 1px;
   }
   .scr\:bl-md {
-    border-left-width: 3px;
+    border-left-width: 2px;
   }
   .scr\:bl-lg {
     border-left-width: 5px;
@@ -28424,7 +28424,7 @@ input {
     border-right-width: 1px;
   }
   .scr\:br-md {
-    border-right-width: 3px;
+    border-right-width: 2px;
   }
   .scr\:br-lg {
     border-right-width: 5px;
@@ -28442,7 +28442,7 @@ input {
     border-bottom-width: 1px;
   }
   .scr\:bb-md {
-    border-bottom-width: 3px;
+    border-bottom-width: 2px;
   }
   .scr\:bb-lg {
     border-bottom-width: 5px;
@@ -28460,7 +28460,7 @@ input {
     outline-width: 1px;
   }
   .scr\:outline-md {
-    outline-width: 3px;
+    outline-width: 2px;
   }
   .scr\:outline-lg {
     outline-width: 5px;
@@ -28478,7 +28478,7 @@ input {
     outline-offset: 1px;
   }
   .scr\:outline-offset-md {
-    outline-offset: 3px;
+    outline-offset: 2px;
   }
   .scr\:outline-offset-lg {
     outline-offset: 5px;
@@ -31300,7 +31300,7 @@ input {
 }
 
 .indent-md {
-  text-indent: 3px;
+  text-indent: 2px;
 }
 
 .indent-lg {
@@ -31436,7 +31436,7 @@ input {
 }
 
 .decoration-md {
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 2px;
 }
 
 .decoration-lg {
@@ -39303,7 +39303,7 @@ input {
 }
 
 .hover\:decoration-md:hover {
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 2px;
 }
 
 .hover\:decoration-lg:hover {
@@ -39327,7 +39327,7 @@ input {
 }
 
 .active\:decoration-md:active {
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 2px;
 }
 
 .active\:decoration-lg:active {
@@ -39351,7 +39351,7 @@ input {
 }
 
 .focus\:decoration-md:focus {
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 2px;
 }
 
 .focus\:decoration-lg:focus {
@@ -39375,7 +39375,7 @@ input {
 }
 
 .hover\:border-md:hover {
-  border-width: 3px;
+  border-width: 2px;
 }
 
 .hover\:border-lg:hover {
@@ -39399,7 +39399,7 @@ input {
 }
 
 .active\:border-md:active {
-  border-width: 3px;
+  border-width: 2px;
 }
 
 .active\:border-lg:active {
@@ -39423,7 +39423,7 @@ input {
 }
 
 .focus\:border-md:focus {
-  border-width: 3px;
+  border-width: 2px;
 }
 
 .focus\:border-lg:focus {
@@ -39449,8 +39449,8 @@ input {
 }
 
 .hover\:bx-md:hover {
-  border-left-width: 3px;
-  border-right-width: 3px;
+  border-left-width: 2px;
+  border-right-width: 2px;
 }
 
 .hover\:bx-lg:hover {
@@ -39479,8 +39479,8 @@ input {
 }
 
 .active\:bx-md:active {
-  border-left-width: 3px;
-  border-right-width: 3px;
+  border-left-width: 2px;
+  border-right-width: 2px;
 }
 
 .active\:bx-lg:active {
@@ -39509,8 +39509,8 @@ input {
 }
 
 .focus\:bx-md:focus {
-  border-left-width: 3px;
-  border-right-width: 3px;
+  border-left-width: 2px;
+  border-right-width: 2px;
 }
 
 .focus\:bx-lg:focus {
@@ -39539,8 +39539,8 @@ input {
 }
 
 .hover\:by-md:hover {
-  border-top-width: 3px;
-  border-bottom-width: 3px;
+  border-top-width: 2px;
+  border-bottom-width: 2px;
 }
 
 .hover\:by-lg:hover {
@@ -39569,8 +39569,8 @@ input {
 }
 
 .active\:by-md:active {
-  border-top-width: 3px;
-  border-bottom-width: 3px;
+  border-top-width: 2px;
+  border-bottom-width: 2px;
 }
 
 .active\:by-lg:active {
@@ -39599,8 +39599,8 @@ input {
 }
 
 .focus\:by-md:focus {
-  border-top-width: 3px;
-  border-bottom-width: 3px;
+  border-top-width: 2px;
+  border-bottom-width: 2px;
 }
 
 .focus\:by-lg:focus {
@@ -39627,7 +39627,7 @@ input {
 }
 
 .hover\:bt-md:hover {
-  border-top-width: 3px;
+  border-top-width: 2px;
 }
 
 .hover\:bt-lg:hover {
@@ -39651,7 +39651,7 @@ input {
 }
 
 .active\:bt-md:active {
-  border-top-width: 3px;
+  border-top-width: 2px;
 }
 
 .active\:bt-lg:active {
@@ -39675,7 +39675,7 @@ input {
 }
 
 .focus\:bt-md:focus {
-  border-top-width: 3px;
+  border-top-width: 2px;
 }
 
 .focus\:bt-lg:focus {
@@ -39699,7 +39699,7 @@ input {
 }
 
 .hover\:bl-md:hover {
-  border-left-width: 3px;
+  border-left-width: 2px;
 }
 
 .hover\:bl-lg:hover {
@@ -39723,7 +39723,7 @@ input {
 }
 
 .active\:bl-md:active {
-  border-left-width: 3px;
+  border-left-width: 2px;
 }
 
 .active\:bl-lg:active {
@@ -39747,7 +39747,7 @@ input {
 }
 
 .focus\:bl-md:focus {
-  border-left-width: 3px;
+  border-left-width: 2px;
 }
 
 .focus\:bl-lg:focus {
@@ -39771,7 +39771,7 @@ input {
 }
 
 .hover\:br-md:hover {
-  border-right-width: 3px;
+  border-right-width: 2px;
 }
 
 .hover\:br-lg:hover {
@@ -39795,7 +39795,7 @@ input {
 }
 
 .active\:br-md:active {
-  border-right-width: 3px;
+  border-right-width: 2px;
 }
 
 .active\:br-lg:active {
@@ -39819,7 +39819,7 @@ input {
 }
 
 .focus\:br-md:focus {
-  border-right-width: 3px;
+  border-right-width: 2px;
 }
 
 .focus\:br-lg:focus {
@@ -39843,7 +39843,7 @@ input {
 }
 
 .hover\:bb-md:hover {
-  border-bottom-width: 3px;
+  border-bottom-width: 2px;
 }
 
 .hover\:bb-lg:hover {
@@ -39867,7 +39867,7 @@ input {
 }
 
 .active\:bb-md:active {
-  border-bottom-width: 3px;
+  border-bottom-width: 2px;
 }
 
 .active\:bb-lg:active {
@@ -39891,7 +39891,7 @@ input {
 }
 
 .focus\:bb-md:focus {
-  border-bottom-width: 3px;
+  border-bottom-width: 2px;
 }
 
 .focus\:bb-lg:focus {
@@ -39975,7 +39975,7 @@ input {
 }
 
 .hover\:outline-md:hover {
-  outline-width: 3px;
+  outline-width: 2px;
 }
 
 .hover\:outline-lg:hover {
@@ -39999,7 +39999,7 @@ input {
 }
 
 .active\:outline-md:active {
-  outline-width: 3px;
+  outline-width: 2px;
 }
 
 .active\:outline-lg:active {
@@ -40023,7 +40023,7 @@ input {
 }
 
 .focus\:outline-md:focus {
-  outline-width: 3px;
+  outline-width: 2px;
 }
 
 .focus\:outline-lg:focus {

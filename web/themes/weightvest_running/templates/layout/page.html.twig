@@ -96,13 +96,13 @@
 
   {% if page.footer %}
     <footer id ="footer" class="pt-xl pb-3xl px-xl bg-light-grey mt-2xl border-border bt-sm" role="contentinfo">
+      {{ page.footer }}
       <div class="copyright">
           <p class="text-base">
             <span class="text-2xl position-relative top-4px">&copy;</span> 
             <span class="position-relative bottom-3px">{{ "now"|date("Y") }} Weightvest Running</span> 
           </p>
       </div>
-      {{ page.footer }}
     </footer>
   {% endif %}
 
