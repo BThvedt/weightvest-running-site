@@ -63,12 +63,12 @@ function weightvest_running_preprocess_block(&$variables) {
     // Or cache by URL path only
     $variables['#cache']['contexts'][] = 'url.path';
   } else if ($block_id == "weightvest_running_subheaderforpages") {
-    
+
     if (empty($variables['elements']['#cache'])) {
       $variables['elements']['#cache'] = [];
     }
 
-    $variables['elements']['#cache']['contexts'][] = 'route';
+    $variables['#cache']['contexts'][] = 'route';
 
     $node = \Drupal::routeMatch()->getParameter('node');
     if ($node instanceof NodeInterface) {
