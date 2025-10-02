@@ -24,7 +24,7 @@ class GuineaPigBlock extends BlockBase {
       '#markup' => '
 				<div class="hover:text-orange">
 					<a class="no-underline" href = "/penny">
-						<div class="footer-guinea-pig block display-flex items-center mt-lg mb-lg">
+						<div class="footer-guinea-pig block display-flex items-center mt-md mb-md">
 							<img class="mr-lg" src="' . $image_url . '" alt="Penny the Guinea Pig" />
 							<p class="position-relative bottom-2px">Dedicated to Penny, <br />the Best Guinea Pig</p>
 						</div>

@@ -17,4 +17,5 @@ regions:
   header: Header
   content: Content
   sidebar: Sidebar
-  footer: Footer
+  left_footer: Left Footer
+  right_footer: Right Footer
