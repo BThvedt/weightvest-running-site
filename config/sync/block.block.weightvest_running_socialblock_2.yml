@@ -1,0 +1,20 @@
+uuid: 408194a4-4668-45c1-9772-ac1a0de21357
+langcode: en
+status: true
+dependencies:
+  module:
+    - general
+  theme:
+    - weightvest_running
+id: weightvest_running_socialblock_2
+theme: weightvest_running
+region: left_footer
+weight: -13
+provider: null
+plugin: social_block
+settings:
+  id: social_block
+  label: 'Social Block'
+  label_display: '0'
+  provider: general
+visibility: {  }

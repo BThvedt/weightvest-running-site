@@ -1,4 +1,4 @@
-uuid: 806fc54e-a8df-43f7-b89e-95d8fc772c81
+uuid: 8ce4d4a4-9356-4464-aba2-af46c0258972
 langcode: en
 status: true
 dependencies:
@@ -7,10 +7,10 @@ dependencies:
     - system
   theme:
     - weightvest_running
-id: weightvest_running_guineapigblock
+id: weightvest_running_guineapigblock_2
 theme: weightvest_running
-region: footer
-weight: -13
+region: right_footer
+weight: 0
 provider: null
 plugin: guinea_pig_block
 settings:

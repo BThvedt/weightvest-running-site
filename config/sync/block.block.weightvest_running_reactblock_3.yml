@@ -9,7 +9,7 @@ dependencies:
 id: weightvest_running_reactblock_3
 theme: weightvest_running
 region: secondary_menu
-weight: 0
+weight: -11
 provider: null
 plugin: react_block
 settings:

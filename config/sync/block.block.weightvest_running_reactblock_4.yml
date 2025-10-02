@@ -9,7 +9,7 @@ dependencies:
 id: weightvest_running_reactblock_4
 theme: weightvest_running
 region: modals_region
-weight: 0
+weight: -13
 provider: null
 plugin: react_block
 settings:
