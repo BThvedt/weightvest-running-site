@@ -1,6 +1,4 @@
 #!/bin/bash
-# Eb when creating a new instance often it fails to have php-fpm running (probably because of my cheapness haha)
-sudo systemctl restart php-fpm
 
 # Now have to export ENV variables for drush 
 
@@ -35,5 +33,5 @@ sudo find /var/app/current/web/sites/default/files -type f -exec chmod 644 {} \;
 # Make sure ec2-user has access to the webapp group's permissions
 sudo usermod -a -G webapp ec2-user
 
-# Let's restart this thing again
+# Eb when creating a new instance often it fails to have php-fpm running (probably because of my cheapness haha)
 sudo systemctl restart php-fpm
