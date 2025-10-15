@@ -2,21 +2,6 @@
 set -e
 
 echo "Starting Drupal post-deploy script..."
-echo "Current user: $(whoami)"
-echo "Current directory: $(pwd)"
-echo "Checking directory structure..."
-
-ls -la /var/app/current/web/sites/default/ || echo "default directory doesn't exist yet"
-ls -la /var/app/current/web/sites/default/files || echo "files directory doesn't exist yet"
-
-# Continue with rest of script...
-2. The real issue might be timing:
-Postdeploy hooks run immediately after deployment. If your application files are still being copied or symlinked, the directory might not be ready yet.
-Try this safer version:
-bash#!/bin/bash
-set -e
-
-echo "Starting Drupal post-deploy script..."
 
 # Set proper working directory
 cd /var/app/current
