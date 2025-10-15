@@ -1,10 +1,28 @@
 #!/bin/bash
-set -e  # Exit on error
+set -e
+
+echo "Starting Drupal post-deploy script..."
+echo "Current user: $(whoami)"
+echo "Current directory: $(pwd)"
+echo "Checking directory structure..."
+
+ls -la /var/app/current/web/sites/default/ || echo "default directory doesn't exist yet"
+ls -la /var/app/current/web/sites/default/files || echo "files directory doesn't exist yet"
+
+# Continue with rest of script...
+2. The real issue might be timing:
+Postdeploy hooks run immediately after deployment. If your application files are still being copied or symlinked, the directory might not be ready yet.
+Try this safer version:
+bash#!/bin/bash
+set -e
 
 echo "Starting Drupal post-deploy script..."
 
 # Set proper working directory
 cd /var/app/current
+
+# Wait a moment for filesystem to settle
+sleep 2
 
 # Export environment variables from EB deployment
 if [ -f "/opt/elasticbeanstalk/deployment/env" ]; then
@@ -12,8 +30,6 @@ if [ -f "/opt/elasticbeanstalk/deployment/env" ]; then
     source <(sudo cat /opt/elasticbeanstalk/deployment/env)
     set +o allexport
     echo "✓ Environment variables loaded"
-else
-    echo "⚠ Warning: /opt/elasticbeanstalk/deployment/env not found"
 fi
 
 # Add vendor/bin to PATH if it exists
@@ -26,11 +42,9 @@ fi
 if [ -f "/var/app/current/vendor/bin/drush" ]; then
     sudo ln -sf /var/app/current/vendor/bin/drush /usr/local/bin/drush
     echo "✓ Created drush symlink"
-else
-    echo "⚠ Warning: drush not found in vendor/bin"
 fi
 
-# Update bash_profile for ec2-user only if not already present
+# Update bash_profile for ec2-user
 if [ -f "/opt/elasticbeanstalk/deployment/env" ]; then
     BASH_PROFILE="/home/ec2-user/.bash_profile"
     ENV_LINE='set -o allexport && source <(sudo cat /opt/elasticbeanstalk/deployment/env) && set +o allexport'
@@ -43,16 +57,32 @@ if [ -f "/opt/elasticbeanstalk/deployment/env" ]; then
     fi
 fi
 
-# Set Drupal file permissions
+# Set Drupal file permissions - only if directory exists
 echo "Setting Drupal permissions..."
-sudo chown -R webapp:webapp /var/app/current/web/sites/default/files
-sudo chmod 444 /var/app/current/web/sites/default/settings.php
-sudo find /var/app/current/web/sites/default/files -type d -exec chmod 775 {} \;
-sudo find /var/app/current/web/sites/default/files -type f -exec chmod 664 {} \;
-echo "✓ Permissions set"
+FILES_DIR="/var/app/current/web/sites/default/files"
+
+if [ -d "$FILES_DIR" ]; then
+    sudo chown -R webapp:webapp "$FILES_DIR" || echo "⚠ Could not set ownership"
+    sudo chmod 775 "$FILES_DIR" || echo "⚠ Could not set directory permissions"
+    sudo find "$FILES_DIR" -type d -exec chmod 775 {} \; 2>/dev/null || true
+    sudo find "$FILES_DIR" -type f -exec chmod 664 {} \; 2>/dev/null || true
+    echo "✓ Permissions set on files directory"
+else
+    echo "⚠ Files directory doesn't exist yet, creating it..."
+    sudo mkdir -p "$FILES_DIR"
+    sudo chown -R webapp:webapp "$FILES_DIR"
+    sudo chmod 775 "$FILES_DIR"
+    echo "✓ Created and configured files directory"
+fi
+
+# Set settings.php permissions
+if [ -f "/var/app/current/web/sites/default/settings.php" ]; then
+    sudo chmod 444 /var/app/current/web/sites/default/settings.php
+    echo "✓ Settings.php permissions set"
+fi
 
 # Add ec2-user to webapp group
-if ! groups ec2-user | grep -q webapp; then
+if ! groups ec2-user 2>/dev/null | grep -q webapp; then
     sudo usermod -a -G webapp ec2-user
     echo "✓ Added ec2-user to webapp group"
 else
@@ -60,27 +90,18 @@ else
 fi
 
 # Run Drush commands
-echo "Running Drush commands..."
+if command -v drush &> /dev/null; then
+    echo "Running Drush commands..."
+    
+    drush updatedb -y 2>&1 || echo "⚠ Database updates skipped"
+    drush config:import -y 2>&1 || echo "⚠ Config import skipped"
+    drush cache:rebuild 2>&1 || echo "⚠ Cache rebuild skipped"
+    
+    echo "✓ Drush commands completed"
+fi
 
-# Database updates
-# if command -v drush &> /dev/null; then
-#     echo "Running database updates..."
-#     drush updatedb -y || echo "⚠ Warning: Database updates failed or not needed"
-    
-#     echo "Importing configuration..."
-#     drush config:import -y || echo "⚠ Warning: Config import failed or not needed"
-    
-#     echo "Clearing cache..."
-#     drush cache:rebuild || echo "⚠ Warning: Cache rebuild failed"
-    
-#     echo "✓ Drush commands completed"
-# else
-#     echo "⚠ Warning: drush command not available"
-# fi
-
-# Ensure PHP-FPM is running (restart only if not running)
+# Ensure PHP-FPM is running
 if ! systemctl is-active --quiet php-fpm; then
-    echo "PHP-FPM not running, starting it..."
     sudo systemctl start php-fpm
     echo "✓ PHP-FPM started"
 else
