@@ -75,15 +75,15 @@ else
 fi
 
 # Run Drush commands
-if command -v drush &> /dev/null; then
-    echo "Running Drush commands..."
+# if command -v drush &> /dev/null; then
+#     echo "Running Drush commands..."
     
-    drush updatedb -y 2>&1 || echo "⚠ Database updates skipped"
-    drush config:import -y 2>&1 || echo "⚠ Config import skipped"
-    drush cache:rebuild 2>&1 || echo "⚠ Cache rebuild skipped"
+#     drush updatedb -y 2>&1 || echo "⚠ Database updates skipped"
+#     drush config:import -y 2>&1 || echo "⚠ Config import skipped"
+#     drush cache:rebuild 2>&1 || echo "⚠ Cache rebuild skipped"
     
-    echo "✓ Drush commands completed"
-fi
+#     echo "✓ Drush commands completed"
+# fi
 
 # Ensure PHP-FPM is running
 if ! systemctl is-active --quiet php-fpm; then
