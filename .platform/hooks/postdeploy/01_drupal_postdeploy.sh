@@ -85,12 +85,12 @@ fi
 #     echo "✓ Drush commands completed"
 # fi
 
-# Ensure PHP-FPM is running
-if ! systemctl is-active --quiet php-fpm; then
-    sudo systemctl start php-fpm
-    echo "✓ PHP-FPM started"
-else
-    echo "✓ PHP-FPM already running"
-fi
+# Ensure PHP-FPM is running (not necessary - handled in .ebextensions)
+# if ! systemctl is-active --quiet php-fpm; then
+#     sudo systemctl start php-fpm
+#     echo "✓ PHP-FPM started"
+# else
+#     echo "✓ PHP-FPM already running"
+# fi
 
 echo "✓ Post-deploy script completed successfully!"
