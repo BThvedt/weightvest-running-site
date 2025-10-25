@@ -59,7 +59,7 @@ const StridesPerMinute = ({ stridesPerMinuteData, TitleComponent, title }) => {
         <VictoryAxis
           dependentAxis
           tickValues={ticks}
-          tickFormat={(y) => `${y.toFixed(1)}`}
+          tickFormat={(y) => `${parseInt(y)}`}
           style={{
             ticks: { size: 4 },
             axisLabel: { padding: 35, fontSize: 11 },

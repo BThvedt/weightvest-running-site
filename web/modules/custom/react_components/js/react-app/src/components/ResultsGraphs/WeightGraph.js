@@ -34,7 +34,7 @@ const WeightGraph = ({ weightData, TitleComponent, title }) => {
         containerComponent={
           <VictoryVoronoiContainer
             labels={({ datum }) =>
-              `${datum.x.toLocaleDateString()}\n${datum.y.toFixed(2)} %`
+              `${datum.x.toLocaleDateString()}\n${datum.y.toFixed(2)} lbs`
             }
             labelComponent={
               <VictoryTooltip
